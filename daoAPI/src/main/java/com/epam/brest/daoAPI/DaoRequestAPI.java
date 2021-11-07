@@ -1,4 +1,19 @@
 package com.epam.brest.daoAPI;
 
-public class DaoRequestAPI {
+import com.epam.brest.model.entity.Request;
+
+import java.util.List;
+
+public interface DaoRequestAPI {
+
+    List<Request> detAll() ;
+
+    void read(int id);
+
+    void write(Request request);
+
+    void update(Request request);
+
+    void delete(Request request);
+
 }

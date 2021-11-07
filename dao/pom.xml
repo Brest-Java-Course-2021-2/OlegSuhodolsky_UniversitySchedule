@@ -6,6 +6,12 @@
 
     <artifactId>dao</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>daoAPI</artifactId>
+        </dependency>
+    </dependencies>
 
     <parent>
         <artifactId>university</artifactId>
