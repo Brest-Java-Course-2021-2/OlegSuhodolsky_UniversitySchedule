@@ -1,0 +1,4 @@
+RUN SERVER :
+
+mvn -pl web-app/ jetty:run
+

@@ -1,0 +1,9 @@
+git add .
+git commit -m "CreateProjectStructure"
+git branch -M main
+git remote add origin https://github.com/Brest-Java-Course-2021-2/OlegSuhodolsky_UniversitySchedule.git
+git push -u origin main
+
+
+TOKEN:
+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

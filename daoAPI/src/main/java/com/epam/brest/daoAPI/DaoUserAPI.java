@@ -4,10 +4,14 @@ import com.epam.brest.model.entity.User;
 
 import java.util.List;
 
-public interface daoUserAPI  {
+public interface DaoUserAPI {
     List<User> detAll();
+
     void read(int id);
+
     void write(User user);
+
     void update(User user);
+
     void delete(User user);
 }
