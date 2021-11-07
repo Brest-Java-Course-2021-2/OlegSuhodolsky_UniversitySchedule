@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class RequestMapper implements RowMapper {
 
     @Override
-    public Object mapRow(ResultSet resultSet, int i) throws SQLException {
+    public Request mapRow(ResultSet resultSet, int i) throws SQLException {
         Request request = new Request();
         request.setIDR(resultSet.getInt("IDR"));
         request.setID(resultSet.getInt("ID"));

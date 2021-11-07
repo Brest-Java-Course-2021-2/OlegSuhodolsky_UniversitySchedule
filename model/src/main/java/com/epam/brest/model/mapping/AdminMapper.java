@@ -1,11 +1,12 @@
 package com.epam.brest.model.mapping;
 
 import com.epam.brest.model.entity.Admin;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AdminMapper {
+public class AdminMapper implements RowMapper {
 
     public Admin mapRow(ResultSet resultSet, int i) throws SQLException {
         Admin admin = new Admin();

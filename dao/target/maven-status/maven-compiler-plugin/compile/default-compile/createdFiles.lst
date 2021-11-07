@@ -1,2 +1,4 @@
 com/epam/brest/dao/DaoUser.class
+com/epam/brest/Main.class
 com/epam/brest/dao/DaoRequest.class
+com/epam/brest/configdao/SpringConfig.class
