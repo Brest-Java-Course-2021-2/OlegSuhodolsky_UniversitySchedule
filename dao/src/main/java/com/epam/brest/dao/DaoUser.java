@@ -21,7 +21,7 @@ public class DaoUser implements DaoUserAPI {
 
 
     @Override
-    public List<User> detAll() {
+    public List<User> getAll() {
         String SQL = "SELECT *FROM user";
         return jdbcTemplate.query(SQL, new BeanPropertyRowMapper<>(User.class));
 

@@ -5,7 +5,7 @@ import com.epam.brest.model.entity.User;
 import java.util.List;
 
 public interface DaoUserAPI {
-    List<User> detAll();
+    List<User> getAll();
 
     void read(int id);
 

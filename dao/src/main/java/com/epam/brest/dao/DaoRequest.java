@@ -20,7 +20,7 @@ public class DaoRequest implements DaoRequestAPI {
 
 
     @Override
-    public List<Request> detAll() {
+    public List<Request> getAll() {
         return null;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DaoRequestAPI {
 
-    List<Request> detAll() ;
+    List<Request> getAll() ;
 
     void read(int id);
 
