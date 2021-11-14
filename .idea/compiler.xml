@@ -10,12 +10,14 @@
         <module name="model" />
         <module name="dao" />
         <module name="daoAPI" />
+        <module name="test-db" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="dao" target="11" />
       <module name="daoAPI" target="11" />
       <module name="model" target="11" />
+      <module name="test-db" target="11" />
       <module name="university" target="11" />
       <module name="web-app" target="11" />
     </bytecodeTargetLevel>
