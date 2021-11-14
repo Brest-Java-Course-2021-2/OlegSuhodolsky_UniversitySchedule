@@ -1,6 +1,3 @@
 /home/oleg/dev/university/model/src/main/java/com/epam/brest/model/entity/Request.java
-/home/oleg/dev/university/model/src/main/java/com/epam/brest/model/mapping/RequestMapper.java
-/home/oleg/dev/university/model/src/main/java/com/epam/brest/model/mapping/UserMapper.java
-/home/oleg/dev/university/model/src/main/java/com/epam/brest/model/mapping/AdminMapper.java
 /home/oleg/dev/university/model/src/main/java/com/epam/brest/model/entity/Admin.java
 /home/oleg/dev/university/model/src/main/java/com/epam/brest/model/entity/User.java

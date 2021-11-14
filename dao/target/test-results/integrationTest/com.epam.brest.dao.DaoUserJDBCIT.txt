@@ -1,11 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.epam.brest.dao.DaoUserJDBCIT
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.764 s <<< FAILURE! - in com.epam.brest.dao.DaoUserJDBCIT
-com.epam.brest.dao.DaoUserJDBCIT.findAll  Time elapsed: 0.006 s  <<< ERROR!
-org.junit.jupiter.api.extension.ParameterResolutionException: Failed to resolve parameter [com.epam.brest.dao.DaoUser arg0] in constructor [public com.epam.brest.dao.DaoUserJDBCIT(com.epam.brest.dao.DaoUser)]: Failed to load ApplicationContext
-Caused by: java.lang.IllegalStateException: Failed to load ApplicationContext
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'departmentDao' defined in URL [file:/home/oleg/dev/university/dao/target/test-classes/test-jdbc-conf.xml]: Cannot resolve reference to bean 'jdbcTemplate' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcTemplate' defined in URL [file:/home/oleg/dev/university/dao/target/test-classes/test-jdbc-conf.xml]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcTemplate' defined in URL [file:/home/oleg/dev/university/dao/target/test-classes/test-jdbc-conf.xml]: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Property 'dataSource' is required
-Caused by: java.lang.IllegalArgumentException: Property 'dataSource' is required
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.86 s - in com.epam.brest.dao.DaoUserJDBCIT

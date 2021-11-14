@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 
-public class UserController {
+public class
+UserController {
 
 
     private final DaoUser userDAO;

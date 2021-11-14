@@ -1,2 +1,2 @@
-INSERT INTO user (id,name,login,password,email ) VALUES ( 1, 'Mike','mike','1111','a@mail.ru' );
+INSERT INTO USER (name,login,password,email) VALUES ('Mike','mike','1111','a@mail.ru');
 

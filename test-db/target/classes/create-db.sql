@@ -1,14 +1,12 @@
-DROP TABLE IF EXISTS employee;
-
-DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE user
 (
     id int NOT NULL auto_increment,
-    name varchar(50) NOT NULL UNIQUE,
-    login varchar(50) NOT NULL UNIQUE,
+    name varchar(50) NOT NULL ,
+    login varchar(50) NOT NULL,
     password varchar(50) NOT NULL,
     email varchar(50) NOT NULL ,
-    PRIMARY KEY (id)
+    CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
