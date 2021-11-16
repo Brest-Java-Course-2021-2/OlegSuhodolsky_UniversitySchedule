@@ -9,7 +9,7 @@ public interface DaoUserAPI {
 
     void read(int id);
 
-    void write(User user);
+    Integer write(User user);
 
     void update(User user);
 

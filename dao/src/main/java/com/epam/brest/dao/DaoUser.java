@@ -5,7 +5,11 @@ import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -16,9 +20,11 @@ import java.util.List;
 @Component
 public class DaoUser implements DaoUserAPI {
 
-    //private final JdbcTemplate jdbcTemplate;
+    private final String Get_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
+    private final String SQL_CREATE_USER="insert into user(name,login,password,email) values(:name, :login, :password, :email)";
+
+
     private final Logger logger = LogManager.getLogger(DaoUser.class);
-    //private final DataSource dataSource;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 
@@ -31,10 +37,10 @@ public class DaoUser implements DaoUserAPI {
     @Override
     public List<User> getAll() {
 
-        String SQL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
-        String sql = "select *from user";
+       /* String SQL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
+        String sql = "select *from user";*/
         logger.debug("Start: getAll()");
-        return namedParameterJdbcTemplate.query(sql,new UserRowMapper());
+        return namedParameterJdbcTemplate.query(Get_FROM_USER_ALL,new UserRowMapper());
 
     }
 
@@ -44,9 +50,20 @@ public class DaoUser implements DaoUserAPI {
     }
 
     @Override
-    public void write(User user) {
+    public Integer write(User user) {
+        logger.debug("Start: create({})", user);
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource();
 
-    }
+        ((MapSqlParameterSource) sqlParameterSource).addValue("name", user.getName());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("login", user.getLogin());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("password", user.getPassword());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(SQL_CREATE_USER, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
+      }
 
     @Override
     public void update(User user) {
