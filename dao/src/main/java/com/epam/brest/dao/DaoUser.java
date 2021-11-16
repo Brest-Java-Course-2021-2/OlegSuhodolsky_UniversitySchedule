@@ -22,7 +22,7 @@ public class DaoUser implements DaoUserAPI {
 
     private final String Get_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
     private final String SQL_CREATE_USER="insert into user(name,login,password,email) values(:name, :login, :password, :email)";
-
+    private final String SQL_UPDATE_USER="update user set name=:name, login=:login, password=:password, email=:email where id=:id";
 
     private final Logger logger = LogManager.getLogger(DaoUser.class);
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -66,8 +66,19 @@ public class DaoUser implements DaoUserAPI {
       }
 
     @Override
-    public void update(User user) {
+    public Integer updateUser(User user) {
+        logger.debug("Start: create({})", user);
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource();
+        ((MapSqlParameterSource) sqlParameterSource).addValue("id", user.getId());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("name", user.getName());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("login", user.getLogin());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("password", user.getPassword());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
 
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(SQL_UPDATE_USER, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
     }
 
     @Override

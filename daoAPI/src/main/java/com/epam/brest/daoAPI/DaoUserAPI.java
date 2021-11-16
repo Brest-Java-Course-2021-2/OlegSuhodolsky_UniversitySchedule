@@ -12,7 +12,7 @@ public interface DaoUserAPI {
 
     Integer write(User user);
 
-    void update(User user);
+    Integer updateUser(User user);
 
     void delete(User user);
 }

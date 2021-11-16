@@ -8,12 +8,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1ef8300-bc37-4ed1-989b-90ec2d714eb1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dao/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/dao/DaoUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/dao/DaoUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/test/java/com/epam/brest/dao/DaoUserJDBCIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/com/epam/brest/dao/DaoUserJDBCIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoUser$UserRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoUser$UserRowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoUser.class" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoUser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/target/dao-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/dao-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/failsafe-reports/failsafe-summary.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/target/test-classes/com/epam/brest/dao/DaoUserJDBCIT.class" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/test-classes/com/epam/brest/dao/DaoUserJDBCIT.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/target/test-results/integrationTest/TEST-com.epam.brest.dao.DaoUserJDBCIT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/test-results/integrationTest/TEST-com.epam.brest.dao.DaoUserJDBCIT.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/target/test-results/integrationTest/com.epam.brest.dao.DaoUserJDBCIT.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dao/target/test-results/integrationTest/com.epam.brest.dao.DaoUserJDBCIT.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daoAPI/src/main/java/com/epam/brest/daoAPI/DaoUserAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/daoAPI/src/main/java/com/epam/brest/daoAPI/DaoUserAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daoAPI/target/classes/com/epam/brest/daoAPI/DaoUserAPI.class" beforeDir="false" afterPath="$PROJECT_DIR$/daoAPI/target/classes/com/epam/brest/daoAPI/DaoUserAPI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/daoAPI/target/daoAPI-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/daoAPI/target/daoAPI-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/daoAPI/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/daoAPI/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/epam/brest/model/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/epam/brest/model/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/target/classes/com/epam/brest/model/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/classes/com/epam/brest/model/entity/User.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/target/model-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/model/target/model-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test-db/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/test-db/target/maven-archiver/pom.properties" afterDir="false" />
@@ -51,6 +63,31 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="first" />
+                    <option name="lastUsedInstant" value="1637090523" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1637090522" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedIndex" value="2" />
@@ -135,7 +172,7 @@
       <workItem from="1636883954588" duration="2577000" />
       <workItem from="1636888435119" duration="15125000" />
       <workItem from="1637081476754" duration="6773000" />
-      <workItem from="1637089408535" duration="360000" />
+      <workItem from="1637089408535" duration="4124000" />
     </task>
     <servers />
   </component>

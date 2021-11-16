@@ -3,12 +3,16 @@ package com.epam.brest.dao;
 import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-jdbc-conf.xml"})
 @Transactional
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class DaoUserJDBCIT {
 
     private final Logger logger = LogManager.getLogger(DaoUserJDBCIT.class);
@@ -41,6 +46,18 @@ class DaoUserJDBCIT {
         assertTrue(daoUser.getAll().size() == 3, "Size = 3");
     }
 
+    @Test
+    void testChange(){
+        logger.debug("Execute test: update()");
+        daoUser.updateUser(new User(3,"Max", "john", "1111", "isocrol@yandex.ru"));
 
+        List<User> user = daoUser.getAll();
+        for (User u:user){
+            System.out.println(u);
+        }
+
+        assertTrue(daoUser.getAll().size() == 2, "Size = 3");
+
+    }
 
 }
