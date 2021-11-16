@@ -35,7 +35,7 @@ class DaoUserJDBCIT {
     }
     @Test
     void insert(){
-     // String insertToUser = "INSERT INTO USER (name,login,password,email) VALUES ('John','john','1111','a@mail.ru')";
+
         logger.debug("Execute test: write()");
         assertNotNull(daoUser.write(new User("John", "john", "1111", "isocrol@yandex.ru")));
         assertTrue(daoUser.getAll().size() == 3, "Size = 3");
