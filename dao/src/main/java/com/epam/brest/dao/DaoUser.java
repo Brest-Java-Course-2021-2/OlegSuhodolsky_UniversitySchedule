@@ -21,32 +21,33 @@ import java.util.List;
 public class DaoUser implements DaoUserAPI {
 
     private final String Get_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
-    private final String SQL_CREATE_USER="insert into user(name,login,password,email) values(:name, :login, :password, :email)";
-    private final String SQL_UPDATE_USER="update user set name=:name, login=:login, password=:password, email=:email where id=:id";
+    private final String Get_FROM_USER_BY_ID = "select d.id, d.name, d.login, d.password, d.email from user d where id=:id";
+    private final String SQL_CREATE_USER = "insert into user(name,login,password,email) values(:name, :login, :password, :email)";
+    private final String SQL_UPDATE_USER = "update user set name=:name, login=:login, password=:password, email=:email where id=:id";
+    private final String SQL_DELETE_USER_BY_ID = "delete from user where id=:id";
+
 
     private final Logger logger = LogManager.getLogger(DaoUser.class);
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 
     public DaoUser(DataSource dataSource) {
-      //  this.jdbcTemplate = jdbcTemplate;
+        //  this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-
     @Override
     public List<User> getAll() {
-
-       /* String SQL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
-        String sql = "select *from user";*/
         logger.debug("Start: getAll()");
-        return namedParameterJdbcTemplate.query(Get_FROM_USER_ALL,new UserRowMapper());
-
+        return namedParameterJdbcTemplate.query(Get_FROM_USER_ALL, new UserRowMapper());
     }
 
     @Override
-    public void read(int id) {
-
+    public List<User> read(int id) {
+        logger.debug("Start: read({})", id);
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource().addValue("id", id);
+        return namedParameterJdbcTemplate.query(Get_FROM_USER_BY_ID, sqlParameterSource, new UserRowMapper());
     }
 
     @Override
@@ -63,11 +64,11 @@ public class DaoUser implements DaoUserAPI {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(SQL_CREATE_USER, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
-      }
+    }
 
     @Override
     public Integer updateUser(User user) {
-        logger.debug("Start: create({})", user);
+        logger.debug("Start: update ({})", user);
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
         ((MapSqlParameterSource) sqlParameterSource).addValue("id", user.getId());
@@ -82,12 +83,16 @@ public class DaoUser implements DaoUserAPI {
     }
 
     @Override
-    public void delete(User user) {
-
+    public void delete(int id) {
+        logger.debug("Start: delete ({})", id);
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource().addValue("id", id);
+        namedParameterJdbcTemplate.update(SQL_DELETE_USER_BY_ID, sqlParameterSource);
     }
 
-    private class UserRowMapper implements RowMapper<User> {
 
+    /*MAPPER CLASS USER*/
+    private class UserRowMapper implements RowMapper<User> {
         @Override
         public User mapRow(ResultSet resultSet, int i) throws SQLException {
             User user = new User();

@@ -14,8 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:test-jdbc-conf.xml"})
@@ -28,7 +27,7 @@ class DaoUserJDBCIT {
     private DaoUser daoUser;
 
     public DaoUserJDBCIT(@Autowired DaoUser daoUser) {
-        this.daoUser =  daoUser;
+        this.daoUser = daoUser;
     }
 
     @Test
@@ -38,8 +37,9 @@ class DaoUserJDBCIT {
         assertNotNull(daoUser.getAll());
         assertTrue(daoUser.getAll().size() == 2, "Size = 2");
     }
+
     @Test
-    void insert(){
+    void insert() {
 
         logger.debug("Execute test: write()");
         assertNotNull(daoUser.write(new User("John", "john", "1111", "isocrol@yandex.ru")));
@@ -47,17 +47,27 @@ class DaoUserJDBCIT {
     }
 
     @Test
-    void testChange(){
+    void testChange() {
         logger.debug("Execute test: update()");
-        daoUser.updateUser(new User(3,"Max", "john", "1111", "isocrol@yandex.ru"));
-
+        daoUser.updateUser(new User(1, "Max", "john", "1111", "isocrol@yandex.ru"));
         List<User> user = daoUser.getAll();
-        for (User u:user){
-            System.out.println(u);
-        }
-
         assertTrue(daoUser.getAll().size() == 2, "Size = 3");
 
+    }
+
+    @Test
+    void testDelete() {
+        logger.debug("Execute test: delete({id})");
+        List<User> user = daoUser.getAll();
+        daoUser.delete(1);
+        assertEquals(daoUser.getAll().size(), user.size() - 1);
+    }
+
+    @Test
+    void testRead() {
+        logger.debug("Execute test: read({id})");
+        List<User> user = daoUser.getAll();
+        assertEquals(daoUser.read(1).get(0).getName(), user.get(0).getName());
     }
 
 }
