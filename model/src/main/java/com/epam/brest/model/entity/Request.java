@@ -16,6 +16,13 @@ public class Request {
         this.subject = subject;
     }
 
+    public Request(int id, String groupe, String pairs, String subject) {
+        this.id = id;
+        this.groupe = groupe;
+        this.pairs = pairs;
+        this.subject = subject;
+    }
+
     public Request() {
     }
 

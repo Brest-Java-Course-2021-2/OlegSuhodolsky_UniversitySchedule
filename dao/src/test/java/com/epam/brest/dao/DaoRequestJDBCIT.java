@@ -1,6 +1,7 @@
 package com.epam.brest.dao;
 
 
+import com.epam.brest.model.entity.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
@@ -33,4 +34,13 @@ public class DaoRequestJDBCIT {
         assertNotNull(daoRequest.getAll(1));
         assertTrue(daoRequest.getAll(1).size() == 2, "Size = 2");
     }
+
+    @Test
+    void insertRequest() {
+        logger.debug("Execute test of REQUEST : write({id})");
+        Request request = new Request(2, "e1", "2", "sport");
+        assertTrue(daoRequest.write(request) == 3, "Size = 1");
+    }
+
+
 }

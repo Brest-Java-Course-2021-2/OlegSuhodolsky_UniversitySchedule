@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
@@ -21,6 +23,8 @@ public class DaoRequest implements DaoRequestAPI {
 
     private final String GET_FROM_REQUEST_ALL =
             "select d.idR, d.id, d.groupe, d.pairs, d.subject from request d where id=:id";
+
+    private final String INSERT_NEW_REQUEST = "insert into request (id,groupe,pairs,subject) values(:id, :groupe, :pairs, :subject)";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LogManager.getLogger(DaoRequest.class);
@@ -45,8 +49,15 @@ public class DaoRequest implements DaoRequestAPI {
 
     @Override
     public Integer write(Request request) {
-
-        return null;
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource()
+                        .addValue("id", request.getId())
+                        .addValue("groupe", request.getGroupe())
+                        .addValue("pairs", request.getPairs())
+                        .addValue("subject", request.getSubject());
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(INSERT_NEW_REQUEST,sqlParameterSource, keyHolder);
+        return  (Integer) keyHolder.getKey();
     }
 
     @Override
