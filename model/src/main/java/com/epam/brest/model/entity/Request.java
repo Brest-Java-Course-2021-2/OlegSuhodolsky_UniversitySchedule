@@ -2,15 +2,15 @@ package com.epam.brest.model.entity;
 
 public class Request {
 
-    private int IDR;
-    private int ID;
+    private int idR;
+    private int id;
     private String groupe;
     private String pairs;
     private String subject;
 
-    public Request(int IDR, int ID, String groupe, String pairs, String subject) {
-        this.IDR = IDR;
-        this.ID = ID;
+    public Request(int idR, int id, String groupe, String pairs, String subject) {
+        this.idR = idR;
+        this.id = id;
         this.groupe = groupe;
         this.pairs = pairs;
         this.subject = subject;
@@ -19,20 +19,20 @@ public class Request {
     public Request() {
     }
 
-    public int getIDR() {
-        return IDR;
+    public int getIdR() {
+        return idR;
     }
 
-    public void setIDR(int IDR) {
-        this.IDR = IDR;
+    public void setIdR(int idR) {
+        this.idR = idR;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getGroupe() {
@@ -58,5 +58,4 @@ public class Request {
     public void setSubject(String subject) {
         this.subject = subject;
     }
-
 }

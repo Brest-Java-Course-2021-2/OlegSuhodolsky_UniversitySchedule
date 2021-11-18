@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <meta charset="utf-8"/>
+        <title>USER Request</title>
+        <style type="text/css">
+            TABLE {
+                width: 1000px; 
+            }
+            TH {
+                background: #4b0082; 
+                color: #fffff0; 
+            }
+            TD, TH {
+                padding: 3px; 
+            }
+        </style>    
+
+    </head>
+
+    <body>
+         <h3> Table of requests :</h3>
+      
+      <div>
+       <table  summary="Table requests" border="1" cellspacing="2" align="center" >
+            <caption>Lessons requests table</caption>
+            <thead>
+                <tr>
+                    <th>   IDR     </th>
+                    <th>   ID      </th>
+                    <th>   GROUPE  </th><!-- comment -->
+                    <th>   PAIRS   </th>
+                    <th>   SUBJECT </th>
+                    <th>   Edit request </th>
+                    <th>   Delete request </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="request : ${requests}"
+                    th:style="${request}? 'font-weight: 30;'">
+                    <td th:text="${request.getIDR()}"></td>
+                    <td th:text="${request.getID()}" ></td>
+                    <td th:text="${request.getGroupe()}" ></td>
+                    <td th:text="${request.getPairs()}" ></td>
+                    <td th:text="${request.getSubject()}" ></td>
+                    <td> 
+                        <form th:method="GET" th:action="@{/request/{id}/edit (id=${request.getIDR()})}">
+                            <input type="submit" value="UPDATE"/>
+                        </form>    
+                    </td>
+
+                    <td> 
+                        <form th:method="DELETE" th:action="@{/request/{id} (id=${request.getIDR()})}">
+                            <input type="submit" value="DELETE"/>
+                        </form>    
+                    </td>    
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <br/>
+        <form th:method="GET" th:action="@{/request/newRequest/{id}(id=${id})}">
+            <input type="submit" value="NEW REQUEST"/>                 
+        </form>    
+        <br/>   
+        <form th:method="GET" th:action="@{/login}">
+            <input type="submit" value="EXIT FROM SYSTEM"/>
+        </form>    
+    </body>
+
+</html>
+
+

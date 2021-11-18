@@ -8,106 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1ef8300-bc37-4ed1-989b-90ec2d714eb1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/dao/src/test/java/com/epam/brest/dao/DaoRequestJDBCIT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/dao/DaoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/dao/DaoRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/dao/DaoUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/com/epam/brest/dao/DaoUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/test/java/com/epam/brest/dao/DaoUserJDBCIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/com/epam/brest/dao/DaoUserJDBCIT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoUser$UserRowMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/classes/com/epam/brest/dao/DaoUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/classes/log4j2.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/dao-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/test-classes/com/epam/brest/dao/DaoUserJDBCIT.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/test-classes/log4j2-test.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/test-classes/test-jdbc-conf.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/test-results/integrationTest/TEST-com.epam.brest.dao.DaoUserJDBCIT.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/target/test-results/integrationTest/com.epam.brest.dao.DaoUserJDBCIT.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/src/main/java/com/epam/brest/daoAPI/DaoUserAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/daoAPI/src/main/java/com/epam/brest/daoAPI/DaoUserAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/classes/com/epam/brest/daoAPI/DaoRequestAPI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/classes/com/epam/brest/daoAPI/DaoUserAPI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/daoAPI-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/daoAPI/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/classes/com/epam/brest/model/entity/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/classes/com/epam/brest/model/entity/Request.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/classes/com/epam/brest/model/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/target/model-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-db/target/classes/create-db.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-db/target/classes/init-db.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-db/target/classes/test-db.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-db/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-db/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-db/target/test-db-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/classes/com/epam/brest/web_app/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/classes/com/epam/brest/web_app/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/classes/com/epam/brest/web_app/RequestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/classes/com/epam/brest/web_app/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/failsafe-reports/failsafe-summary.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/app-context.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/classes/com/epam/brest/web_app/HomeController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/classes/com/epam/brest/web_app/LoginController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/classes/com/epam/brest/web_app/RequestController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/classes/com/epam/brest/web_app/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/classmate-1.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/com.epam.brest-model-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/com.epam.brest.model-model-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/dao-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/daoAPI-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/h2-1.4.200.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/hibernate-validator-6.1.3.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/jakarta.validation-api-2.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/jboss-logging-3.3.2.Final.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/log4j-api-2.14.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/log4j-core-2.14.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-aop-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-beans-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-context-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-core-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-expression-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-jcl-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-jdbc-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-test-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-tx-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-web-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/spring-webmvc-5.3.4.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/test-db-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/thymeleaf-3.0.12.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/thymeleaf-spring5-3.0.12.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/hello.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/login/administration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/login/authorization.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/login/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/login/showlogin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/request/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/request/indexRequest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/request/newRequest.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/user/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/user/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/user/index111.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/user/new.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/templates/user/show.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-app/target/web-app/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/test/resources/test-jdbc-conf.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/resources/test-jdbc-conf.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daoAPI/src/main/java/com/epam/brest/daoAPI/DaoRequestAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/daoAPI/src/main/java/com/epam/brest/daoAPI/DaoRequestAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/src/main/java/com/epam/brest/model/entity/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/src/main/java/com/epam/brest/model/entity/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-db/src/main/resources/create-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/test-db/src/main/resources/create-db.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-db/src/main/resources/init-db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/test-db/src/main/resources/init-db.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +155,8 @@
       <workItem from="1636888435119" duration="15125000" />
       <workItem from="1637081476754" duration="6773000" />
       <workItem from="1637089408535" duration="4715000" />
-      <workItem from="1637164162135" duration="3664000" />
+      <workItem from="1637164162135" duration="4258000" />
+      <workItem from="1637251139302" duration="4542000" />
     </task>
     <servers />
   </component>

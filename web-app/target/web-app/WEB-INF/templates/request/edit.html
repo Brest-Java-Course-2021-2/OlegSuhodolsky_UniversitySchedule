@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+     <meta charset="utf-8"/>
+    <title>EDIT</title>
+</head>
+<body>
+<h3>Request edit</h3>
+<br/>
+<form th:method="PATCH" th:action="@{/request/{id}(id=${request.getIDR()})}" th:object="${request}">
+    <label for="ID">Enter ID: </label>
+    <input type="hidden" th:field="*{ID}" id="ID"/>
+    <div style="color:red" th:if="${#fields.hasErrors('ID')}" th:errors="*{ID}">ID Error</div>
+    <br/>
+    <label for="groupe">Enter groupe: </label>
+    <input type="text" th:field="*{groupe}" id="groupe"/>
+    <div style="color:red" th:if="${#fields.hasErrors('groupe')}" th:errors="*{groupe}">Groupe Error</div>
+    <br/>
+    <label for="subject">Enter subject: </label>
+    <input type="text" th:field="*{subject}" id="subject"/>
+    <div style="color:red" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">Subject Error</div>
+    <br/>
+    <label for="pairs">Enter pairs: </label>
+    <input type="text" th:field="*{pairs}" id="pairs"/>
+    <div style="color:red" th:if="${#fields.hasErrors('pairs')}" th:errors="*{pairs}">Pairs Error</div>
+    <br/>
+    
+    <input type="submit" value="Update!"/>
+</form>
+
+
+</body>
+</html>

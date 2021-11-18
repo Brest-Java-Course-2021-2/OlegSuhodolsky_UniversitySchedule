@@ -4,6 +4,7 @@ import com.epam.brest.daoAPI.DaoUserAPI;
 import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,8 +21,8 @@ import java.util.List;
 @Component
 public class DaoUser implements DaoUserAPI {
 
-    private final String Get_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
-    private final String Get_FROM_USER_BY_ID = "select d.id, d.name, d.login, d.password, d.email from user d where id=:id";
+    private final String GET_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
+    private final String GET_FROM_USER_BY_ID = "select d.id, d.name, d.login, d.password, d.email from user d where id=:id";
     private final String SQL_CREATE_USER = "insert into user(name,login,password,email) values(:name, :login, :password, :email)";
     private final String SQL_UPDATE_USER = "update user set name=:name, login=:login, password=:password, email=:email where id=:id";
     private final String SQL_DELETE_USER_BY_ID = "delete from user where id=:id";
@@ -30,7 +31,7 @@ public class DaoUser implements DaoUserAPI {
     private final Logger logger = LogManager.getLogger(DaoUser.class);
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-
+    @Autowired
     public DaoUser(DataSource dataSource) {
         //  this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
@@ -38,21 +39,18 @@ public class DaoUser implements DaoUserAPI {
 
     @Override
     public List<User> getAll() {
-        logger.debug("Start: getAll()");
-        return namedParameterJdbcTemplate.query(Get_FROM_USER_ALL, new UserRowMapper());
+        return namedParameterJdbcTemplate.query(GET_FROM_USER_ALL, new UserRowMapper());
     }
 
     @Override
     public List<User> read(int id) {
-        logger.debug("Start: read({})", id);
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-        return namedParameterJdbcTemplate.query(Get_FROM_USER_BY_ID, sqlParameterSource, new UserRowMapper());
+        return namedParameterJdbcTemplate.query(GET_FROM_USER_BY_ID, sqlParameterSource, new UserRowMapper());
     }
 
     @Override
     public Integer write(User user) {
-        logger.debug("Start: create({})", user);
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
 
@@ -68,7 +66,6 @@ public class DaoUser implements DaoUserAPI {
 
     @Override
     public Integer updateUser(User user) {
-        logger.debug("Start: update ({})", user);
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
         ((MapSqlParameterSource) sqlParameterSource).addValue("id", user.getId());
@@ -84,7 +81,6 @@ public class DaoUser implements DaoUserAPI {
 
     @Override
     public void delete(int id) {
-        logger.debug("Start: delete ({})", id);
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
         namedParameterJdbcTemplate.update(SQL_DELETE_USER_BY_ID, sqlParameterSource);
@@ -101,7 +97,6 @@ public class DaoUser implements DaoUserAPI {
             user.setLogin(resultSet.getString("login"));
             user.setPassword(resultSet.getString("password"));
             user.setEmail(resultSet.getString("email"));
-
             return user;
         }
     }
