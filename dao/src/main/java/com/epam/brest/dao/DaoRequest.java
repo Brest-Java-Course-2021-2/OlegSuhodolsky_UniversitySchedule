@@ -24,7 +24,8 @@ public class DaoRequest implements DaoRequestAPI {
     private final String GET_FROM_REQUEST_ALL =
             "select d.idR, d.id, d.groupe, d.pairs, d.subject from request d where id=:id";
 
-    private final String INSERT_NEW_REQUEST = "insert into request (id,groupe,pairs,subject) values(:id, :groupe, :pairs, :subject)";
+    private final String INSERT_NEW_REQUEST =
+            "insert into request (id,groupe,pairs,subject) values(:id, :groupe, :pairs, :subject)";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LogManager.getLogger(DaoRequest.class);
@@ -36,6 +37,7 @@ public class DaoRequest implements DaoRequestAPI {
 
     @Override
     public List<Request> getAll(int id) {
+        logger.info("GET REQUEST BY USER ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
        return namedParameterJdbcTemplate.query(GET_FROM_REQUEST_ALL,sqlParameterSource, new RequestRowMapper());
@@ -49,6 +51,7 @@ public class DaoRequest implements DaoRequestAPI {
 
     @Override
     public Integer write(Request request) {
+        logger.info("NEW REQUEST BY USERS ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
                         .addValue("id", request.getId())
