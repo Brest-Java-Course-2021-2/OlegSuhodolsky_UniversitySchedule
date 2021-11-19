@@ -22,10 +22,16 @@ import java.util.List;
 public class DaoRequest implements DaoRequestAPI {
 
     private final String GET_FROM_REQUEST_ALL =
-            "select d.idR, d.id, d.groupe, d.pairs, d.subject from request d where id=:id";
+            "select d.idR, d.id, d.groupe, d.pairs, d.subject from request d where id=:id order by d.idR";
 
     private final String INSERT_NEW_REQUEST =
             "insert into request (id,groupe,pairs,subject) values(:id, :groupe, :pairs, :subject)";
+
+    private final String GET_FROM_REQUEST_BY_ID_AND_IDR = "select d.idR, d.id, d.groupe, d.pairs, d.subject from request d where id=:id and idR=:idR";
+
+    private final String DELETE_REQUEST ="delete from request where id=:id and idR=:idR";
+
+
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LogManager.getLogger(DaoRequest.class);
@@ -40,13 +46,20 @@ public class DaoRequest implements DaoRequestAPI {
         logger.info("GET REQUEST BY USER ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-       return namedParameterJdbcTemplate.query(GET_FROM_REQUEST_ALL,sqlParameterSource, new RequestRowMapper());
+        return namedParameterJdbcTemplate.query(GET_FROM_REQUEST_ALL, sqlParameterSource, new RequestRowMapper());
     }
 
     @Override
-    public Request read(int id) {
-
-        return null;
+    public Request read(int id, int idR) {
+        logger.info("GET REQUEST BY USER ID AND IDR {}");
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource()
+                        .addValue("id", id)
+                        .addValue("idR", idR);
+        Request request = null;
+        request = namedParameterJdbcTemplate.query(GET_FROM_REQUEST_BY_ID_AND_IDR,
+                sqlParameterSource, new RequestRowMapper()).get(0);
+        return request;
     }
 
     @Override
@@ -59,8 +72,8 @@ public class DaoRequest implements DaoRequestAPI {
                         .addValue("pairs", request.getPairs())
                         .addValue("subject", request.getSubject());
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(INSERT_NEW_REQUEST,sqlParameterSource, keyHolder);
-        return  (Integer) keyHolder.getKey();
+        namedParameterJdbcTemplate.update(INSERT_NEW_REQUEST, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
     }
 
     @Override
@@ -69,7 +82,14 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public void delete(Request request) {
+    public void delete(int id, int idR) {
+        logger.info("DELETE REQUEST BY USER ID AND IDR {}");
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource()
+                        .addValue("id", id)
+                        .addValue("idR", idR);
+
+         namedParameterJdbcTemplate.update(DELETE_REQUEST, sqlParameterSource);
 
     }
 

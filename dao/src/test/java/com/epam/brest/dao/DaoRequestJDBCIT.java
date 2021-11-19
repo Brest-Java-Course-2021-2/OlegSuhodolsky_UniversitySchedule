@@ -42,5 +42,15 @@ public class DaoRequestJDBCIT {
         assertTrue(daoRequest.write(request) == 3, "Size = 1");
     }
 
-
+    @Test
+    void readRequest() {
+        logger.debug("Execute test of REQUEST : read({id}{idR})");
+        assertTrue(daoRequest.read(1, 1).getSubject().equals("math"), "subject = math");
+    }
+    @Test
+    void deleteRequest(){
+        logger.debug("Execute test of REQUEST : delete({id}{idR})");
+        daoRequest.delete(1, 1);
+        assertTrue(daoRequest.getAll(1).get(0).getIdR() != 1, "request not exist, deleted");
+    }
 }
