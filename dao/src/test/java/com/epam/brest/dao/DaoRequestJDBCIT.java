@@ -53,4 +53,11 @@ public class DaoRequestJDBCIT {
         daoRequest.delete(1, 1);
         assertTrue(daoRequest.getAll(1).get(0).getIdR() != 1, "request not exist, deleted");
     }
+
+    void updateRequest(){
+        logger.debug("Execute test of REQUEST : update({request})");
+        Request request = new Request(1,1, "e22", "22", "cockinjaws");
+        daoRequest.update(request);
+        assertTrue(daoRequest.getAll(1).get(0).getGroupe().equals("e22") , "request changed");
+    }
 }

@@ -31,6 +31,8 @@ public class DaoRequest implements DaoRequestAPI {
 
     private final String DELETE_REQUEST ="delete from request where id=:id and idR=:idR";
 
+    private final String UPDATE_REQUEST =
+            "insert into request (groupe,pairs,subject) values(:groupe, :pairs, :subject) where id=:id and idR=:idR";
 
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -78,6 +80,15 @@ public class DaoRequest implements DaoRequestAPI {
 
     @Override
     public void update(Request request) {
+        logger.info("UPDATE REQUEST  {request}");
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource()
+                        .addValue("idR", request.getIdR())
+                        .addValue("id", request.getId())
+                        .addValue("groupe", request.getGroupe())
+                        .addValue("pairs", request.getPairs())
+                        .addValue("subject", request.getSubject());
+        namedParameterJdbcTemplate.update(UPDATE_REQUEST, sqlParameterSource);
 
     }
 
