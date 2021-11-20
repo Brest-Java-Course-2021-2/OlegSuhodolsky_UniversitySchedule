@@ -5,6 +5,7 @@ import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -21,11 +22,27 @@ import java.util.List;
 @Component
 public class DaoUser implements DaoUserAPI {
 
-    private final String GET_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
+    /*private final String GET_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
     private final String GET_FROM_USER_BY_ID = "select d.id, d.name, d.login, d.password, d.email from user d where id=:id";
     private final String SQL_CREATE_USER = "insert into user(name,login,password,email) values(:name, :login, :password, :email)";
     private final String SQL_UPDATE_USER = "update user set name=:name, login=:login, password=:password, email=:email where id=:id";
-    private final String SQL_DELETE_USER_BY_ID = "delete from user where id=:id";
+    private final String SQL_DELETE_USER_BY_ID = "delete from user where id=:id";*/
+
+
+    @Value("${GET_FROM_USER_ALL}")
+    private String getFromUserAll;
+
+    @Value("${GET_FROM_USER_BY_ID}")
+    private String getFromUserById;
+
+    @Value("${SQL_CREATE_USER}")
+    private String sqlCreateUser;
+
+    @Value("${SQL_UPDATE_USER}")
+    private String sqlUpdateUser;
+
+    @Value("${SQL_DELETE_USER_BY_ID}")
+    private String sqlDeleteUserById;
 
 
     private final Logger logger = LogManager.getLogger(DaoUser.class);
@@ -40,7 +57,7 @@ public class DaoUser implements DaoUserAPI {
     @Override
     public List<User> getAll() {
         logger.info("GET ALL USERS {}");
-        return namedParameterJdbcTemplate.query(GET_FROM_USER_ALL, new UserRowMapper());
+        return namedParameterJdbcTemplate.query(getFromUserAll, new UserRowMapper());
     }
 
     @Override
@@ -48,7 +65,7 @@ public class DaoUser implements DaoUserAPI {
         logger.info("READ USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-        return namedParameterJdbcTemplate.query(GET_FROM_USER_BY_ID, sqlParameterSource, new UserRowMapper());
+        return namedParameterJdbcTemplate.query(getFromUserById, sqlParameterSource, new UserRowMapper());
     }
 
     @Override
@@ -63,7 +80,7 @@ public class DaoUser implements DaoUserAPI {
         ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(SQL_CREATE_USER, sqlParameterSource, keyHolder);
+        namedParameterJdbcTemplate.update(sqlCreateUser, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
     }
 
@@ -79,7 +96,7 @@ public class DaoUser implements DaoUserAPI {
         ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update(SQL_UPDATE_USER, sqlParameterSource, keyHolder);
+        namedParameterJdbcTemplate.update(sqlUpdateUser, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
     }
 
@@ -88,7 +105,7 @@ public class DaoUser implements DaoUserAPI {
         logger.info("DELETE USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-        namedParameterJdbcTemplate.update(SQL_DELETE_USER_BY_ID, sqlParameterSource);
+        namedParameterJdbcTemplate.update(sqlDeleteUserById, sqlParameterSource);
     }
 
 
