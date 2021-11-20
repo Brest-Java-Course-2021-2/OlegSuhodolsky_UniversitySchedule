@@ -29,11 +29,13 @@ public class DaoRequest implements DaoRequestAPI {
 
     private final String GET_FROM_REQUEST_BY_ID_AND_IDR = "select d.idR, d.id, d.groupe, d.pairs, d.subject from request d where id=:id and idR=:idR";
 
-    private final String DELETE_REQUEST ="delete from request where id=:id and idR=:idR";
+    private final String DELETE_REQUEST ="delete from request where id=:id and idR=:idR and id=:id";
 
     private final String UPDATE_REQUEST =
-            "insert into request (groupe,pairs,subject) values(:groupe, :pairs, :subject) where id=:id and idR=:idR";
+            "update request set groupe= :groupe, pairs=:pairs, subject=:subject where idR= :idR";
 
+    //"UPDATE plan_table SET(plan_name= :plan_name, price_category= :price_category, updated_by= :id) where id=:id)";
+    //update department set department_name = :departmentName where department_id = :departmentId
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LogManager.getLogger(DaoRequest.class);

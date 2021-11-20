@@ -47,17 +47,19 @@ public class DaoRequestJDBCIT {
         logger.debug("Execute test of REQUEST : read({id}{idR})");
         assertTrue(daoRequest.read(1, 1).getSubject().equals("math"), "subject = math");
     }
+
     @Test
-    void deleteRequest(){
+    void deleteRequest() {
         logger.debug("Execute test of REQUEST : delete({id}{idR})");
         daoRequest.delete(1, 1);
         assertTrue(daoRequest.getAll(1).get(0).getIdR() != 1, "request not exist, deleted");
     }
 
-    void updateRequest(){
+    @Test
+    void updateRequest() {
         logger.debug("Execute test of REQUEST : update({request})");
-        Request request = new Request(1,1, "e22", "22", "cockinjaws");
+        Request request = new Request(1, 1, "e22", "22", "cockinjaws");
         daoRequest.update(request);
-        assertTrue(daoRequest.getAll(1).get(0).getGroupe().equals("e22") , "request changed");
+        assertTrue(daoRequest.read(1,1).getGroupe().equals("e22"), "request changed");
     }
 }
