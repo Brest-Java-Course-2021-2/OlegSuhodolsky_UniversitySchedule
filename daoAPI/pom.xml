@@ -13,12 +13,7 @@
     <artifactId>daoAPI</artifactId>
     <packaging>jar</packaging>
     <dependencies>
-        <dependency>
-            <groupId>com.epam.brest.model</groupId>
-            <artifactId>model</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>com.epam.brest</groupId>
             <artifactId>model</artifactId>
