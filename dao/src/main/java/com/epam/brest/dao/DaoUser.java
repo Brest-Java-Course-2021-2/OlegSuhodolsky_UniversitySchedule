@@ -54,6 +54,11 @@ public class DaoUser implements DaoUserAPI {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
+    public DaoUser(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
+
     @Override
     public List<User> getAll() {
         logger.info("GET ALL USERS {}");

@@ -47,6 +47,10 @@ public class DaoRequest implements DaoRequestAPI {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
+    public DaoRequest(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+
     @Override
     public List<Request> getAll(int id) {
         logger.info("GET REQUEST BY USER ID {}");
