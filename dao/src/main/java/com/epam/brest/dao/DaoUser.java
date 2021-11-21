@@ -14,20 +14,12 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 @Component
 public class DaoUser implements DaoUserAPI {
-
-    /*private final String GET_FROM_USER_ALL = "select d.id, d.name, d.login, d.password, d.email from user d order by d.name";
-    private final String GET_FROM_USER_BY_ID = "select d.id, d.name, d.login, d.password, d.email from user d where id=:id";
-    private final String SQL_CREATE_USER = "insert into user(name,login,password,email) values(:name, :login, :password, :email)";
-    private final String SQL_UPDATE_USER = "update user set name=:name, login=:login, password=:password, email=:email where id=:id";
-    private final String SQL_DELETE_USER_BY_ID = "delete from user where id=:id";*/
-
 
     @Value("${GET_FROM_USER_ALL}")
     private String getFromUserAll;
@@ -48,11 +40,7 @@ public class DaoUser implements DaoUserAPI {
     private final Logger logger = LogManager.getLogger(DaoUser.class);
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-   /* @Autowired
-    public DaoUser(DataSource dataSource) {
-        //  this.jdbcTemplate = jdbcTemplate;
-        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-    }*/
+
     @Autowired
     public DaoUser(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;

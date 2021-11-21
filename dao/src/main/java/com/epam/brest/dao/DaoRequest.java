@@ -22,7 +22,6 @@ import java.util.List;
 @Component
 public class DaoRequest implements DaoRequestAPI {
 
-
     @Value("${GET_FROM_REQUEST_ALL}")
     private String getFromRequestAll;
 
@@ -42,10 +41,7 @@ public class DaoRequest implements DaoRequestAPI {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final Logger logger = LogManager.getLogger(DaoRequest.class);
 
-   /* @Autowired
-    public DaoRequest(DataSource dataSource) {
-        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-    }*/
+
     @Autowired
     public DaoRequest(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;

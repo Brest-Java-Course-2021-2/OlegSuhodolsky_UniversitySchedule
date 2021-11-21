@@ -1,6 +1,5 @@
 package com.epam.brest.service;
 
-
 import com.epam.brest.dao.DaoUser;
 import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.UserService;
