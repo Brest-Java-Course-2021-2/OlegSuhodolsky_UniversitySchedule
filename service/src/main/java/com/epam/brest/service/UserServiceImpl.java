@@ -7,7 +7,7 @@ import com.epam.brest.serviceAPI.UserService;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 public class UserServiceImpl implements UserService {
@@ -22,7 +22,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Integer userId) {
-        return null;
+        logger.info("Read User {id}");
+        return daoUser.read(1).get(0);
     }
 
     @Override
@@ -41,7 +42,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Integer count() {
-        return null;
+        logger.debug("count()");
+        return this.daoUser.getAll().size();
     }
 }
