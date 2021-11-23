@@ -2,7 +2,11 @@ package com.epam.brest.serviceAPI;
 
 import com.epam.brest.model.entity.User;
 
+import java.util.List;
+
 public interface UserService {
+
+    List<User> getAllUsers();
 
     User getUserById(Integer userId);
 
@@ -10,7 +14,7 @@ public interface UserService {
 
     Integer update(User user);
 
-    Integer delete(Integer userId);
+    void delete(Integer userId);
 
     Integer count();
 }

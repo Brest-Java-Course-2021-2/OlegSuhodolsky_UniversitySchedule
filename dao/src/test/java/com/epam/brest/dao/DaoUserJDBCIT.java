@@ -66,8 +66,8 @@ class DaoUserJDBCIT {
     @Test
     void testRead() {
         logger.debug("Execute test: read({id})");
-        List<User> user = daoUser.getAll();
-        assertEquals(daoUser.read(1).get(0).getName(), user.get(0).getName());
+        User user = daoUser.getAll().get(0);
+        assertEquals(daoUser.read(1).getName(), user.getName());
     }
 
 }

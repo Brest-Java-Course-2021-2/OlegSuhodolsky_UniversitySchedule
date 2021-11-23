@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 public class UserServiceImpl implements UserService {
 
@@ -20,24 +22,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllUsers() {
+        logger.info("Read ALLUsers {} return List<User> ");
+        return daoUser.getAll();
+    }
+
+    @Override
     public User getUserById(Integer userId) {
         logger.info("Read User {id}");
-        return daoUser.read(1).get(0);
+        return daoUser.read(userId);
     }
 
     @Override
     public Integer create(User user) {
-        return null;
+        logger.info("Create User {}");
+        return daoUser.write(user);
     }
 
     @Override
     public Integer update(User user) {
-        return null;
+        logger.info("Update User {}");
+        return daoUser.updateUser(user);
     }
 
     @Override
-    public Integer delete(Integer userId) {
-        return null;
+    public void delete(Integer userId) {
+        daoUser.delete(1);
     }
 
     @Override
