@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -76,7 +77,8 @@ public class DaoRequest implements DaoRequestAPI {
                         .addValue("id", request.getId())
                         .addValue("groupe", request.getGroupe())
                         .addValue("pairs", request.getPairs())
-                        .addValue("subject", request.getSubject());
+                        .addValue("subject", request.getSubject())
+                        .addValue("date", new Date());
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertNewRequest, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
@@ -91,7 +93,8 @@ public class DaoRequest implements DaoRequestAPI {
                         .addValue("id", request.getId())
                         .addValue("groupe", request.getGroupe())
                         .addValue("pairs", request.getPairs())
-                        .addValue("subject", request.getSubject());
+                        .addValue("subject", request.getSubject())
+                        .addValue("date", new Date());
         namedParameterJdbcTemplate.update(updateRequest, sqlParameterSource);
 
     }
@@ -118,6 +121,7 @@ public class DaoRequest implements DaoRequestAPI {
             request.setGroupe(resultSet.getString("groupe"));
             request.setPairs(resultSet.getString("pairs"));
             request.setSubject(resultSet.getString("subject"));
+            request.setDate(resultSet.getDate("date"));
             return request;
         }
     }

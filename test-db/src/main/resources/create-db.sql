@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS request;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE user
 (
@@ -18,5 +18,6 @@ CREATE TABLE request
     groupe varchar(50) NOT NULL ,
     pairs varchar(50) NOT NULL,
     subject varchar(50) NOT NULL,
+    date date NOT NULL,
     FOREIGN KEY (id)  REFERENCES user (id) ON DELETE CASCADE
 );

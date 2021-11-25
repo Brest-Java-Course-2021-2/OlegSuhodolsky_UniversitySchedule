@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -38,7 +40,7 @@ public class DaoRequestJDBCIT {
     @Test
     void insertRequest() {
         logger.debug("Execute test of REQUEST : write({id})");
-        Request request = new Request(2, "e1", "2", "sport");
+        Request request = new Request(2, "e1", "2", "sport", new Date());
         assertTrue(daoRequest.write(request) == 3, "Size = 1");
     }
 
@@ -58,7 +60,7 @@ public class DaoRequestJDBCIT {
     @Test
     void updateRequest() {
         logger.debug("Execute test of REQUEST : update({request})");
-        Request request = new Request(1, 1, "e22", "22", "cockinjaws");
+        Request request = new Request(1,1, "e22", "22", "cockinjaws", new Date());
         daoRequest.update(request);
         assertTrue(daoRequest.read(1,1).getGroupe().equals("e22"), "request changed");
     }
