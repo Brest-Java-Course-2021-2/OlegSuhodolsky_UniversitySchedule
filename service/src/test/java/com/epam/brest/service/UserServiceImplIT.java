@@ -77,8 +77,11 @@ public class UserServiceImplIT {
     @Test
     void shouldDeleteUser() {
         logger.info("Delete User {id} ");
+        int count = userService.count();
         userService.delete(1);
-        assertEquals(userService.getUserById(1), null);
+        int count1 = userService.count();
+        assertFalse(count1 == count);
+
     }
 
 }

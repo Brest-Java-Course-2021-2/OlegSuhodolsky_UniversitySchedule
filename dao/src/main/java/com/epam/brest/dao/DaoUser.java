@@ -58,11 +58,9 @@ public class DaoUser implements DaoUserAPI {
         logger.info("READ USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-         List<User> users = namedParameterJdbcTemplate.query(getFromUserById, sqlParameterSource, new UserRowMapper());
-         User user = null;
-         if(users.size()>0){
-             user = users.get(0);
-         }
+        User user = null;
+        user =(User) namedParameterJdbcTemplate.queryForObject(getFromUserById, sqlParameterSource, new UserRowMapper());
+
         return user;
     }
 

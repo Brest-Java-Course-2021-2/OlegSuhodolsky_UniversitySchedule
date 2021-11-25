@@ -28,9 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserById(Integer userId) {
+    public User getUserById(Integer id) {
         logger.info("Read User {id}");
-        return daoUser.read(userId);
+        User user = null;
+        user = daoUser.read(id);
+        return user;
     }
 
     @Override
@@ -46,8 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(Integer userId) {
-        daoUser.delete(1);
+    public void delete(Integer id) {
+        daoUser.delete(id);
     }
 
     @Override
