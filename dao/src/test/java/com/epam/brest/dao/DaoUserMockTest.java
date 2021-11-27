@@ -1,24 +1,21 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.model.entity.User;
-
-import java.util.Collections;
-import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.ArgumentMatchers;
-import org.mockito.Captor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.test.util.ReflectionTestUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -34,6 +31,9 @@ public class DaoUserMockTest {
 
     @Captor
     private ArgumentCaptor<RowMapper<User>> captorMapper;
+
+    @Captor
+    private ArgumentCaptor<GeneratedKeyHolder> captorKeyHolder;
 
     @Captor
     private ArgumentCaptor<SqlParameterSource> captorSource;
@@ -53,7 +53,7 @@ public class DaoUserMockTest {
         Mockito.when(namedParameterJdbcTemplate.query(any(), ArgumentMatchers.<RowMapper<User>>any()))
                 .thenReturn(list);
 
-        List<User>result = daoUser.getAllUsers();
+        List<User> result = daoUser.getAllUsers();
 
         Mockito.verify(namedParameterJdbcTemplate).query(eq(sql), captorMapper.capture());
 
@@ -96,5 +96,33 @@ public class DaoUserMockTest {
         Assertions.assertNotNull(result);
         Assertions.assertSame(user, result);
     }
+
+
+    @Test
+    public void createNewUser() {
+        String sql = "create";
+        ReflectionTestUtils.setField(daoUser, "sqlCreateUser", sql);
+        //int id = 1;
+        User user = new User();
+        Integer count = 0;
+
+        Mockito.when(namedParameterJdbcTemplate.update(
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any(),
+                ArgumentMatchers.<KeyHolder>any())
+        ).thenReturn(count);
+
+
+        Integer result = daoUser.writeUser(user);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .update(eq(sql), captorSource.capture(), captorKeyHolder.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        KeyHolder keyHolder = captorKeyHolder.getValue();
+
+        Assertions.assertNotNull(source);
+        Assertions.assertNotNull(keyHolder);
+       }
 
 }

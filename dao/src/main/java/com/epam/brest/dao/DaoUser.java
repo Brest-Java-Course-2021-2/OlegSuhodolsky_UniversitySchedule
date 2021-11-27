@@ -59,7 +59,7 @@ public class DaoUser implements DaoUserAPI {
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
         User user = null;
-        user =(User) namedParameterJdbcTemplate.queryForObject(getFromUserById, sqlParameterSource, new UserRowMapper());
+        user = (User) namedParameterJdbcTemplate.queryForObject(getFromUserById, sqlParameterSource, new UserRowMapper());
 
         return user;
     }
