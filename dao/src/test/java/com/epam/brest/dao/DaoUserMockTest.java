@@ -123,6 +123,52 @@ public class DaoUserMockTest {
 
         Assertions.assertNotNull(source);
         Assertions.assertNotNull(keyHolder);
-       }
+    }
+
+    @Test
+    public void deleteUserObject() {
+        String sql = "delete";
+        ReflectionTestUtils.setField(daoUser, "sqlDeleteUserById", sql);
+        int id = 0;
+        Mockito.when(namedParameterJdbcTemplate.update(
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any()))
+                .thenReturn(0);
+
+        daoUser.deleteUser(id);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .update(eq(sql), captorSource.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        Assertions.assertNotNull(source);
+    }
+
+    @Test
+    public void updateUserFields() {
+        String sql = "update";
+        ReflectionTestUtils.setField(daoUser, "sqlUpdateUser", sql);
+
+        User user = new User();
+        Integer count = 0;
+
+        Mockito.when(namedParameterJdbcTemplate.update(
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any(),
+                ArgumentMatchers.<KeyHolder>any())
+        ).thenReturn(count);
+
+        Integer result = daoUser.updateUser(user);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .update(eq(sql), captorSource.capture(), captorKeyHolder.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        KeyHolder keyHolder = captorKeyHolder.getValue();
+
+        Assertions.assertNotNull(source);
+        Assertions.assertNotNull(keyHolder);
+    }
+
 
 }
