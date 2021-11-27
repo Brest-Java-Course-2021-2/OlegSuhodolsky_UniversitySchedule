@@ -6,13 +6,13 @@ import java.util.List;
 
 
 public interface DaoUserAPI {
-    List<User> getAll();
+    List<User> getAllUsers();
 
-    User read(int id);
+    User readUser(int id);
 
-    Integer write(User user);
+    Integer writeUser(User user);
 
     Integer updateUser(User user);
 
-    void delete(int id);
+    void deleteUser(int id);
 }

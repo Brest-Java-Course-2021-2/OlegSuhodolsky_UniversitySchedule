@@ -4,13 +4,13 @@ import com.epam.brest.model.entity.Request;
 
 public interface RequestService {
 
-    Request getRequestById(Integer requestId);
+    Request getRequestByIdService(Integer requestId);
 
-    Integer create(Request request);
+    Integer createRequestService(Request request);
 
-    Integer update(Request request);
+    Integer updateRequestService(Request request);
 
-    Integer delete(Integer requestId);
+    Integer deleteRequestService(Integer requestId);
 
-    Integer count();
+    Integer countRequestService();
 }

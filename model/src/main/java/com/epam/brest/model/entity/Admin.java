@@ -1,3 +1,4 @@
+
 /**
  * Admin class . Fields <b>id</b> <b>name</b> <b>login</b> <b>password</b> <b>email</b>
  * @autor Oleg Suhodolsky

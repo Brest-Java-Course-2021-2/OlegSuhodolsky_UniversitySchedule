@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface DaoRequestAPI {
 
-    List<Request> getAll(int id);
+    List<Request> getAllRequests(int id);
 
-    Request read(int id, int idE);
+    Request readRequest(int id, int idE);
 
-    Integer write(Request request);
+    Integer writeRequest(Request request);
 
-    void update(Request request);
+    void updateRequest(Request request);
 
-    void delete(int id, int idR);
+    void deleteRequest(int id, int idR);
 
 }

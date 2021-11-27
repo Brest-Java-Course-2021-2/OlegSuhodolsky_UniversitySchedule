@@ -17,27 +17,27 @@ public class RequestServiceImpl implements RequestService {
 
 
     @Override
-    public Request getRequestById(Integer requestId) {
+    public Request getRequestByIdService(Integer requestId) {
         return null;
     }
 
     @Override
-    public Integer create(Request request) {
+    public Integer createRequestService(Request request) {
         return null;
     }
 
     @Override
-    public Integer update(Request request) {
+    public Integer updateRequestService(Request request) {
         return null;
     }
 
     @Override
-    public Integer delete(Integer requestId) {
+    public Integer deleteRequestService(Integer requestId) {
         return null;
     }
 
     @Override
-    public Integer count() {
+    public Integer countRequestService() {
         return null;
     }
 }

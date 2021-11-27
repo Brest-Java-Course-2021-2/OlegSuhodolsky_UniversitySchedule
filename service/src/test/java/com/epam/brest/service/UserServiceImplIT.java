@@ -32,7 +32,7 @@ public class UserServiceImplIT {
     void shouldCount() {
         logger.info("Read count of User {}");
         assertNotNull(userService);
-        Integer quantity = userService.count();
+        Integer quantity = userService.countUserService();
         assertNotNull(quantity);
         assertTrue(quantity > 0);
         assertEquals(Integer.valueOf(2), quantity);
@@ -41,18 +41,18 @@ public class UserServiceImplIT {
     @Test
     void shouldAllUsers() {
         logger.info("Read All Users {} LIST:");
-        List<User> users = userService.getAllUsers();
+        List<User> users = userService.getAllUsersService();
         assertNotNull(users);
         if (users.size() > 0) {
-            assertTrue(users.size() == userService.count());
+            assertTrue(users.size() == userService.countUserService());
         }
     }
 
     @Test
     void shouldUser() {
         logger.info("Read User {id} ");
-        User user = userService.getUserById(1);
-        User user1 = userService.getUserById(1);
+        User user = userService.getUserByIdService(1);
+        User user1 = userService.getUserByIdService(1);
         assertEquals(user.getName(), user1.getName());
     }
 
@@ -60,26 +60,26 @@ public class UserServiceImplIT {
     void shouldCreateUser() {
         logger.info("Create User {} ");
         User user = new User("Johnny", "johhny", "1111", "isocrol@yandex.ru");
-        Integer count = userService.getAllUsers().size();
-        assertTrue(userService.create(user) > count);
-        assertTrue(userService.getAllUsers().size() > count);
+        Integer count = userService.getAllUsersService().size();
+        assertTrue(userService.createUserService(user) > count);
+        assertTrue(userService.getAllUsersService().size() > count);
     }
 
     @Test
     void shouldUpdateUser() {
         logger.info("Read User {id} ");
-        User user = userService.getUserById(1);
+        User user = userService.getUserByIdService(1);
         user.setName("oleg");
-        userService.update(user);
-        assertEquals(userService.getUserById(1).getName(), "oleg");
+        userService.updateUserService(user);
+        assertEquals(userService.getUserByIdService(1).getName(), "oleg");
     }
 
     @Test
     void shouldDeleteUser() {
         logger.info("Delete User {id} ");
-        int count = userService.count();
-        userService.delete(1);
-        int count1 = userService.count();
+        int count = userService.countUserService();
+        userService.deleteUserService(1);
+        int count1 = userService.countUserService();
         assertFalse(count1 == count);
 
     }

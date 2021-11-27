@@ -48,13 +48,13 @@ public class DaoUser implements DaoUserAPI {
 
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAllUsers() {
         logger.info("GET ALL USERS {}");
         return namedParameterJdbcTemplate.query(getFromUserAll, new UserRowMapper());
     }
 
     @Override
-    public User read(int id) {
+    public User readUser(int id) {
         logger.info("READ USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
@@ -65,7 +65,7 @@ public class DaoUser implements DaoUserAPI {
     }
 
     @Override
-    public Integer write(User user) {
+    public Integer writeUser(User user) {
         logger.info("INSERT NEW USER {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
@@ -97,7 +97,7 @@ public class DaoUser implements DaoUserAPI {
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteUser(int id) {
         logger.info("DELETE USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);

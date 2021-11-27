@@ -53,7 +53,7 @@ public class DaoUserMockTest {
         Mockito.when(namedParameterJdbcTemplate.query(any(), ArgumentMatchers.<RowMapper<User>>any()))
                 .thenReturn(list);
 
-        List<User>result = daoUser.getAll();
+        List<User>result = daoUser.getAllUsers();
 
         Mockito.verify(namedParameterJdbcTemplate).query(eq(sql), captorMapper.capture());
 
@@ -82,7 +82,7 @@ public class DaoUserMockTest {
         ).thenReturn(user);
 
 
-        User result = daoUser.read(id);
+        User result = daoUser.readUser(id);
 
         Mockito.verify(namedParameterJdbcTemplate)
                 .queryForObject(eq(sql), captorSource.capture(), captorMapper.capture());

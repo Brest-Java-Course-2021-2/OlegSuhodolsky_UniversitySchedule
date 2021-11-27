@@ -22,40 +22,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAllUsersService() {
         logger.info("Read ALLUsers {} return List<User> ");
-        return daoUser.getAll();
+        return daoUser.getAllUsers();
     }
 
     @Override
-    public User getUserById(Integer id) {
+    public User getUserByIdService(Integer id) {
         logger.info("Read User {id}");
         User user = null;
-        user = daoUser.read(id);
+        user = daoUser.readUser(id);
         return user;
     }
 
     @Override
-    public Integer create(User user) {
+    public Integer createUserService(User user) {
         logger.info("Create User {}");
-        return daoUser.write(user);
+        return daoUser.writeUser(user);
     }
 
     @Override
-    public Integer update(User user) {
+    public Integer updateUserService(User user) {
         logger.info("Update User {}");
         return daoUser.updateUser(user);
     }
 
     @Override
-    public void delete(Integer id) {
-        daoUser.delete(id);
+    public void deleteUserService(Integer id) {
+        daoUser.deleteUser(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Integer count() {
+    public Integer countUserService() {
         logger.debug("count()");
-        return this.daoUser.getAll().size();
+        return this.daoUser.getAllUsers().size();
     }
 }

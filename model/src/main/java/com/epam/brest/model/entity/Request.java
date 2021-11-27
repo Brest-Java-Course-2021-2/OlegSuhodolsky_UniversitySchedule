@@ -101,7 +101,7 @@ public class Request {
 
     /**
      * Setter - set idR field to Request {@link Request#idR}
-     * @param idR - identificator of request in database
+     * * @param idR - identificator of request in database
      */
     public void setIdR(int idR) {
         this.idR = idR;

@@ -33,28 +33,28 @@ public class DaoRequestJDBCIT {
     void findAll() {
         logger.debug("Execute test of REQUEST : getAll()");
         assertNotNull(daoRequest);
-        assertNotNull(daoRequest.getAll(1));
-        assertTrue(daoRequest.getAll(1).size() == 2, "Size = 2");
+        assertNotNull(daoRequest.getAllRequests(1));
+        assertTrue(daoRequest.getAllRequests(1).size() == 2, "Size = 2");
     }
 
     @Test
     void insertRequest() {
         logger.debug("Execute test of REQUEST : write({id})");
         Request request = new Request(1, "e1", "2", "sport", new Date());
-        assertTrue(daoRequest.write(request) == 3, "Size = 1");
+        assertTrue(daoRequest.writeRequest(request) == 3, "Size = 1");
     }
 
     @Test
     void readRequest() {
         logger.debug("Execute test of REQUEST : read({id}{idR})");
-        assertTrue(daoRequest.read(1, 1).getSubject().equals("math"), "subject = math");
+        assertTrue(daoRequest.readRequest(1, 1).getSubject().equals("math"), "subject = math");
     }
 
     @Test
     void deleteRequest() {
         logger.debug("Execute test of REQUEST : delete({id}{idR})");
-        daoRequest.delete(1, 1);
-        assertTrue(daoRequest.getAll(1).get(0).getIdR() != 1, "request not exist, deleted");
+        daoRequest.deleteRequest(1, 1);
+        assertTrue(daoRequest.getAllRequests(1).get(0).getIdR() != 1, "request not exist, deleted");
     }
 
     @Test
@@ -62,8 +62,8 @@ public class DaoRequestJDBCIT {
         logger.debug("Execute test of REQUEST : update({request})");
         Request request = new Request(1,1, "e22", "22", "cockinjaws", new Date());
         Date date = request.getDate();
-        daoRequest.update(request);
-        assertTrue(daoRequest.read(1,1).getGroupe().equals("e22"), "request Groupe changed");
+        daoRequest.updateRequest(request);
+        assertTrue(daoRequest.readRequest(1,1).getGroupe().equals("e22"), "request Groupe changed");
        // assertTrue(daoRequest.read(1,1).getDate().equals(date), "request Date changed");
     }
 }

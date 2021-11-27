@@ -49,7 +49,7 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public List<Request> getAll(int id) {
+    public List<Request> getAllRequests(int id) {
         logger.info("GET REQUEST BY USER ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
@@ -57,7 +57,7 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public Request read(int id, int idR) {
+    public Request readRequest(int id, int idR) {
         logger.info("GET REQUEST BY USER ID AND IDR {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
@@ -70,7 +70,7 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public Integer write(Request request) {
+    public Integer writeRequest(Request request) {
         logger.info("NEW REQUEST BY USERS ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
@@ -85,7 +85,7 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public void update(Request request) {
+    public void updateRequest(Request request) {
         logger.info("UPDATE REQUEST  {request}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
@@ -100,7 +100,7 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public void delete(int id, int idR) {
+    public void deleteRequest(int id, int idR) {
         logger.info("DELETE REQUEST BY USER ID AND IDR {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
