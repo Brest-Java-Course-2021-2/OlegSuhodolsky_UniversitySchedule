@@ -64,8 +64,8 @@ public class DaoRequest implements DaoRequestAPI {
                         .addValue("id", id)
                         .addValue("idR", idR);
         Request request = null;
-        request = namedParameterJdbcTemplate.query(getFromRequestByIdAndIdr,
-                sqlParameterSource, new RequestRowMapper()).get(0);
+        request = namedParameterJdbcTemplate.queryForObject(getFromRequestByIdAndIdr,
+                sqlParameterSource, new RequestRowMapper());
         return request;
     }
 

@@ -2,6 +2,7 @@ package com.epam.brest.dao;
 
 
 import com.epam.brest.model.entity.Request;
+import com.epam.brest.model.entity.User;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -67,5 +68,35 @@ public class DaorequestMockTest {
         Assertions.assertSame(request, result.get(0));
     }
 
+    @Test
+    public void getFromRequestByIdIdR() {
+        String sql = "get";
+        ReflectionTestUtils.setField(daoRequest, "getFromRequestByIdAndIdr", sql);
+        int id = 1;
+        int idR = 1;
+        Request request = new Request();
+
+
+        Mockito.when(namedParameterJdbcTemplate.queryForObject(
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any(),
+                ArgumentMatchers.<RowMapper<Request>>any())
+        ).thenReturn(request);
+
+
+        Request result = daoRequest.readRequest(id, idR);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .queryForObject(eq(sql), captorSource.capture(), captorMapper.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        RowMapper<Request> mapper = captorMapper.getValue();
+
+        Assertions.assertNotNull(source);
+        Assertions.assertNotNull(mapper);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertSame(request, result);
+    }
 
 }
