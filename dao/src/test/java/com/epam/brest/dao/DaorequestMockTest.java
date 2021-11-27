@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Collections;
@@ -58,7 +59,7 @@ public class DaorequestMockTest {
         int id = 0;
         List<Request> result = daoRequest.getAllRequests(id);
 
-        Mockito.verify(namedParameterJdbcTemplate).query(eq(sql),captorSource.capture(), captorMapper.capture());
+        Mockito.verify(namedParameterJdbcTemplate).query(eq(sql), captorSource.capture(), captorMapper.capture());
 
         RowMapper<Request> mapper = captorMapper.getValue();
 
@@ -97,6 +98,73 @@ public class DaorequestMockTest {
 
         Assertions.assertNotNull(result);
         Assertions.assertSame(request, result);
+    }
+
+    @Test
+    public void createNewRequest() {
+        String sql = "create";
+        ReflectionTestUtils.setField(daoRequest, "insertNewRequest", sql);
+        Request request = new Request();
+        Integer count = 0;
+
+        Mockito.when(namedParameterJdbcTemplate.update(
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any(),
+                ArgumentMatchers.<KeyHolder>any())
+        ).thenReturn(count);
+
+        Integer result = daoRequest.writeRequest(request);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .update(eq(sql), captorSource.capture(), captorKeyHolder.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        KeyHolder keyHolder = captorKeyHolder.getValue();
+
+        Assertions.assertNotNull(source);
+        Assertions.assertNotNull(keyHolder);
+    }
+
+    @Test
+    public void deleteRequestObject() {
+        String sql = "delete";
+        ReflectionTestUtils.setField(daoRequest, "deleteRequest", sql);
+        int id = 0;
+        Mockito.when(namedParameterJdbcTemplate.update(
+                        any(),
+                        ArgumentMatchers.<SqlParameterSource>any()))
+                .thenReturn(0);
+
+        daoRequest.deleteRequest(id, id);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .update(eq(sql), captorSource.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        Assertions.assertNotNull(source);
+    }
+
+    @Test
+    public void updateRequestFields() {
+        String sql = "update";
+        ReflectionTestUtils.setField(daoRequest, "updateRequest", sql);
+
+        Request request = new Request();
+        Integer count = 0;
+
+        Mockito.when(namedParameterJdbcTemplate.update(
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any())
+        ).thenReturn(count);
+
+        daoRequest.updateRequest(request);
+
+        Mockito.verify(namedParameterJdbcTemplate)
+                .update(eq(sql), captorSource.capture());
+
+        SqlParameterSource source = captorSource.getValue();
+        Assertions.assertNotNull(source);
+
     }
 
 }

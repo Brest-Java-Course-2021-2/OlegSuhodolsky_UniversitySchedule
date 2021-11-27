@@ -102,7 +102,6 @@ public class DaoUserMockTest {
     public void createNewUser() {
         String sql = "create";
         ReflectionTestUtils.setField(daoUser, "sqlCreateUser", sql);
-        //int id = 1;
         User user = new User();
         Integer count = 0;
 
