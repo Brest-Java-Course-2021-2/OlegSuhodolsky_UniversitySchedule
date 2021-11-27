@@ -40,7 +40,7 @@ public class DaoRequestJDBCIT {
     @Test
     void insertRequest() {
         logger.debug("Execute test of REQUEST : write({id})");
-        Request request = new Request(2, "e1", "2", "sport", new Date());
+        Request request = new Request(1, "e1", "2", "sport", new Date());
         assertTrue(daoRequest.write(request) == 3, "Size = 1");
     }
 
@@ -61,7 +61,9 @@ public class DaoRequestJDBCIT {
     void updateRequest() {
         logger.debug("Execute test of REQUEST : update({request})");
         Request request = new Request(1,1, "e22", "22", "cockinjaws", new Date());
+        Date date = request.getDate();
         daoRequest.update(request);
-        assertTrue(daoRequest.read(1,1).getGroupe().equals("e22"), "request changed");
+        assertTrue(daoRequest.read(1,1).getGroupe().equals("e22"), "request Groupe changed");
+       // assertTrue(daoRequest.read(1,1).getDate().equals(date), "request Date changed");
     }
 }

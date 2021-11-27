@@ -74,11 +74,6 @@ public class DaoUserMockTest {
         int id = 1;
         User user = new User();
 
-        /*Mockito.when(namedParameterJdbcTemplate.queryForObject(
-                any(),
-                ArgumentMatchers.<~>any(),
-                ArgumentMatchers.<~>any())
-        ).thenReturn(user);*/
 
         Mockito.when(namedParameterJdbcTemplate.queryForObject(
                 any(),

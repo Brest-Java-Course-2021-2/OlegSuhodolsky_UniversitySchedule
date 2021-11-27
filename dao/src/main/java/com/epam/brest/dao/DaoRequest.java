@@ -94,7 +94,7 @@ public class DaoRequest implements DaoRequestAPI {
                         .addValue("groupe", request.getGroupe())
                         .addValue("pairs", request.getPairs())
                         .addValue("subject", request.getSubject())
-                        .addValue("date", new Date());
+                        .addValue("date", request.getDate());
         namedParameterJdbcTemplate.update(updateRequest, sqlParameterSource);
 
     }
