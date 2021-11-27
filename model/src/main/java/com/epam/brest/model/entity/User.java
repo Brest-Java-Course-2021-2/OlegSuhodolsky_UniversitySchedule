@@ -1,6 +1,6 @@
 
 /**
- * User class . Fields <b><>id</b> <b><>name</b> <b><>login</b> <b><>password</b> <b><>email</b>
+ * User class . Fields <b>id</b> <b>name</b> <b>login</b> <b>password</b> <b>email</b>
  * @autor Oleg Suhodolsky
  * @version 1.0
  */
@@ -24,9 +24,9 @@ public class User {
      * @see User#User(String,String,String,String)
      * @param id - identificator
      * @param name - fullname od user
-     *      * @param login - login of user
-     *      * @param password - user's password
-     *      * @param email - user's email
+     * @param login - login of user
+     * @param password - user's password
+     * @param email - user's email
      */
     public User(int id, String name, String login, String password, String email) {
         this.id = id;
