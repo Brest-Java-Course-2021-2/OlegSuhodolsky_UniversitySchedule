@@ -130,8 +130,8 @@ public class DaoUserMockTest {
         ReflectionTestUtils.setField(daoUser, "sqlDeleteUserById", sql);
         int id = 0;
         Mockito.when(namedParameterJdbcTemplate.update(
-                any(),
-                ArgumentMatchers.<SqlParameterSource>any()))
+                        any(),
+                        ArgumentMatchers.<SqlParameterSource>any()))
                 .thenReturn(0);
 
         daoUser.deleteUser(id);
