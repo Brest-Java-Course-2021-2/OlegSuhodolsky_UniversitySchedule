@@ -2,15 +2,18 @@ package com.epam.brest.serviceAPI;
 
 import com.epam.brest.model.entity.Request;
 
+import java.util.List;
+
 public interface RequestService {
 
-    Request getRequestByIdService(Integer requestId);
+    List<Request> getAllRequestsByIdService(int id);
+    Request getRequestByIdService(Integer requestId, Integer idR);
 
     Integer createRequestService(Request request);
 
-    Integer updateRequestService(Request request);
+    void updateRequestService(Request request);
 
-    Integer deleteRequestService(Integer requestId);
+    void deleteRequestService(Integer requestId, Integer idR);
 
-    Integer countRequestService();
+    Integer countRequestService(int id);
 }

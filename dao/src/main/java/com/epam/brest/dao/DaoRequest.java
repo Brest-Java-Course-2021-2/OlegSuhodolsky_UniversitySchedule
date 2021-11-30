@@ -69,6 +69,8 @@ public class DaoRequest implements DaoRequestAPI {
         return request;
     }
 
+
+
     @Override
     public Integer writeRequest(Request request) {
         logger.info("NEW REQUEST BY USERS ID {}");
