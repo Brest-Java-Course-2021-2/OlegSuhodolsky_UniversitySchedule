@@ -97,11 +97,11 @@ public class DaoUser implements DaoUserAPI {
     }
 
     @Override
-    public void deleteUser(int id) {
+    public int deleteUser(int id) {
         logger.info("DELETE USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-        namedParameterJdbcTemplate.update(sqlDeleteUserById, sqlParameterSource);
+      return  namedParameterJdbcTemplate.update(sqlDeleteUserById, sqlParameterSource);
     }
 
 

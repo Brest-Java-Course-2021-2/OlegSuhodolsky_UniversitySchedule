@@ -134,7 +134,7 @@ public class DaoUserMockTest {
                         ArgumentMatchers.<SqlParameterSource>any()))
                 .thenReturn(0);
 
-        daoUser.deleteUser(id);
+        int result = daoUser.deleteUser(id);
 
         Mockito.verify(namedParameterJdbcTemplate)
                 .update(eq(sql), captorSource.capture());

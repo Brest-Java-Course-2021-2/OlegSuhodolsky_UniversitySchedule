@@ -14,5 +14,5 @@ public interface DaoUserAPI {
 
     Integer updateUser(User user);
 
-    void deleteUser(int id);
+    int deleteUser(int id);
 }

@@ -14,7 +14,7 @@ public interface UserService {
 
     Integer updateUserService(User user);
 
-    void deleteUserService(Integer userId);
+    int deleteUserService(Integer userId);
 
     Integer countUserService();
 }
