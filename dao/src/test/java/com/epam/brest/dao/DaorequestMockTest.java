@@ -128,19 +128,22 @@ public class DaorequestMockTest {
     public void deleteRequestObject() {
         String sql = "delete";
         ReflectionTestUtils.setField(daoRequest, "deleteRequest", sql);
-        int id = 0;
+        int id = 1;
         Mockito.when(namedParameterJdbcTemplate.update(
                         any(),
-                        ArgumentMatchers.<SqlParameterSource>any()))
-                .thenReturn(0);
+                        ArgumentMatchers.<SqlParameterSource>any(),
+                        ArgumentMatchers.<KeyHolder>any())
+                        ).thenReturn(1);
 
         daoRequest.deleteRequest(id, id);
 
         Mockito.verify(namedParameterJdbcTemplate)
-                .update(eq(sql), captorSource.capture());
+                .update(eq(sql), captorSource.capture(), captorKeyHolder.capture());
 
         SqlParameterSource source = captorSource.getValue();
+        KeyHolder keyHolder = captorKeyHolder.getValue();
         Assertions.assertNotNull(source);
+        Assertions.assertNotNull(keyHolder);
     }
 
     @Test
@@ -153,17 +156,19 @@ public class DaorequestMockTest {
 
         Mockito.when(namedParameterJdbcTemplate.update(
                 any(),
-                ArgumentMatchers.<SqlParameterSource>any())
-        ).thenReturn(count);
+                ArgumentMatchers.<SqlParameterSource>any(),
+                ArgumentMatchers.<KeyHolder>any())
+        ).thenReturn(1);
 
         daoRequest.updateRequest(request);
 
         Mockito.verify(namedParameterJdbcTemplate)
-                .update(eq(sql), captorSource.capture());
+                .update(eq(sql), captorSource.capture(), captorKeyHolder.capture());
 
         SqlParameterSource source = captorSource.getValue();
+        KeyHolder keyHolder = captorKeyHolder.getValue();
         Assertions.assertNotNull(source);
-
+        Assertions.assertNotNull(keyHolder);
     }
 
 }

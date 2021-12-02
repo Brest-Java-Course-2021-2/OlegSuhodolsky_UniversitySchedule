@@ -37,14 +37,14 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public void updateRequestService(Request request) {
+    public Integer updateRequestService(Request request) {
         logger.debug("Update Request {request}");
-        daoRequest.updateRequest(request);
+       return daoRequest.updateRequest(request);
     }
 
     @Override
-    public void deleteRequestService(Integer id, Integer idR) {
-        daoRequest.deleteRequest(id, idR);
+    public Integer deleteRequestService(Integer id, Integer idR) {
+       return daoRequest.deleteRequest(id, idR);
     }
 
     @Override

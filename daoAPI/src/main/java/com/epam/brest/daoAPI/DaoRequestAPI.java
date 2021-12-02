@@ -12,8 +12,8 @@ public interface DaoRequestAPI {
 
     Integer writeRequest(Request request);
 
-    void updateRequest(Request request);
+    Integer updateRequest(Request request);
 
-    void deleteRequest(int id, int idR);
+    Integer deleteRequest(int id, int idR);
 
 }

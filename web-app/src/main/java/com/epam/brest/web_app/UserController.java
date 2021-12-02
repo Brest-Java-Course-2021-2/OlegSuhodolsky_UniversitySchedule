@@ -36,7 +36,7 @@ UserController {
 
     @GetMapping("/user")
     public String index(Model model) {
-        model.addAttribute("user", userDAO.getAll());
+        model.addAttribute("user", userDAO.getAllUsers());
         return "user/index111";
     }
 

@@ -14,7 +14,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -87,7 +86,7 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public void updateRequest(Request request) {
+    public Integer updateRequest(Request request) {
         logger.info("UPDATE REQUEST  {request}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
@@ -97,19 +96,22 @@ public class DaoRequest implements DaoRequestAPI {
                         .addValue("pairs", request.getPairs())
                         .addValue("subject", request.getSubject())
                         .addValue("date", request.getDate());
-        namedParameterJdbcTemplate.update(updateRequest, sqlParameterSource);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(updateRequest, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
 
     }
 
     @Override
-    public void deleteRequest(int id, int idR) {
+    public Integer deleteRequest(int id, int idR) {
         logger.info("DELETE REQUEST BY USER ID AND IDR {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
                         .addValue("id", id)
                         .addValue("idR", idR);
-
-        namedParameterJdbcTemplate.update(deleteRequest, sqlParameterSource);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(deleteRequest, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
 
     }
 

@@ -11,9 +11,9 @@ public interface RequestService {
 
     Integer createRequestService(Request request);
 
-    void updateRequestService(Request request);
+    Integer updateRequestService(Request request);
 
-    void deleteRequestService(Integer requestId, Integer idR);
+    Integer deleteRequestService(Integer requestId, Integer idR);
 
     Integer countRequestService(int id);
 }
