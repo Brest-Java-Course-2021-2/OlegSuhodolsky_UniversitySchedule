@@ -19,6 +19,36 @@
         <module>rest</module>
     </modules>
 
+    <distributionManagement>
+        <site>
+            <id>www.yourcompany.com</id>
+            <url>scp://www.yourcompany.com/www/docs/project/</url>
+        </site>
+    </distributionManagement>
+
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <junit.version>5.4.0</junit.version>
+        <spring.version>5.3.4</spring.version>
+        <thymeleaf-spring5.version>3.0.12.RELEASE</thymeleaf-spring5.version>
+        <log4j2.version>2.14.1</log4j2.version>
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
+        <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
+        <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
+        <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
+        <hamcrest.version>1.3</hamcrest.version>
+        <mockito.version>4.1.0</mockito.version>
+        <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec
+        </jacoco.it.execution.data.file>
+        <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec
+        </jacoco.ut.execution.data.file>
+        <commons-lang3.version>3.12.0</commons-lang3.version>
+        <jackson.version>2.13.0</jackson.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -58,7 +88,11 @@
                 <artifactId>test-db</artifactId>
                 <version>${project.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.epam.brest</groupId>
+                <artifactId>rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
@@ -116,6 +150,13 @@
                 <scope>provided</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+
             <!--database-->
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -129,11 +170,7 @@
                 <version>${spring.version}</version>
             </dependency>
 
-           <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>8.0.23</version>
-            </dependency>
+
 
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
@@ -204,33 +241,8 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <site>
-            <id>www.yourcompany.com</id>
-            <url>scp://www.yourcompany.com/www/docs/project/</url>
-        </site>
-    </distributionManagement>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <junit.version>5.4.0</junit.version>
-        <spring.version>5.3.4</spring.version>
-        <thymeleaf-spring5.version>3.0.12.RELEASE</thymeleaf-spring5.version>
-        <log4j2.version>2.14.1</log4j2.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-        <project.testresult.directory>${project.build.directory}/test-results</project.testresult.directory>
-        <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
-        <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
-        <hamcrest.version>1.3</hamcrest.version>
-        <mockito.version>4.1.0</mockito.version>
-        <jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec
-        </jacoco.it.execution.data.file>
-        <jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec
-        </jacoco.ut.execution.data.file>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
-    </properties>
+
 
     <build>
         <pluginManagement>
