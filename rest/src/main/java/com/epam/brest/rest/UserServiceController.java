@@ -53,7 +53,7 @@ public class UserServiceController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/users/{id}", produces = {"application/json"})
+    @DeleteMapping(value = "/usersdelete/{id}", produces = {"application/json"})
     public ResponseEntity<Integer> deleteDepartment(@PathVariable Integer id) {
         logger.debug("deleteUser({})", id);
         int result = userService.deleteUserService(id);

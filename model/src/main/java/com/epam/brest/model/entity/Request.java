@@ -49,6 +49,17 @@ public class Request {
         this.date = date;
     }
 
+
+    public Request( int id, String groupe, String pairs, String subject) {
+        //this.idR = idR;
+        this.id = id;
+        this.groupe = groupe;
+        this.pairs = pairs;
+        this.subject = subject;
+        this.date = new Date();
+    }
+
+
     /**
      * Constructor - create new object
      * @see Request#Request()
