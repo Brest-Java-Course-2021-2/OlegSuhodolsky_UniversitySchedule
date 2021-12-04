@@ -181,4 +181,17 @@ public class Request {
     public void setSubject(String subject) {
         this.subject = subject;
     }
+
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "idR=" + idR +
+                ", id=" + id +
+                ", groupe='" + groupe + '\'' +
+                ", pairs='" + pairs + '\'' +
+                ", subject='" + subject + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

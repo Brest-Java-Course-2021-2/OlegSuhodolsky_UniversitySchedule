@@ -35,14 +35,14 @@ public class RequestServiceController {
     @PostMapping(path = "/requestcreate", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> createUser(@RequestBody Request request) {
         request.setDate(new Date());
-        logger.debug("createRequest({})", request);
+        logger.debug("createRequest({})", request, request.getDate());
         Integer id = requestService.createRequestService(request);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
     @PutMapping(value = "/requestupdate", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<Integer> updateDepartment(@RequestBody Request request) {
-
+        request.setDate(new Date());
         logger.debug("updateRequest({})", request);
         int result = requestService.updateRequestService(request);
         return new ResponseEntity(result, HttpStatus.OK);
