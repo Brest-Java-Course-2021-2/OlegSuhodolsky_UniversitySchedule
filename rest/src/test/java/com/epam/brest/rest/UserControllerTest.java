@@ -17,9 +17,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:app-context-test.xml"})
@@ -57,6 +58,37 @@ public class UserControllerTest {
 
         assertNotNull(users);
         assertTrue(users.size() > 0);
+    }
+
+    @Test
+    public void shouldCreateUser() throws Exception {
+        User user = new User(RandomStringUtils.randomAlphabetic(50)
+                , RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50));
+        Integer id = userService.createUserService(user);
+        assertNotNull(id);
+    }
+
+    @Test
+    public void shouldFindUserById() throws Exception {
+
+        // given
+        User user = new User(RandomStringUtils.randomAlphabetic(50)
+                , RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50));
+        Integer id = userService.createUserService(user);
+
+        assertNotNull(id);
+
+        // when
+        Optional<User> optionalUser = Optional.ofNullable(userService.getUserByIdService(id));
+
+        // then
+        assertTrue(optionalUser.isPresent());
+        assertEquals(optionalUser.get().getId(), id);
+        assertEquals(user.getName(), optionalUser.get().getName());
     }
 
 }
