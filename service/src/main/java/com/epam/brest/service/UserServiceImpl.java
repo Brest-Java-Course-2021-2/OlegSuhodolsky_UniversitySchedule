@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int deleteUserService(Integer id) {
+    public Integer deleteUserService(Integer id) {
         return daoUser.deleteUser(id);
     }
 

@@ -91,4 +91,58 @@ public class UserControllerTest {
         assertEquals(user.getName(), optionalUser.get().getName());
     }
 
+    @Test
+    public void shouldUpdateUser() throws Exception {
+
+        // given
+        User user = new User(RandomStringUtils.randomAlphabetic(50)
+                , RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50));
+        Integer id = userService.createUserService(user);
+        assertNotNull(id);
+
+        Optional<User> userOptional = Optional.ofNullable(userService.getUserByIdService(id));
+        assertTrue(userOptional.isPresent());
+
+        userOptional.get().
+                setName(RandomStringUtils.randomAlphabetic(50));
+
+        // when
+        int result = userService.updateUserService(userOptional.get());
+
+        // then
+        assertTrue(3 == result);
+
+        Optional<User> updatedUserOptional = Optional.ofNullable(userService.getUserByIdService(id));
+        assertTrue(updatedUserOptional.isPresent());
+        assertEquals(updatedUserOptional.get().getId(), id);
+        assertEquals(updatedUserOptional.get().getName(),userOptional.get().getName());
+
+    }
+
+    @Test
+    public void shouldDeleteDepartment() throws Exception {
+        // given
+        User user = new User(RandomStringUtils.randomAlphabetic(50)
+                , RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50)
+                ,RandomStringUtils.randomAlphabetic(50));
+        Integer id = userService.createUserService(user);
+
+        List<User> users = userService.getAllUsersService();
+        assertNotNull(users);
+
+        // when
+        int result = userService.deleteUserService(id);
+
+        // then
+        assertEquals(1 , result);
+
+        List<User> currentUsers = userService.getAllUsersService();
+        assertNotNull(currentUsers);
+
+        assertTrue(users.size()-1 == currentUsers.size());
+    }
+
 }
