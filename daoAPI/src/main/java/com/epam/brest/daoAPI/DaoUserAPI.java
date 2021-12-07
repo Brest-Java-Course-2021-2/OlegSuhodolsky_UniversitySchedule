@@ -6,6 +6,7 @@ import java.util.List;
 
 
 public interface DaoUserAPI {
+
     List<User> getAllUsers();
 
     User readUser(int id);

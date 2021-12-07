@@ -112,7 +112,7 @@ public class UserControllerTest {
         int result = userService.updateUserService(userOptional.get());
 
         // then
-        assertTrue(3 == result);
+        assertTrue(result > 0);
 
         Optional<User> updatedUserOptional = Optional.ofNullable(userService.getUserByIdService(id));
         assertTrue(updatedUserOptional.isPresent());

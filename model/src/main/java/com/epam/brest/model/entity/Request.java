@@ -33,6 +33,7 @@ public class Request {
      * Constructor - create new object
      * @see Request#Request()
      * @see Request#Request(int, String,String,String,Date)
+     * @see Request#Request(int, String,String,String)
      * @param idR - identificator
      * @param id - identificator of User
      * @param groupe - groupe name
@@ -49,7 +50,16 @@ public class Request {
         this.date = date;
     }
 
-
+    /**
+     * Constructor - create new object
+     * @see Request#Request()
+     * @see Request#Request(int, String,String,String,Date)
+     * @see Request#Request(int,int, String,String,String,Date)
+     * @param id - identificator of User
+     * @param groupe - groupe name
+     * @param pairs - number pairs
+     * @param subject - subject of user
+     */
     public Request( int id, String groupe, String pairs, String subject) {
         //this.idR = idR;
         this.id = id;
@@ -64,6 +74,7 @@ public class Request {
      * Constructor - create new object
      * @see Request#Request()
      * @see Request#Request(int,int, String,String,String,Date)
+     * @see Request#Request(int, String,String,String)
      * @param id - identificator of User
      * @param groupe - groupe name
      * @param pairs - number pairs
@@ -82,6 +93,7 @@ public class Request {
      * Constructor - create new object
      * @see Request#Request(int,int, String,String,String,Date)
      * @see Request#Request(int, String,String,String,Date)
+     * @see Request#Request(int, String,String,String)
      */
     public Request() {
     }
