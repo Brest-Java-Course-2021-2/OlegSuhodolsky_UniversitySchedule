@@ -2,7 +2,9 @@ package com.epam.brest.service;
 
 
 import com.epam.brest.dao.DaoUser;
+import com.epam.brest.daoAPI.DaoUserAPI;
 import com.epam.brest.model.entity.User;
+import com.epam.brest.serviceAPI.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -23,11 +25,10 @@ import java.util.List;
 public class UserServiceImplMockTest {
 
     @Mock
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @Mock
-    private DaoUser daoUser;
-
+    private DaoUserAPI daoUser;
 
     @AfterEach
     public void check() {
@@ -48,6 +49,7 @@ public class UserServiceImplMockTest {
         Assertions.assertSame(result.get(0), user);
     }
 
+
     @Test
     public void findUserByID() {
         User user = new User();
@@ -58,6 +60,7 @@ public class UserServiceImplMockTest {
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, user);
     }
+
 
     @Test
     public void createUser() {
@@ -70,6 +73,7 @@ public class UserServiceImplMockTest {
         Assertions.assertSame(result, id);
     }
 
+
     @Test
     public void updateUser() {
         User user = new User();
@@ -80,6 +84,7 @@ public class UserServiceImplMockTest {
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, id);
     }
+
 
     @Test
     public void deleteUser() {

@@ -1,8 +1,10 @@
 package com.epam.brest.service;
 
 import com.epam.brest.dao.DaoUser;
+import com.epam.brest.daoAPI.DaoUserAPI;
 import com.epam.brest.model.entity.Request;
 import com.epam.brest.model.entity.User;
+import com.epam.brest.serviceAPI.RequestService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,10 +21,10 @@ public class RequestServiceImplMockTest {
 
 
     @Mock
-    private RequestServiceImpl requestService;
+    private RequestService requestService;
 
     @Mock
-    private DaoUser daoRequest;
+    private DaoUserAPI daoRequest;
 
 
     @AfterEach
