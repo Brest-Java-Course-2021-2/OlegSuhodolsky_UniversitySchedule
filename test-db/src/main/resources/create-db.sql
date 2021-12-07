@@ -15,9 +15,9 @@ CREATE TABLE request
 (
     idR int PRIMARY KEY auto_increment,
     id int NOT NULL,
-    groupe varchar(50) NOT NULL ,
-    pairs varchar(50) NOT NULL,
-    subject varchar(50) NOT NULL,
+    groupe varchar(10) NOT NULL ,
+    pairs varchar(2) NOT NULL,
+    subject varchar(100) NOT NULL,
     date date NOT NULL,
     FOREIGN KEY (id)  REFERENCES user (id) ON DELETE CASCADE
 );

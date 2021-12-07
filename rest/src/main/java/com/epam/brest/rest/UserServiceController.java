@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Collection;
 
 @RestController
 public class UserServiceController {
@@ -24,7 +24,7 @@ public class UserServiceController {
 
 
     @GetMapping(value = "/users")
-    public final List<User> getAllUsers() {
+    public final Collection<User> getAllUsers() {
 
         logger.debug("users(all) ");
         return userService.getAllUsersService();
@@ -33,7 +33,7 @@ public class UserServiceController {
     @GetMapping(value = "/users/{id}")
     public final User getUserById(@PathVariable Integer id) {
 
-        logger.debug("user(id) ");
+        logger.debug("getUserByID(id) ");
         return userService.getUserByIdService(id);
     }
 
