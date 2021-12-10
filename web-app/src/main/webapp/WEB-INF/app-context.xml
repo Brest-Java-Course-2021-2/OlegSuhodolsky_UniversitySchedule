@@ -32,7 +32,13 @@
         <constructor-arg name="daoUser" ref="daoUser"/>
     </bean>
 
+    <bean id="daoRequest" class="com.epam.brest.dao.DaoRequest">
+        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
+    </bean>
 
+    <bean id="requestService" class="com.epam.brest.service.RequestServiceImpl">
+        <constructor-arg name="daoRequest" ref="daoRequest"/>
+    </bean>
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">

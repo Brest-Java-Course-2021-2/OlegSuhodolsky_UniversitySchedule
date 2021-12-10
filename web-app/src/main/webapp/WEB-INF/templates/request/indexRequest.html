@@ -41,19 +41,19 @@
             <tbody>
                 <tr th:each="request : ${requests}"
                     th:style="${request}? 'font-weight: 30;'">
-                    <td th:text="${request.getIDR()}"></td>
-                    <td th:text="${request.getID()}" ></td>
+                    <td th:text="${request.getIdR()}"></td>
+                    <td th:text="${request.getId()}" ></td>
                     <td th:text="${request.getGroupe()}" ></td>
                     <td th:text="${request.getPairs()}" ></td>
                     <td th:text="${request.getSubject()}" ></td>
                     <td> 
-                        <form th:method="GET" th:action="@{/request/{id}/edit (id=${request.getIDR()})}">
+                        <form th:method="GET" th:action="@{/request/{id}/edit (id=${request.getIdR()})}">
                             <input type="submit" value="UPDATE"/>
                         </form>    
                     </td>
 
                     <td> 
-                        <form th:method="DELETE" th:action="@{/request/{id} (id=${request.getIDR()})}">
+                        <form th:method="DELETE" th:action="@{/request/{id} (id=${request.getIdR()})}">
                             <input type="submit" value="DELETE"/>
                         </form>    
                     </td>    
