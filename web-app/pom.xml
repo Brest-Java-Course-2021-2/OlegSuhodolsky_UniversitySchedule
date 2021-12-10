@@ -34,7 +34,25 @@
             <artifactId>service</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>serviceAPI</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>daoAPI</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>dao</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>test-db</artifactId>
+                </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -71,10 +89,7 @@
             <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>serviceAPI</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>

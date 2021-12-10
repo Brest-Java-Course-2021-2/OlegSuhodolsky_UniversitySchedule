@@ -52,7 +52,12 @@
       </tbody>
   </table>
 
-<p><a href="/spring_crud_app1_war_exploded/login" target="_parent">Quit</a></p>
+    <form th:method="GET" th:action="@{/user/new}">
+        <input type="submit" value="New user"/>
+    </form>
+
+
+    <p><a href="/login" target="_parent">Quit</a></p>
  
 </body>
      

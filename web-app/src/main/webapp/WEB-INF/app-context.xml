@@ -20,7 +20,7 @@
 
     <import resource="classpath*:test-db.xml"/>
 
-    <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+   <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
 
@@ -31,6 +31,8 @@
     <bean id="userService" class="com.epam.brest.service.UserServiceImpl">
         <constructor-arg name="daoUser" ref="daoUser"/>
     </bean>
+
+
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
