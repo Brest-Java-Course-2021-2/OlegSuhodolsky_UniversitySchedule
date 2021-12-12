@@ -7,7 +7,7 @@
         <title>USER Request</title>
         <style type="text/css">
             TABLE {
-                width: 1000px; 
+                width: 1400px;
             }
             TH {
                 background: #4b0082; 
@@ -33,10 +33,10 @@
                     <th>   GROUPE  </th><!-- comment -->
                     <th>   PAIRS   </th>
                     <th>   SUBJECT </th>
+                    <th>   Date of request </th>
                     <th>   Edit request </th>
                     <th>   Delete request </th>
-
-                </tr>
+                 </tr>
             </thead>
             <tbody>
                 <tr th:each="request : ${requests}"
@@ -46,6 +46,7 @@
                     <td th:text="${request.getGroupe()}" ></td>
                     <td th:text="${request.getPairs()}" ></td>
                     <td th:text="${request.getSubject()}" ></td>
+                    <td th:text="${request.getDate()}" ></td>
                     <td> 
                         <form th:method="GET" th:action="@{/request/{id}/edit (id=${request.getIdR()})}">
                             <input type="submit" value="UPDATE"/>
