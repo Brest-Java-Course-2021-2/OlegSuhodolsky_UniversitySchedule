@@ -49,13 +49,13 @@ public class DaoRequestJDBCIT {
     @Test
     void readRequest() {
         logger.debug("Execute test of REQUEST : read({id}{idR})");
-        assertTrue(daoRequest.readRequest(1, 1).getSubject().equals("math"), "subject = math");
+        assertTrue(daoRequest.readRequest(1).getSubject().equals("math"), "subject = math");
     }
 
     @Test
     void deleteRequest() {
         logger.debug("Execute test of REQUEST : delete({id}{idR})");
-        daoRequest.deleteRequest(1, 1);
+        daoRequest.deleteRequest(1);
         assertTrue(daoRequest.getAllRequests(1).get(0).getIdR() != 1, "request not exist, deleted");
     }
 
@@ -65,7 +65,7 @@ public class DaoRequestJDBCIT {
         Request request = new Request(1,1, "e22", "22", "cockinjaws", new Date());
         Date date = request.getDate();
         daoRequest.updateRequest(request);
-        assertTrue(daoRequest.readRequest(1,1).getGroupe().equals("e22"), "request Groupe changed");
+        assertTrue(daoRequest.readRequest(1).getGroupe().equals("e22"), "request Groupe changed");
        // assertTrue(daoRequest.read(1,1).getDate().equals(date), "request Date changed");
     }
 }

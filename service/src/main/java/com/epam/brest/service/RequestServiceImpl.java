@@ -30,10 +30,10 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     @Transactional (readOnly = true)
-    public Request getRequestByIdService(Integer id, Integer idR) {
+    public Request getRequestByIdService(Integer idR) {
         logger.debug("Request {id} {idR}");
         try{
-        return daoRequest.readRequest(id, idR);
+        return daoRequest.readRequest(idR);
         } catch (RequestNotFoundException e){
             throw new RequestNotFoundException(idR);
         }
@@ -55,8 +55,8 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     @Transactional
-    public Integer deleteRequestService(Integer id, Integer idR) {
-       return daoRequest.deleteRequest(id, idR);
+    public Integer deleteRequestService(Integer idR) {
+       return daoRequest.deleteRequest(idR);
     }
 
     @Override

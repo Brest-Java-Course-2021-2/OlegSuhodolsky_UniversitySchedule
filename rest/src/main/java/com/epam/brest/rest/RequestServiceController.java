@@ -50,8 +50,8 @@ public class RequestServiceController {
 
     @DeleteMapping(value = "/requestdelete", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<Integer> deleteDepartment(@PathVariable Integer id, @PathVariable Integer idR) {
-        logger.debug("deleteRequest({})", id, idR );
-        int result = requestService.deleteRequestService(id, idR);
+        logger.debug("deleteRequest({})", idR );
+        int result = requestService.deleteRequestService(idR);
         return new ResponseEntity(result, HttpStatus.OK);
     }
 

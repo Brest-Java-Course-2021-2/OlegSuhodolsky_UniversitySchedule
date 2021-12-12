@@ -8,12 +8,12 @@ public interface DaoRequestAPI {
 
     List<Request> getAllRequests(int id);
 
-    Request readRequest(int id, int idE);
+    Request readRequest(int idR);
 
     Integer writeRequest(Request request);
 
     Integer updateRequest(Request request);
 
-    Integer deleteRequest(int id, int idR);
+    Integer deleteRequest(int idR);
 
 }

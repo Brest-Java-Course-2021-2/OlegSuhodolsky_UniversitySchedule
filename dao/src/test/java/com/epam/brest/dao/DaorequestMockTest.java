@@ -72,7 +72,6 @@ public class DaorequestMockTest {
     public void getFromRequestByIdIdR() {
         String sql = "get";
         ReflectionTestUtils.setField(daoRequest, "getFromRequestByIdAndIdr", sql);
-        int id = 1;
         int idR = 1;
         Request request = new Request();
 
@@ -84,7 +83,7 @@ public class DaorequestMockTest {
         ).thenReturn(request);
 
 
-        Request result = daoRequest.readRequest(id, idR);
+        Request result = daoRequest.readRequest(idR);
 
         Mockito.verify(namedParameterJdbcTemplate)
                 .queryForObject(eq(sql), captorSource.capture(), captorMapper.capture());
@@ -135,7 +134,7 @@ public class DaorequestMockTest {
                         ArgumentMatchers.<KeyHolder>any())
                         ).thenReturn(1);
 
-        daoRequest.deleteRequest(id, id);
+        daoRequest.deleteRequest(id);
 
         Mockito.verify(namedParameterJdbcTemplate)
                 .update(eq(sql), captorSource.capture(), captorKeyHolder.capture());

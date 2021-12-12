@@ -56,12 +56,11 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public Request readRequest(int id, int idR) {
+    public Request readRequest(int idR) {
         logger.info("GET REQUEST BY USER ID AND IDR {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
-                        .addValue("id", id)
-                        .addValue("idR", idR);
+                         .addValue("idR", idR);
         Request request = null;
         request = namedParameterJdbcTemplate.queryForObject(getFromRequestByIdAndIdr,
                 sqlParameterSource, new RequestRowMapper());
@@ -103,11 +102,10 @@ public class DaoRequest implements DaoRequestAPI {
     }
 
     @Override
-    public Integer deleteRequest(int id, int idR) {
+    public Integer deleteRequest(int idR) {
         logger.info("DELETE REQUEST BY USER ID AND IDR {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
-                        .addValue("id", id)
                         .addValue("idR", idR);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(deleteRequest, sqlParameterSource, keyHolder);

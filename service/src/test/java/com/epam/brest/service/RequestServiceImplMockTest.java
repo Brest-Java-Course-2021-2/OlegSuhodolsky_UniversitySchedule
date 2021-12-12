@@ -49,11 +49,10 @@ public class RequestServiceImplMockTest {
     @Test
     public void findRequestByID() {
         Request request = new Request();
-        int id = 1;
         int idR = 1;
-        Mockito.when(requestService.getRequestByIdService(id, idR)).thenReturn(request);
-        Request result = requestService.getRequestByIdService(id, idR);
-        Mockito.verify(requestService).getRequestByIdService(id, idR);
+        Mockito.when(requestService.getRequestByIdService(idR)).thenReturn(request);
+        Request result = requestService.getRequestByIdService(idR);
+        Mockito.verify(requestService).getRequestByIdService(idR);
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, request);
     }
@@ -72,23 +71,23 @@ public class RequestServiceImplMockTest {
     @Test
     public void updateRequest() {
         Request request = new Request();
-        Integer id = 1;
-        Mockito.when(requestService.updateRequestService(request)).thenReturn(id);
+        Integer idR = 1;
+        Mockito.when(requestService.updateRequestService(request)).thenReturn(idR);
         Integer result = requestService.updateRequestService(request);
         Mockito.verify(requestService).updateRequestService(request);
         Assertions.assertNotNull(result);
-        Assertions.assertSame(result, id);
+        Assertions.assertSame(result, idR);
     }
 
 
     @Test
     public void deleteUser() {
 
-        Integer id = 1;
+
         Integer idR = 1;
-        Mockito.when(requestService.deleteRequestService(id, idR)).thenReturn(1);
-        Integer result = requestService.deleteRequestService(id, idR);
-        Mockito.verify(requestService).deleteRequestService(id, idR);
+        Mockito.when(requestService.deleteRequestService(idR)).thenReturn(1);
+        Integer result = requestService.deleteRequestService(idR);
+        Mockito.verify(requestService).deleteRequestService(idR);
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, 1);
     }

@@ -8,13 +8,13 @@ public interface RequestService {
 
     List<Request> getAllRequestsByIdService(int id);
 
-    Request getRequestByIdService(Integer requestId, Integer idR);
+    Request getRequestByIdService(Integer idR);
 
     Integer createRequestService(Request request);
 
     Integer updateRequestService(Request request);
 
-    Integer deleteRequestService(Integer requestId, Integer idR);
+    Integer deleteRequestService(Integer idR);
 
     Integer countRequestService(int id);
 }

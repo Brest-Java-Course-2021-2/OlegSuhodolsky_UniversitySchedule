@@ -54,8 +54,8 @@ public class RequestServiceImplIT {
     @Test
     void shouldRequest() {
         logger.info("Read Request {id}{idR} ");
-        Request request = requestService.getRequestByIdService(1, 1);
-        Request request1 = requestService.getRequestByIdService(1, 1);
+        Request request = requestService.getRequestByIdService(1);
+        Request request1 = requestService.getRequestByIdService(1);
         assertNotNull(request);
         assertNotNull(request1);
         assertEquals(request.getGroupe(), request1.getGroupe());
@@ -73,17 +73,17 @@ public class RequestServiceImplIT {
     @Test
     void shouldUpdateRequest() {
         logger.info("Update Request {id} ");
-        Request request = requestService.getRequestByIdService(1,1);
+        Request request = requestService.getRequestByIdService(1);
         request.setGroupe("e222");
         requestService.updateRequestService(request);
-        assertEquals(requestService.getRequestByIdService(1,1).getGroupe(), "e222");
+        assertEquals(requestService.getRequestByIdService(1).getGroupe(), "e222");
     }
 
     @Test
     void shouldDeleteRequest() {
         logger.info("Delete Request {id} ");
         int count = requestService.getAllRequestsByIdService(1).size();
-        requestService.deleteRequestService(1,1);
+        requestService.deleteRequestService(1);
         int count1 = requestService.getAllRequestsByIdService(1).size();
         assertTrue(count1 < count);
     }
