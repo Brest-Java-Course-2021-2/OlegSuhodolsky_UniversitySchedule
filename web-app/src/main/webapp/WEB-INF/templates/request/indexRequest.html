@@ -54,7 +54,7 @@
                     </td>
 
                     <td> 
-                        <form th:method="DELETE" th:action="@{/request/{id} (id=${request.getIdR()})}">
+                        <form th:method="POST" th:action="@{/request/delete/{id} (id=${request.getIdR()})}">
                             <input type="submit" value="DELETE"/>
                         </form>    
                     </td>    

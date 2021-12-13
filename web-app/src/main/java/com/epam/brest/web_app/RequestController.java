@@ -75,4 +75,10 @@ public class RequestController {
         return "redirect:/request/" + request.getId();
     }
 
+    @PostMapping("delete/{id}")
+    public String delete(@PathVariable("id") int idR) {
+        Request request = requestService.getRequestByIdService(idR);
+        requestService.deleteRequestService(idR);
+        return "redirect:/request/" + request.getId();
+    }
 }
