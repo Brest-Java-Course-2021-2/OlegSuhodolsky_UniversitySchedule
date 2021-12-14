@@ -17,6 +17,7 @@
         <module>serviceAPI</module>
         <module>service</module>
         <module>rest</module>
+        <module>service-rest</module>
     </modules>
 
     <distributionManagement>
@@ -95,6 +96,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.epam.brest</groupId>
+                <artifactId>service-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
@@ -157,7 +163,12 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-
+            <dependency>
+                <groupId>com.jayway.jsonpath</groupId>
+                <artifactId>json-path</artifactId>
+                <version>${json-path.version}</version>
+                <scope>test</scope>
+            </dependency>
             <!--database-->
             <dependency>
                 <groupId>com.h2database</groupId>
@@ -331,16 +342,16 @@
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.7</version>
                 </plugin>
-                <plugin>
+               <!-- <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
-                </plugin>
-                <plugin>
+                </plugin>-->
+               <!-- <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe-plugin.version}</version>
-                </plugin>
+                </plugin>-->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
@@ -351,7 +362,7 @@
 
         <plugins>
 
-            <plugin>
+         <!--   <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
@@ -380,7 +391,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -519,7 +530,7 @@
                     </reportSet>
                 </reportSets>
             </plugin>
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.15.0</version>
@@ -527,25 +538,25 @@
                     <linkXref>true</linkXref>
                     <sourceEncoding>utf-8</sourceEncoding>
                     <minimumTokens>100</minimumTokens>
-                    <targetJdk>1.8</targetJdk>
+                    <targetJdk>11</targetJdk>
                 </configuration>
                 <reportSets>
-                    <reportSet><!-- by default, id = "default" -->
-                        <reports><!-- select non-aggregate reports -->
+                    <reportSet>&lt;!&ndash; by default, id = "default" &ndash;&gt;
+                        <reports>&lt;!&ndash; select non-aggregate reports &ndash;&gt;
                             <report>pmd</report>
                             <report>cpd</report>
                         </reports>
                     </reportSet>
-                    <reportSet><!-- aggregate reportSet, to define in poms having modules -->
+                    <reportSet>&lt;!&ndash; aggregate reportSet, to define in poms having modules &ndash;&gt;
                         <id>aggregate</id>
-                        <inherited>false</inherited> <!-- don't run aggregate in child modules -->
+                        <inherited>false</inherited> &lt;!&ndash; don't run aggregate in child modules &ndash;&gt;
                         <reports>
                             <report>aggregate-pmd</report>
                             <report>aggregate-cpd</report>
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>
+            </plugin>-->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
