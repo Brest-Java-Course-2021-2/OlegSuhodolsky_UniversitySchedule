@@ -88,10 +88,11 @@ public class User {
     /**
      * Setter - set name field to User {@link User#name}
      * @param name - identificator
+     * @return
      */
     public void setName(String name) {
         this.name = name;
-    }
+       }
 
     /**
      * Getter - get field login {@link User#login}
