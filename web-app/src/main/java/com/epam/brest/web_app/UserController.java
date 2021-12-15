@@ -81,7 +81,11 @@ public class UserController {
         return "redirect:/user";
     }
 
-
+    @GetMapping("/count")
+    public String count(Model model) {
+        model.addAttribute("count", userService.countUserService());
+        return "user/edit";
+    }
 
 }
 

@@ -42,26 +42,44 @@ public class UserServiceRest implements UserService {
 
     @Override
     public User getUserByIdService(Integer userId) {
-        return null;
+        logger.debug("getUserById({})", userId);
+        ResponseEntity<User> responseEntity =
+                restTemplate.getForEntity(url + "/" + userId, User.class);
+        return responseEntity.getBody();
     }
 
     @Override
     public Integer createUserService(User user) {
-        return null;
+        logger.debug("createUser({})", user);
+        ResponseEntity responseEntity = restTemplate.postForEntity(url, user, Integer.class);
+        return (Integer) responseEntity.getBody();
     }
 
     @Override
     public Integer updateUserService(User user) {
-        return null;
+        logger.debug("updateUser({})", user);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<User> entity = new HttpEntity<>(user, headers);
+        ResponseEntity<Integer> result = restTemplate.exchange(url, HttpMethod.PUT, entity, Integer.class);
+        return result.getBody();
     }
 
     @Override
     public Integer deleteUserService(Integer userId) {
-        return null;
+        logger.debug("deleteUser({})", userId);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<User> entity = new HttpEntity<>(headers);
+        ResponseEntity<Integer> result =
+                restTemplate.exchange(url + "/" + userId, HttpMethod.DELETE, entity, Integer.class);
+        return result.getBody();
     }
 
     @Override
     public Integer countUserService() {
-        return null;
+        logger.debug("count()");
+        ResponseEntity<Integer> responseEntity = restTemplate.getForEntity(url + "/count" , Integer.class);
+        return responseEntity.getBody();
     }
 }
