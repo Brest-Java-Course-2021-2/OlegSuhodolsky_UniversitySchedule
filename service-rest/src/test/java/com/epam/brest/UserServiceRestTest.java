@@ -26,8 +26,8 @@ import java.util.List;
 import  com.epam.brest.model.entity.User;
 
 import static com.epam.brest.model.entity.constants.UserConstants.USER_NAME_SIZE;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
@@ -59,7 +59,7 @@ public class UserServiceRestTest {
     @Test
     public void shouldFindAllusers() throws Exception {
 
-        LOGGER.debug("shouldFindAllUsers()");
+       // LOGGER.debug("shouldFindAllUsers()");
         // given
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL)))
                 .andExpect(method(HttpMethod.GET))
@@ -81,7 +81,7 @@ public class UserServiceRestTest {
     @Test
     public void shouldCreateUser() throws Exception {
 
-        LOGGER.debug("shouldCreateUser()");
+       // LOGGER.debug("shouldCreateUser()");
         // given
         User user = new User();
         user.setName(RandomStringUtils.randomAlphabetic(USER_NAME_SIZE));
@@ -101,6 +101,89 @@ public class UserServiceRestTest {
         // then
         mockServer.verify();
         assertNotNull(id);
+    }
+
+
+    @Test
+    public void shouldFindUserById() throws Exception {
+
+        // given
+        Integer id = 1;
+        User user = new User();
+                user.setId(id);
+                user.setName(RandomStringUtils.randomAlphabetic(USER_NAME_SIZE));
+
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL + "/" + id)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(user))
+                );
+
+        // when
+        User resultUser = userService.getUserByIdService(id);
+
+        // then
+        mockServer.verify();
+        assertNotNull(resultUser);
+        assertEquals(resultUser.getId(), id);
+        assertEquals(resultUser.getName(), user.getName());
+    }
+
+
+    @Test
+    public void shouldUpdateUser() throws Exception {
+
+        // given
+        Integer id = 1;
+        User user = new User();
+                user.setId(id);
+                user.setName(RandomStringUtils.randomAlphabetic(USER_NAME_SIZE));
+
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL)))
+                .andExpect(method(HttpMethod.PUT))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString("1"))
+                );
+
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL + "/" + id)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString(user))
+                );
+
+        // when
+        int result = userService.updateUserService(user);
+        User updatedUser = userService.getUserByIdService(id);
+
+        // then
+        mockServer.verify();
+        assertTrue(1 == result);
+
+        assertNotNull(updatedUser);
+        assertEquals(updatedUser.getId(), id);
+        assertEquals(updatedUser.getName(), user.getName());
+    }
+
+    @Test
+    public void shouldDeleteUser() throws Exception {
+
+        // given
+        Integer id = 1;
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL + "/" + id)))
+                .andExpect(method(HttpMethod.DELETE))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString("1"))
+                );
+        // when
+        int result = userService.deleteUserService(id);
+
+        // then
+        mockServer.verify();
+        assertTrue(1 == result);
     }
 
     private User create(int index) {
