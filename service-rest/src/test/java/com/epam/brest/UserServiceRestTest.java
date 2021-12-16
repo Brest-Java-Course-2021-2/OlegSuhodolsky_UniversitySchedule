@@ -59,7 +59,7 @@ public class UserServiceRestTest {
     @Test
     public void shouldFindAllusers() throws Exception {
 
-       // LOGGER.debug("shouldFindAllUsers()");
+        LOGGER.debug("shouldFindAllUsers()");
         // given
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL)))
                 .andExpect(method(HttpMethod.GET))
@@ -67,7 +67,6 @@ public class UserServiceRestTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(Arrays.asList(create(0), create(1))))
                 );
-
 
         // when
         List<User> users = userService.getAllUsersService();
@@ -81,7 +80,7 @@ public class UserServiceRestTest {
     @Test
     public void shouldCreateUser() throws Exception {
 
-       // LOGGER.debug("shouldCreateUser()");
+        LOGGER.debug("shouldCreateUser()");
         // given
         User user = new User();
         user.setName(RandomStringUtils.randomAlphabetic(USER_NAME_SIZE));
@@ -106,7 +105,7 @@ public class UserServiceRestTest {
 
     @Test
     public void shouldFindUserById() throws Exception {
-
+        LOGGER.debug("shouldFindUserById()");
         // given
         Integer id = 1;
         User user = new User();
@@ -122,7 +121,6 @@ public class UserServiceRestTest {
 
         // when
         User resultUser = userService.getUserByIdService(id);
-
         // then
         mockServer.verify();
         assertNotNull(resultUser);
@@ -133,7 +131,7 @@ public class UserServiceRestTest {
 
     @Test
     public void shouldUpdateUser() throws Exception {
-
+        LOGGER.debug("shouldUpdateUser()");
         // given
         Integer id = 1;
         User user = new User();
@@ -169,7 +167,7 @@ public class UserServiceRestTest {
 
     @Test
     public void shouldDeleteUser() throws Exception {
-
+        LOGGER.debug("shouldDeleteUser()");
         // given
         Integer id = 1;
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL + "/" + id)))
@@ -189,7 +187,7 @@ public class UserServiceRestTest {
     private User create(int index) {
         User user = new User();
         user.setId(index);
-        user.setName("d" + index);
+        user.setName("u" + index);
         return user;
     }
 

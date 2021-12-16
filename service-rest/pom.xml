@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>service-rest</artifactId>
-
+    <packaging>jar</packaging>
     <parent>
         <artifactId>university</artifactId>
         <groupId>com.epam.brest</groupId>
@@ -102,15 +102,7 @@
             <artifactId>commons-lang3</artifactId>
         </dependency>
 
-      <!--  <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>-->
-        <!--<dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <scope>test</scope>
-        </dependency>-->
+
 
     </dependencies>
 
