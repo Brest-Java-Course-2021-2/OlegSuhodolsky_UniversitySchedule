@@ -1,7 +1,6 @@
 package com.epam.brest;
 
 import com.epam.brest.model.entity.Request;
-import com.epam.brest.model.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,9 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.epam.brest.model.entity.constants.RequestConstants.GROUPE_SIZE;
-import static com.epam.brest.model.entity.constants.UserConstants.USER_NAME_SIZE;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
@@ -54,10 +51,8 @@ public class RequestServiceRestTest {
         requestService = new RequestServiceRest(REQUESTS_URL, restTemplate);
     }
 
-
     @Test
     public void shouldFindAllusers() throws Exception {
-
         LOGGER.debug("shouldFindAllUsers()");
         // given
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(REQUESTS_URL + "/" + 1)))
@@ -66,10 +61,8 @@ public class RequestServiceRestTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(mapper.writeValueAsString(Arrays.asList(create(1, 1), create(1, 2))))
                 );
-
         // when
         List<Request> requests = requestService.getAllRequestsByIdService(1);
-
         // then
         mockServer.verify();
         assertNotNull(requests);
@@ -83,9 +76,6 @@ public class RequestServiceRestTest {
         Request request = new Request();
         request.setGroupe(RandomStringUtils.randomAlphabetic(GROUPE_SIZE));
         request.setId(1);
-
-
-
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(REQUESTS_URL)))
                 .andExpect(method(HttpMethod.POST))
                 .andRespond(withStatus(HttpStatus.OK)
@@ -100,7 +90,22 @@ public class RequestServiceRestTest {
         assertNotNull(id);
     }
 
-
+    @Test
+    public void shouldDeleteRequest() throws Exception {
+        // given
+        Integer id = 1;
+        mockServer.expect(ExpectedCount.once(), requestTo(new URI(REQUESTS_URL + "/" + id)))
+                .andExpect(method(HttpMethod.DELETE))
+                .andRespond(withStatus(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(mapper.writeValueAsString("1"))
+                );
+        // when
+        int result = requestService.deleteRequestService(id);
+        // then
+        mockServer.verify();
+        assertTrue(1 == result);
+    }
 
     private Request create(int index, int id) {
         Request request = new Request();

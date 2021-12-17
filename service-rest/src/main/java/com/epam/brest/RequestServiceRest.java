@@ -61,7 +61,14 @@ public class RequestServiceRest implements RequestService {
 
     @Override
     public Integer deleteRequestService(Integer idR) {
-        return null;
+
+        logger.debug("deleteRequest({})", idR);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<User> entity = new HttpEntity<>(headers);
+        ResponseEntity<Integer> result =
+                restTemplate.exchange(url + "/" + idR, HttpMethod.DELETE, entity, Integer.class);
+        return result.getBody();
     }
 
     @Override
