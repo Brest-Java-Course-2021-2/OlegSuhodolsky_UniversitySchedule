@@ -1,6 +1,7 @@
 package com.epam.brest;
 
 import com.epam.brest.model.entity.Request;
+import com.epam.brest.service.rest.RequestServiceRest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;

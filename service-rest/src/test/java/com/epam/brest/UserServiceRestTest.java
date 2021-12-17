@@ -3,6 +3,7 @@ package com.epam.brest;
 
 
 
+import com.epam.brest.service.rest.UserServiceRest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;

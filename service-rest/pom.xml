@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>service-rest</artifactId>
-    <packaging>jar</packaging>
+   <!-- <packaging>jar</packaging>-->
     <parent>
         <artifactId>university</artifactId>
         <groupId>com.epam.brest</groupId>

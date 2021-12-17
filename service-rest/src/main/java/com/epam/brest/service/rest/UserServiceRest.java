@@ -1,4 +1,4 @@
-package com.epam.brest;
+package com.epam.brest.service.rest;
 
 import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.UserService;

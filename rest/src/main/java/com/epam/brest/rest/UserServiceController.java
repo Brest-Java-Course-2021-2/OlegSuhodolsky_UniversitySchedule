@@ -37,7 +37,7 @@ public class UserServiceController {
         return userService.getUserByIdService(id);
     }
 
-    @PostMapping(path = "/userscreate", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/users", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> createUser(@RequestBody User user) {
 
         logger.debug("createUser({})", user);
@@ -45,7 +45,7 @@ public class UserServiceController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/usersupdate", consumes = {"application/json"}, produces = {"application/json"})
+    @PutMapping(value = "/users", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<Integer> updateDepartment(@RequestBody User user) {
 
         logger.debug("updateDepartment({})", user);
@@ -53,7 +53,7 @@ public class UserServiceController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/usersdelete/{id}", produces = {"application/json"})
+    @DeleteMapping(value = "/users/{id}", produces = {"application/json"})
     public ResponseEntity<Integer> deleteDepartment(@PathVariable Integer id) {
         logger.debug("deleteUser({})", id);
         int result = userService.deleteUserService(id);
