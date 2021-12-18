@@ -42,12 +42,12 @@
     <tr th:each="user : ${user}"
         
         th:style="${user}? 'font-weight: 30;'">
-        <td th:text="${user.getId()}"></td>
-        <td th:text="${user.getName()}" ></td>
-        <td th:text="${user.getLogin()}" ></td>
-        <td th:text="${user.getPassword()}" ></td>
-        <td th:text="${user.getEmail()}" ></td>
-        <td> <a th:href="@{/user/{id}(id=${user.getId()})}" th:text="choice">user</a></td>
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}" ></td>
+        <td th:text="${user.login}" ></td>
+        <td th:text="${user.password}" ></td>
+        <td th:text="${user.email}" ></td>
+        <td> <a th:href="@{/user/{id}(id=${user.id})}" th:text="choice">user</a></td>
     </tr>
       </tbody>
   </table>

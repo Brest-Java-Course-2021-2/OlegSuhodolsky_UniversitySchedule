@@ -13,12 +13,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Hello MVC controller.
  */
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
     //private final DaoUser userDAO;
@@ -30,26 +32,26 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping()
+    @GetMapping(value = "/user")
     public String index(Model model) {
         model.addAttribute("user", userService.getAllUsersService());
         return "user/users";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/user/{id}")
     public String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("user", userService.getUserByIdService(id));
         return "user/show";
     }
 
 
-    @GetMapping("/new")
+    @GetMapping(value = "/user/new")
     public String newUser(@ModelAttribute("user") User user) throws SQLException
     {
         return "user/new";
     }
 
-    @PostMapping()
+    @PostMapping(value = "/user")
     public String create(@ModelAttribute("user") User user, Model model) throws SQLException {
         // Create record in DAO
 
@@ -62,26 +64,26 @@ public class UserController {
 
 
 
-    @GetMapping("/{id}/edit")
+    @GetMapping(value = "/user/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUserByIdService(id));
         return "user/edit";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping(value = "/user/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
         user.setId(id);
         userService.updateUserService(user);
         return "redirect:/user";
     }
 
-    @PostMapping("/{id}/delete")
+    @PostMapping(value = "/user/{id}/delete")
     public String delete(@PathVariable("id") int id) {
         userService.deleteUserService(id);
         return "redirect:/user";
     }
 
-    @GetMapping("/count")
+    @GetMapping(value = "/user/count")
     public String count(Model model) {
         model.addAttribute("count", userService.countUserService());
         return "user/edit";

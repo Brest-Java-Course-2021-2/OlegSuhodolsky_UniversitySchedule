@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 public class UserServiceController {
@@ -24,9 +25,10 @@ public class UserServiceController {
 
 
     @GetMapping(value = "/users")
-    public final Collection<User> getAllUsers() {
+    public final List <User> getAllUsers() {
 
         logger.debug("users(all) ");
+       // List <User> users = userService.getAllUsersService();
         return userService.getAllUsersService();
     }
 
