@@ -1,9 +1,7 @@
 package com.epam.brest.rest;
 
 import com.epam.brest.dao.DaoRequest;
-import com.epam.brest.dao.DaoUser;
 import com.epam.brest.model.entity.Request;
-import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.RequestService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,24 +30,24 @@ public class RequestServiceController {
     }
 
 
-    @PostMapping(path = "/requestcreate", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<Integer> createUser(@RequestBody Request request) {
-        request.setDate(new Date());
-        logger.debug("createRequest({})", request, request.getDate());
+    @PostMapping(path = "/requests", consumes = "application/json", produces = "application/json")
+    public ResponseEntity<Integer> createRequest(@RequestBody Request request) {
+        //request.setDate(new Date());
+        logger.debug("createRequest({})", request);
         Integer id = requestService.createRequestService(request);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
-    @PutMapping(value = "/requestupdate", consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<Integer> updateDepartment(@RequestBody Request request) {
+    @PutMapping(value = "/requests", consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<Integer> updateRequest(@RequestBody Request request) {
         request.setDate(new Date());
         logger.debug("updateRequest({})", request);
         int result = requestService.updateRequestService(request);
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/requestdelete", consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<Integer> deleteDepartment(@PathVariable Integer id, @PathVariable Integer idR) {
+    @DeleteMapping(value = "/requests/{id}", consumes = {"application/json"}, produces = {"application/json"})
+    public ResponseEntity<Integer> deleteRequest(@PathVariable Integer idR) {
         logger.debug("deleteRequest({})", idR );
         int result = requestService.deleteRequestService(idR);
         return new ResponseEntity(result, HttpStatus.OK);

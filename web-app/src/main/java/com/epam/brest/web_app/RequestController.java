@@ -4,57 +4,64 @@ import com.epam.brest.model.entity.Request;
 import com.epam.brest.serviceAPI.RequestService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.Date;
 
 @Controller
-@RequestMapping("/request")
+//@RequestMapping("/request")
 public class RequestController {
 
     private final RequestService requestService;
     private static final Logger logger = LoggerFactory.getLogger(RequestController.class);
 
-    @Autowired
+   // @Autowired
     public RequestController(RequestService requestService) {
         this.requestService = requestService;
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/request/{id}")
     public String indexRequest(@PathVariable("id") int id, Model model) {
         logger.debug("getAllRequests({}, {})");
         model.addAttribute("requests", requestService.getAllRequestsByIdService(id));
         model.addAttribute("id", id);
-        model.addAttribute("idR", id);
+        //model.addAttribute("idR", id);
         return "request/indexRequest";
     }
 
 
-    @GetMapping("/newRequest/{id}")
-    public String newRequest(@PathVariable("id") int id ,@ModelAttribute("request")  Request request  ) throws SQLException {
-        logger.debug("newRequest({}, {})", request);
-              request.setId(id);
+    @GetMapping(value = "/request/newRequest/{id}")
+    public String newRequest( @PathVariable("id") int id, @ModelAttribute("request")  Request request ) throws SQLException {
+        logger.debug("newRequest({}, {})");
+        //Request request = new Request();
+
+        request.setId(id);
+        request.setDate(new Date());
+
+       // model.addAttribute("request" , request);
+        System.out.println("GET METHOD success " + request);
               return "request/newRequest";
     }
 
-    @PostMapping()
-    public String createRequest(@ModelAttribute("request")  Request request)
+    @CrossOrigin
+    @PostMapping("/requestnew")
+    public String createRequest(@ModelAttribute("request")  Request request)throws SQLException
     {
-        System.out.println(request);
-        request.setDate(new Date());
+        logger.debug("newRequest({}, {}) prepared  ", request);
+        System.out.println("POST METHOD" + request);
+        int id = request.getId();
         requestService.createRequestService(request);
-        logger.debug("newRequest({}, {}) succes", request);
-        return "redirect:/request/" + request.getId();
+        //model.addAttribute("request", request);
+        logger.debug("newRequest({}, {}) success  ", request);
+        return "redirect:/request/" + id;
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping(value = "/request/{id}/edit")
     public String edit(Model model, @PathVariable("id") int idR) {
         Request request = requestService.getRequestByIdService(idR);
         request.setDate(new Date());
@@ -64,18 +71,18 @@ public class RequestController {
         return "request/edit";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping (value = "/request/update/{id}")
     public String updateRequest(@ModelAttribute("request")  Request request, @PathVariable("id") int idR) {
         //requestService.getRequestByIdService(idR);
         System.out.println(request);
-        request.setDate(new Date());
+        //request.setDate(new Date());
         requestService.updateRequestService(request);
         logger.debug("EditRequest({}, {}) succes", request);
 
         return "redirect:/request/" + request.getId();
     }
 
-    @PostMapping("delete/{id}")
+    @PostMapping(value = "/request/delete/{id}")
     public String delete(@PathVariable("id") int idR) {
         Request request = requestService.getRequestByIdService(idR);
         requestService.deleteRequestService(idR);

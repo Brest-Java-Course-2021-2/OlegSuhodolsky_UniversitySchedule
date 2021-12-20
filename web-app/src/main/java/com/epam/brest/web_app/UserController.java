@@ -26,11 +26,12 @@ public class UserController {
     //private final DaoUser userDAO;
 
     private final UserService userService;
-
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
    // @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
 
     @GetMapping(value = "/user")
     public String index(Model model) {
@@ -48,6 +49,7 @@ public class UserController {
     @GetMapping(value = "/user/new")
     public String newUser(@ModelAttribute("user") User user) throws SQLException
     {
+
         return "user/new";
     }
 

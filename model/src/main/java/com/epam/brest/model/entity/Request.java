@@ -27,6 +27,7 @@ public class Request {
     private String subject;
 
     /** field date - date when request was create or update*/
+    //@DateTimeFormat(pattern - "EEE MMM dd HH:mm:ss z yyyy")
     private Date date;
 
     /**
@@ -96,7 +97,6 @@ public class Request {
      * @see Request#Request(int, String,String,String)
      */
     public Request() {
-
     }
 
     /**

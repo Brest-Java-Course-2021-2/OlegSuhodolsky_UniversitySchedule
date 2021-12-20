@@ -9,12 +9,12 @@
 </head>
 <body>
 <h3>Creating new Request</h3>
-
-
-<form th:method="POST" th:action="@{/request} " th:object="${request}">
-    
+<form th:method="POST" th:action="@{/requestnew}" th:object="${request}">
+    <label for="idR">Enter IDR:       </label>
+    <input type="hidden" th:field="*{idR}" id="idR"/>
+    <br/>
     <label for="id">Enter ID:       </label>
-    <input type="text" th:field="*{id}" id="id"/>
+    <input type="hidden" th:field="*{id}" id="id"/>
     <br/>
     <label for="groupe">Enter groupe:    </label>
     <input type="text" th:field="*{groupe}" id="groupe"/>
@@ -26,10 +26,9 @@
     <input type="text" th:field="*{subject}" id="subject"/>
     <br/>
    <!-- <label for="date"> Enter date:       </label>
-    <input type="text" th:field="*{date}" id="date"/>
+    <input type="datetime-local" th:field="*{date}" id="date"/>
     <br/>-->
     <input type="submit" value="Create new request"/>
 </form>
-
 </body>
 </html>

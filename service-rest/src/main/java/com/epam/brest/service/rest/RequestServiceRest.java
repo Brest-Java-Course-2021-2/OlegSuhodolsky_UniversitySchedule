@@ -43,7 +43,6 @@ public class RequestServiceRest implements RequestService {
 
     @Override
     public Integer createRequestService(Request request) {
-
         logger.debug("createRequest({})", request);
         ResponseEntity responseEntity = restTemplate.postForEntity(url, request, Integer.class);
         return (Integer) responseEntity.getBody();
