@@ -9,12 +9,12 @@
 <body>
 <h3>Request edit</h3>
 <br/>
-<form th:method="POST" th:action="@{/request/{id}(id=${request.getIdR()})}" th:object="${request}">
+<form th:method="POST" th:action="@{/requestedit}" th:object="${request}">
     <label for="idR">Enter idR: </label>
-    <input type="hidden" th:field="*{idR}" id="idR"/>
+    <input type="text" th:field="*{idR}" id="idR"/>
     <br/>
     <label for="id">Enter ID: </label>
-    <input type="hidden" th:field="*{id}" id="id"/>
+    <input type="text" th:field="*{id}" id="id"/>
     <br/>
     <label for="groupe">Enter groupe: </label>
     <input type="text" th:field="*{groupe}" id="groupe"/>
@@ -24,6 +24,9 @@
     <br/>
     <label for="subject">Enter subject: </label>
     <input type="text" th:field="*{subject}" id="subject"/>
+    <br/>
+    <label for="date">Enter subject: </label>
+    <input type="text" th:field="*{date}" id="date"/>
     <br/>
       <input type="submit" value="Update!"/>
 </form>

@@ -5,6 +5,8 @@
  */
 package com.epam.brest.model.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Request {
@@ -27,7 +29,7 @@ public class Request {
     private String subject;
 
     /** field date - date when request was create or update*/
-    //@DateTimeFormat(pattern - "EEE MMM dd HH:mm:ss z yyyy")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date date;
 
     /**

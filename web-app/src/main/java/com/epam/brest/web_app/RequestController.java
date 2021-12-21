@@ -30,7 +30,7 @@ public class RequestController {
         logger.debug("getAllRequests({}, {})");
         model.addAttribute("requests", requestService.getAllRequestsByIdService(id));
         model.addAttribute("id", id);
-        //model.addAttribute("idR", id);
+       // model.addAttribute("idR", id);
         return "request/indexRequest";
     }
 
@@ -62,30 +62,39 @@ public class RequestController {
     }
 
     @GetMapping(value = "/request/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int idR) {
-        Request request = requestService.getRequestByIdService(idR);
-        request.setDate(new Date());
-        logger.debug("EditRequest({}, {})", request);
+    public String edit(@ModelAttribute("request")  Request request, @PathVariable("id") int id, Model model) {
+        System.out.println("GET REQUEST model " + request);
+        logger.debug("EditRequest({}, {}) prepare  ", request);
+        request = requestService.getRequestByIdService(id);
         model.addAttribute("request", request);
-        model.addAttribute("id", idR);
+        System.out.println("GET REQUEST BY IDR " + request);
+        // request.setDate(new Date());
+        //request.setDate(new Date());
+        logger.debug("EditRequest({}, {}) send to POST ", request);
+        /*model.addAttribute("request", request);
+        model.addAttribute("id", idR);*/
         return "request/edit";
     }
 
-    @PostMapping (value = "/request/update/{id}")
-    public String updateRequest(@ModelAttribute("request")  Request request, @PathVariable("id") int idR) {
+    @CrossOrigin
+    @PostMapping (value = "/requestedit")
+    public String updateRequest(@ModelAttribute("request")  Request request) {
         //requestService.getRequestByIdService(idR);
+        logger.debug("EditRequest({}, {}) int POST METHOD  ", request);
         System.out.println(request);
-        //request.setDate(new Date());
+
         requestService.updateRequestService(request);
         logger.debug("EditRequest({}, {}) succes", request);
 
         return "redirect:/request/" + request.getId();
     }
 
-    @PostMapping(value = "/request/delete/{id}")
-    public String delete(@PathVariable("id") int idR) {
-        Request request = requestService.getRequestByIdService(idR);
+    @CrossOrigin
+    @PostMapping(value = "/request/{id}/delete")
+    public String delete(@PathVariable("id") int idR, @ModelAttribute("id") int id) {
+        //Request request = requestService.getRequestByIdService(id);
+        System.out.println("Deleting request " + id);
         requestService.deleteRequestService(idR);
-        return "redirect:/request/" + request.getId();
+        return "redirect:/request/" +id;
     }
 }

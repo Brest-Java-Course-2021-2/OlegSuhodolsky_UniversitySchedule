@@ -29,6 +29,12 @@ public class RequestServiceController {
         return requestService.getAllRequestsByIdService(id);
     }
 
+    @GetMapping(value = "/requests/request/{id}")
+    public final Request getOneRequestById(@PathVariable Integer id) {
+
+        logger.debug("request by idR(id) ");
+        return requestService.getRequestByIdService(id);
+    }
 
     @PostMapping(path = "/requests", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> createRequest(@RequestBody Request request) {
@@ -46,11 +52,10 @@ public class RequestServiceController {
         return new ResponseEntity(result, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/requests/{id}", consumes = {"application/json"}, produces = {"application/json"})
-    public ResponseEntity<Integer> deleteRequest(@PathVariable Integer idR) {
-        logger.debug("deleteRequest({})", idR );
-        int result = requestService.deleteRequestService(idR);
+    @DeleteMapping(value = "/requests/{id}", produces = {"application/json"})
+    public ResponseEntity<Integer> deleteRequest(@PathVariable Integer id) {
+        logger.debug("deleteRequest({})", id );
+        int result = requestService.deleteRequestService(id);
         return new ResponseEntity(result, HttpStatus.OK);
     }
-
-}
+    }

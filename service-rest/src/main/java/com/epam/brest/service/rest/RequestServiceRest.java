@@ -36,8 +36,10 @@ public class RequestServiceRest implements RequestService {
     }
 
     @Override
-    public Request getRequestByIdService(Integer idR) {
-        return null;
+    public Request getRequestByIdService(Integer id) {
+        logger.debug("getRequestByIdService()");
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/request/" + id, Request.class);
+        return (Request) responseEntity.getBody();
     }
 
 
@@ -59,14 +61,14 @@ public class RequestServiceRest implements RequestService {
     }
 
     @Override
-    public Integer deleteRequestService(Integer idR) {
+    public Integer deleteRequestService(Integer id) {
 
-        logger.debug("deleteRequest({})", idR);
+        logger.debug("deleteRequest({})", id);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         HttpEntity<User> entity = new HttpEntity<>(headers);
         ResponseEntity<Integer> result =
-                restTemplate.exchange(url + "/" + idR, HttpMethod.DELETE, entity, Integer.class);
+                restTemplate.exchange(url + "/" + id, HttpMethod.DELETE, entity, Integer.class);
         return result.getBody();
     }
 
