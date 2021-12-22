@@ -1,7 +1,5 @@
 package com.epam.brest.service;
 
-
-import com.epam.brest.dao.DaoUser;
 import com.epam.brest.daoAPI.DaoUserAPI;
 import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.UserService;
@@ -11,11 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.OngoingStubbing;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +29,6 @@ public class UserServiceImplMockTest {
         Mockito.verifyNoMoreInteractions(daoUser);
     }
 
-
     @Test
     public void findAll() {
 
@@ -49,7 +42,6 @@ public class UserServiceImplMockTest {
         Assertions.assertSame(result.get(0), user);
     }
 
-
     @Test
     public void findUserByID() {
         User user = new User();
@@ -60,7 +52,6 @@ public class UserServiceImplMockTest {
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, user);
     }
-
 
     @Test
     public void createUser() {
@@ -73,7 +64,6 @@ public class UserServiceImplMockTest {
         Assertions.assertSame(result, id);
     }
 
-
     @Test
     public void updateUser() {
         User user = new User();
@@ -85,10 +75,8 @@ public class UserServiceImplMockTest {
         Assertions.assertSame(result, id);
     }
 
-
     @Test
     public void deleteUser() {
-
         Integer id = 0;
         Mockito.when(userService.deleteUserService(id)).thenReturn(0);
         Integer result = userService.deleteUserService(id);
@@ -96,5 +84,4 @@ public class UserServiceImplMockTest {
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, id);
     }
-
 }

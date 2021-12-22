@@ -1,7 +1,6 @@
 package com.epam.brest.service.rest;
 
 import com.epam.brest.model.entity.Request;
-import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.RequestService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -21,7 +19,6 @@ public class RequestServiceRest implements RequestService {
     private final Logger logger = LogManager.getLogger(RequestServiceRest.class);
 
     private String url;
-
     private RestTemplate restTemplate;
 
     public RequestServiceRest() {
@@ -31,7 +28,6 @@ public class RequestServiceRest implements RequestService {
         this.url = url;
         this.restTemplate = restTemplate;
     }
-
 
     @Override
     public List<Request> getAllRequestsByIdService(int id) {
@@ -46,7 +42,6 @@ public class RequestServiceRest implements RequestService {
         ResponseEntity responseEntity = restTemplate.getForEntity(url + "/request/" + id, Request.class);
         return (Request) responseEntity.getBody();
     }
-
 
     @Override
     public Integer createRequestService(Request request) {
@@ -67,7 +62,6 @@ public class RequestServiceRest implements RequestService {
 
     @Override
     public Integer deleteRequestService(Integer id) {
-
         logger.debug("deleteRequest({})", id);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
@@ -76,14 +70,6 @@ public class RequestServiceRest implements RequestService {
                 restTemplate.exchange(url + "/" + id, HttpMethod.DELETE, entity, Integer.class);
         return result.getBody();
     }
-
-
-
-
-
-
-
-
 
     @Override
     public Integer countRequestService(int id) {

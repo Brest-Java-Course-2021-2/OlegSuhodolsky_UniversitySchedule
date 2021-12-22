@@ -1,9 +1,7 @@
 package com.epam.brest.service;
 
-import com.epam.brest.dao.DaoUser;
 import com.epam.brest.daoAPI.DaoUserAPI;
 import com.epam.brest.model.entity.Request;
-import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.RequestService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -19,19 +17,16 @@ import java.util.List;
 @ExtendWith(MockitoExtension.class)
 public class RequestServiceImplMockTest {
 
-
     @Mock
     private RequestService requestService;
 
     @Mock
     private DaoUserAPI daoRequest;
 
-
     @AfterEach
     public void check() {
         Mockito.verifyNoMoreInteractions(daoRequest);
     }
-
 
     @Test
     public void findAll() {
@@ -79,11 +74,8 @@ public class RequestServiceImplMockTest {
         Assertions.assertSame(result, idR);
     }
 
-
     @Test
     public void deleteUser() {
-
-
         Integer idR = 1;
         Mockito.when(requestService.deleteRequestService(idR)).thenReturn(1);
         Integer result = requestService.deleteRequestService(idR);
@@ -91,6 +83,5 @@ public class RequestServiceImplMockTest {
         Assertions.assertNotNull(result);
         Assertions.assertSame(result, 1);
     }
-
 
 }

@@ -13,17 +13,15 @@ import java.sql.SQLException;
 import java.util.Date;
 
 @Controller
-//@RequestMapping("/request")
 public class RequestController {
 
     private final RequestService requestService;
     private static final Logger logger = LoggerFactory.getLogger(RequestController.class);
     int idRequest = 0;
-   // @Autowired
+
     public RequestController(RequestService requestService) {
         this.requestService = requestService;
     }
-
 
     @GetMapping(value = "/request/{id}")
     public String indexRequest(@PathVariable("id") int id, Model model) {
@@ -31,22 +29,15 @@ public class RequestController {
         idRequest = id;
         model.addAttribute("requests", requestService.getAllRequestsByIdService(id));
         model.addAttribute("id", id);
-       // model.addAttribute("idR", id);
         return "request/indexRequest";
     }
-
 
     @GetMapping(value = "/request/newRequest/{id}")
     public String newRequest( @PathVariable("id") int id, @ModelAttribute("request")  Request request ) throws SQLException {
         logger.debug("newRequest({}, {})");
-        //Request request = new Request();
-
         request.setId(id);
         request.setDate(new Date());
-
-       // model.addAttribute("request" , request);
-        System.out.println("GET METHOD success " + request);
-              return "request/newRequest";
+        return "request/newRequest";
     }
 
     @CrossOrigin
@@ -54,49 +45,34 @@ public class RequestController {
     public String createRequest(@ModelAttribute("request")  Request request)throws SQLException
     {
         logger.debug("newRequest({}, {}) prepared  ", request);
-        System.out.println("POST METHOD" + request);
         int id = request.getId();
         requestService.createRequestService(request);
-        //model.addAttribute("request", request);
         logger.debug("newRequest({}, {}) success  ", request);
         return "redirect:/request/" + id;
     }
 
     @GetMapping(value = "/request/{id}/edit")
     public String edit(@ModelAttribute("request")  Request request, @PathVariable("id") int id, Model model) {
-        System.out.println("GET REQUEST model " + request);
         logger.debug("EditRequest({}, {}) prepare  ", request);
         request = requestService.getRequestByIdService(id);
         model.addAttribute("request", request);
-        System.out.println("GET REQUEST BY IDR " + request);
-        // request.setDate(new Date());
-        //request.setDate(new Date());
         logger.debug("EditRequest({}, {}) send to POST ", request);
-        /*model.addAttribute("request", request);
-        model.addAttribute("id", idR);*/
         return "request/edit";
     }
 
     @CrossOrigin
     @PostMapping (value = "/requestedit")
     public String updateRequest(@ModelAttribute("request")  Request request) {
-        //requestService.getRequestByIdService(idR);
         logger.debug("EditRequest({}, {}) int POST METHOD  ", request);
-        System.out.println(request);
-
         requestService.updateRequestService(request);
         logger.debug("EditRequest({}, {}) succes", request);
-
         return "redirect:/request/" + request.getId();
     }
-
 
     @CrossOrigin
     @PostMapping(value = "/request/delete/{id}")
     public String delete(@PathVariable ("id") int id) {
-        System.out.println("Begin DELETE");
         requestService.deleteRequestService(id);
-        System.out.println("End DELETE");
         logger.debug("DeleteRequest({}, {}) succes", id);
         return "redirect:/request/" + idRequest;
     }

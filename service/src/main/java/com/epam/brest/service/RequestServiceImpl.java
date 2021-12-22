@@ -12,14 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public class RequestServiceImpl implements RequestService {
-    private final Logger logger = LogManager.getLogger(RequestServiceImpl.class);
 
+    private final Logger logger = LogManager.getLogger(RequestServiceImpl.class);
     private final DaoRequestAPI daoRequest;
 
     public RequestServiceImpl(DaoRequest daoRequest) {
         this.daoRequest = daoRequest;
     }
-
 
     @Override
     @Transactional (readOnly = true)

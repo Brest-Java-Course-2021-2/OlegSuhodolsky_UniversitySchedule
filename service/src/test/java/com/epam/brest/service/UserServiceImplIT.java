@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 public class UserServiceImplIT {
     private final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+
     @Autowired
     UserService userService;
 
@@ -83,5 +84,4 @@ public class UserServiceImplIT {
         assertFalse(count1 == count);
 
     }
-
 }

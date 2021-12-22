@@ -40,12 +40,10 @@ public class DaoUser implements DaoUserAPI {
     private final Logger logger = LogManager.getLogger(DaoUser.class);
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-
     @Autowired
     public DaoUser(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
-
 
     @Override
     public List<User> getAllUsers() {

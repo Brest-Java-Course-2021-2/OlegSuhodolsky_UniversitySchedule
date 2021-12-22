@@ -40,11 +40,9 @@ public class UserControllerTest {
     public void before() {
         mockMvc = MockMvcBuilders.standaloneSetup(userServiceController)
                 .setMessageConverters(new MappingJackson2HttpMessageConverter())
-//                .setControllerAdvice(customExceptionHandler)
                 .alwaysDo(MockMvcResultHandlers.print())
                 .build();
     }
-
 
     @Test
     public void shouldGetUserById(){
@@ -118,7 +116,6 @@ public class UserControllerTest {
         assertTrue(updatedUserOptional.isPresent());
         assertEquals(updatedUserOptional.get().getId(), id);
         assertEquals(updatedUserOptional.get().getName(),userOptional.get().getName());
-
     }
 
     @Test

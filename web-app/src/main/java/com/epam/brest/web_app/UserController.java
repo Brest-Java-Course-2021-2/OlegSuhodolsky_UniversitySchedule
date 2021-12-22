@@ -1,10 +1,7 @@
 package com.epam.brest.web_app;
 
-
-
 import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -13,25 +10,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-/**
- * Hello MVC controller.
- */
 @Controller
-//@RequestMapping("/user")
 public class UserController {
-
-    //private final DaoUser userDAO;
 
     private final UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-   // @Autowired
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
 
     @GetMapping(value = "/user")
     public String index(Model model) {
@@ -45,26 +33,18 @@ public class UserController {
         return "user/show";
     }
 
-
     @GetMapping(value = "/user/new")
     public String newUser(@ModelAttribute("user") User user) throws SQLException
     {
-
         return "user/new";
     }
 
     @PostMapping(value = "/user")
     public String create(@ModelAttribute("user") User user, Model model) throws SQLException {
-        // Create record in DAO
-
         userService.createUserService(user);
-         //Model model = null;
         model.addAttribute("user", user);
-
         return "redirect:/user";
     }
-
-
 
     @GetMapping(value = "/user/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
@@ -90,7 +70,6 @@ public class UserController {
         model.addAttribute("count", userService.countUserService());
         return "user/edit";
     }
-
 }
 
 

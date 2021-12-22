@@ -19,7 +19,6 @@ import java.util.List;
 public class UserServiceRest implements UserService {
 
     private final Logger logger = LogManager.getLogger(UserServiceRest.class);
-
     private String url;
 
     private RestTemplate restTemplate;
@@ -31,7 +30,6 @@ public class UserServiceRest implements UserService {
         this.url = url;
         this.restTemplate = restTemplate;
     }
-
 
     @Override
     public List<User> getAllUsersService() {

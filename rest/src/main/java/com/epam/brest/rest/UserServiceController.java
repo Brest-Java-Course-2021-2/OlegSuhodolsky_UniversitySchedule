@@ -9,15 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RestController
 public class UserServiceController {
 
     private static final Logger logger = LogManager.getLogger(DaoUser.class);
-
-        private final UserService userService;
+    private final UserService userService;
 
     public UserServiceController(UserService userService) {
         this.userService = userService;
@@ -26,22 +24,18 @@ public class UserServiceController {
 
     @GetMapping(value = "/users")
     public final List <User> getAllUsers() {
-
         logger.debug("users(all) ");
-       // List <User> users = userService.getAllUsersService();
         return userService.getAllUsersService();
     }
 
     @GetMapping(value = "/users/{id}")
     public final User getUserById(@PathVariable Integer id) {
-
         logger.debug("getUserByID(id) ");
         return userService.getUserByIdService(id);
     }
 
     @PostMapping(path = "/users", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> createUser(@RequestBody User user) {
-
         logger.debug("createUser({})", user);
         Integer id = userService.createUserService(user);
         return new ResponseEntity<>(id, HttpStatus.OK);
@@ -49,7 +43,6 @@ public class UserServiceController {
 
     @PutMapping(value = "/users", consumes = {"application/json"}, produces = {"application/json"})
     public ResponseEntity<Integer> updateDepartment(@RequestBody User user) {
-
         logger.debug("updateDepartment({})", user);
         int result = userService.updateUserService(user);
         return new ResponseEntity(result, HttpStatus.OK);

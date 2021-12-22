@@ -50,7 +50,6 @@ public class UserServiceRestTest {
 
     UserServiceRest userService;
 
-
     @BeforeEach
     public void before() {
         mockServer = MockRestServiceServer.createServer(restTemplate);
@@ -102,7 +101,6 @@ public class UserServiceRestTest {
         mockServer.verify();
         assertNotNull(id);
     }
-
 
     @Test
     public void shouldFindUserById() throws Exception {
@@ -191,5 +189,4 @@ public class UserServiceRestTest {
         user.setName("u" + index);
         return user;
     }
-
 }

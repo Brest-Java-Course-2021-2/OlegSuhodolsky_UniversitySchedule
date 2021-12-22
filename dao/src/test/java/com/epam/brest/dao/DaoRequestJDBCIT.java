@@ -66,6 +66,5 @@ public class DaoRequestJDBCIT {
         Date date = request.getDate();
         daoRequest.updateRequest(request);
         assertTrue(daoRequest.readRequest(1).getGroupe().equals("e22"), "request Groupe changed");
-       // assertTrue(daoRequest.read(1,1).getDate().equals(date), "request Date changed");
-    }
+     }
 }

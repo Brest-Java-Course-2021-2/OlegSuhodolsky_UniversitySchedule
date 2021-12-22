@@ -14,8 +14,8 @@ import java.util.List;
 
 @RestController
 public class RequestServiceController {
-    private static final Logger logger = LogManager.getLogger(DaoRequest.class);
 
+    private static final Logger logger = LogManager.getLogger(DaoRequest.class);
     private RequestService requestService;
 
     public RequestServiceController(RequestService requestService) {
@@ -58,7 +58,4 @@ public class RequestServiceController {
         Integer result = requestService.deleteRequestService(id);
         return new ResponseEntity(result, HttpStatus.OK);
     }
-
-
-
-    }
+}

@@ -17,7 +17,6 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     private final Logger logger = LogManager.getLogger(UserServiceImpl.class);
-
     private final DaoUserAPI daoUser;
 
     public UserServiceImpl(DaoUser daoUser) {
