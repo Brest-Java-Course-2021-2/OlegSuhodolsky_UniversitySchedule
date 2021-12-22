@@ -53,9 +53,12 @@ public class RequestServiceController {
     }
 
     @DeleteMapping(value = "/requests/{id}", produces = {"application/json"})
-    public ResponseEntity<Integer> deleteRequest(@PathVariable Integer id) {
+    public ResponseEntity <Integer> deleteRequest(@PathVariable Integer id) {
         logger.debug("deleteRequest({})", id );
-        int result = requestService.deleteRequestService(id);
+        Integer result = requestService.deleteRequestService(id);
         return new ResponseEntity(result, HttpStatus.OK);
     }
+
+
+
     }

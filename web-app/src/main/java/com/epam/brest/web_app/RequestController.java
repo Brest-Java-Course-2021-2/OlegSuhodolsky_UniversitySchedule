@@ -18,7 +18,7 @@ public class RequestController {
 
     private final RequestService requestService;
     private static final Logger logger = LoggerFactory.getLogger(RequestController.class);
-
+    int idRequest = 0;
    // @Autowired
     public RequestController(RequestService requestService) {
         this.requestService = requestService;
@@ -28,6 +28,7 @@ public class RequestController {
     @GetMapping(value = "/request/{id}")
     public String indexRequest(@PathVariable("id") int id, Model model) {
         logger.debug("getAllRequests({}, {})");
+        idRequest = id;
         model.addAttribute("requests", requestService.getAllRequestsByIdService(id));
         model.addAttribute("id", id);
        // model.addAttribute("idR", id);
@@ -89,12 +90,14 @@ public class RequestController {
         return "redirect:/request/" + request.getId();
     }
 
+
     @CrossOrigin
-    @PostMapping(value = "/request/{id}/delete")
-    public String delete(@PathVariable("id") int idR, @ModelAttribute("id") int id) {
-        //Request request = requestService.getRequestByIdService(id);
-        System.out.println("Deleting request " + id);
-        requestService.deleteRequestService(idR);
-        return "redirect:/request/" +id;
+    @PostMapping(value = "/request/delete/{id}")
+    public String delete(@PathVariable ("id") int id) {
+        System.out.println("Begin DELETE");
+        requestService.deleteRequestService(id);
+        System.out.println("End DELETE");
+        logger.debug("DeleteRequest({}, {}) succes", id);
+        return "redirect:/request/" + idRequest;
     }
 }
