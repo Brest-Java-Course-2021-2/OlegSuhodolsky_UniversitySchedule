@@ -3,7 +3,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 public class RequestNotFoundException extends EmptyResultDataAccessException{
     public RequestNotFoundException(Integer id)
     {
-        super("request not found for id: " + id, 1);
+        super("request not found for idR: " + id, 1);
     }
 
 }

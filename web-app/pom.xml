@@ -44,36 +44,6 @@
         </dependency>
 
 
-
-      <!--  <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>service</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-
-
-        <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>daoAPI</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>dao</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>service</artifactId>
-            <scope>test</scope>
-        </dependency>-->
-       <!-- <dependency>
-            <groupId>com.epam.brest</groupId>
-            <artifactId>test-db</artifactId>
-            <scope>test</scope>
-                </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>

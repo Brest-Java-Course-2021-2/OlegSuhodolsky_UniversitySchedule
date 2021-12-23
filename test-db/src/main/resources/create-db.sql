@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS request;
 DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS groupe;
 
 CREATE TABLE user
 (
@@ -20,4 +21,10 @@ CREATE TABLE request
     subject varchar(100) NOT NULL,
     date date NOT NULL,
     FOREIGN KEY (id)  REFERENCES user (id) ON DELETE CASCADE
+);
+
+CREATE TABLE groupe
+(
+    idGroupe int PRIMARY KEY auto_increment,
+    nameGroupe varchar(10) NOT NULL UNIQUE
 );

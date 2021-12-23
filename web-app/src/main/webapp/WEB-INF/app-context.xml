@@ -9,8 +9,7 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-
-http://www.springframework.org/schema/p ">
+        http://www.springframework.org/schema/p ">
 
     <!-- Use spring servlet for all requests, including static resources -->
     <mvc:default-servlet-handler/>
@@ -21,29 +20,7 @@ http://www.springframework.org/schema/p ">
     <!-- Component scan for @Controller, @Service... annotations -->
     <context:component-scan base-package="com.epam.brest.*"/>
 
-   <!-- <import resource="classpath*:test-db.xml"/>-->
 
-   <!--<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg ref="dataSource"/>
-    </bean>
-
-    <bean id="daoUser" class="com.epam.brest.dao.DaoUser">
-        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="userService" class="com.epam.brest.service.UserServiceImpl">
-        <constructor-arg name="daoUser" ref="daoUser"/>
-    </bean>
-
-    <bean id="daoRequest" class="com.epam.brest.dao.DaoRequest">
-        <constructor-arg name="namedParameterJdbcTemplate" ref="namedParameterJdbcTemplate"/>
-    </bean>
-
-    <bean id="requestService" class="com.epam.brest.service.RequestServiceImpl">
-        <constructor-arg name="daoRequest" ref="daoRequest"/>
-    </bean>
-
-    -->
 
     <bean id="userService" class="com.epam.brest.service.rest.UserServiceRest">
         <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.users}"/>
@@ -66,22 +43,10 @@ http://www.springframework.org/schema/p ">
     </bean>
 
 
-   <!-- <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath*:test-db.properties</value>
-                <value>classpath*:sql-user.properties</value>
-                <value>classpath*:sql-request.properties</value>
-            </list>
-        </property>
-    </bean>-->
-
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>classpath:application.properties</value>
-                <!--                <value>classpath*:test-db.properties</value>-->
-                <!--                <value>classpath*:sql-department.properties</value>-->
             </list>
         </property>
     </bean>

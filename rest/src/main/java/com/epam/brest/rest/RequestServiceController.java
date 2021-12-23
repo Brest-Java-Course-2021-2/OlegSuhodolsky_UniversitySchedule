@@ -31,14 +31,12 @@ public class RequestServiceController {
 
     @GetMapping(value = "/requests/request/{id}")
     public final Request getOneRequestById(@PathVariable Integer id) {
-
         logger.debug("request by idR(id) ");
         return requestService.getRequestByIdService(id);
     }
 
     @PostMapping(path = "/requests", consumes = "application/json", produces = "application/json")
     public ResponseEntity<Integer> createRequest(@RequestBody Request request) {
-        //request.setDate(new Date());
         logger.debug("createRequest({})", request);
         Integer id = requestService.createRequestService(request);
         return new ResponseEntity<>(id, HttpStatus.OK);
