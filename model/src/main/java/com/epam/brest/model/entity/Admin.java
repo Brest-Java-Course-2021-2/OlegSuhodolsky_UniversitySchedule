@@ -7,7 +7,9 @@
 package com.epam.brest.model.entity;
 
 
-public class Admin {
+import java.io.Serializable;
+
+public class Admin implements Serializable {
     /** field id - admin's identificator in database*/
     private int id;
     /** field name - admin's fullname*/

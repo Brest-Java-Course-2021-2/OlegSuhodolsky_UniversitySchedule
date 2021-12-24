@@ -7,9 +7,10 @@ package com.epam.brest.model.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Request {
+public class Request implements Serializable {
 
     /** field idR - request identificator in database*/
     private int idR;

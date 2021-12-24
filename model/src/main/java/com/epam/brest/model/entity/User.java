@@ -6,7 +6,9 @@
  */
 package com.epam.brest.model.entity;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     /** field id - user's identificator in database*/
     private int id;
     /** field name - user's fullname*/

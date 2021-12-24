@@ -1,6 +1,8 @@
 package com.epam.brest.model.entity;
 
-public class Groupe {
+import java.io.Serializable;
+
+public class Groupe implements Serializable {
 
     private int idGroupe;
     private String nameGroupe;
