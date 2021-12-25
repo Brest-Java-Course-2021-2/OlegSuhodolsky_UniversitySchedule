@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -40,11 +41,15 @@ public class RequestController {
         return "request/newRequest";
     }
 
-    @CrossOrigin
+    //@CrossOrigin
     @PostMapping("/requestnew")
-    public String createRequest(@ModelAttribute("request")  Request request)throws SQLException
+    public String createRequest(@ModelAttribute("request") @Valid Request request, BindingResult result)throws SQLException
     {
         logger.debug("newRequest({}, {}) prepared  ", request);
+
+        if (result.hasErrors()) {
+            return "request/newRequest";
+        }
         int id = request.getId();
         requestService.createRequestService(request);
         logger.debug("newRequest({}, {}) success  ", request);
@@ -62,8 +67,12 @@ public class RequestController {
 
     @CrossOrigin
     @PostMapping (value = "/requestedit")
-    public String updateRequest(@ModelAttribute("request")  Request request) {
+    public String updateRequest(@ModelAttribute("request") @Valid Request request, BindingResult result) {
         logger.debug("EditRequest({}, {}) int POST METHOD  ", request);
+         if (result.hasErrors()) {
+            return "request/edit";
+        }
+
         requestService.updateRequestService(request);
         logger.debug("EditRequest({}, {}) succes", request);
         return "redirect:/request/" + request.getId();

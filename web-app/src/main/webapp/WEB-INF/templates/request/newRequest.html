@@ -18,12 +18,15 @@
     <br/>
     <label for="groupe">Enter groupe:    </label>
     <input type="text" th:field="*{groupe}" id="groupe"/>
+    <div style="color:red" th:if="${#fields.hasErrors('groupe')}" th:errors="*{groupe}">groupe Error</div>
     <br/>
     <label for="pairs"> Enter pairs:     </label>
     <input type="text" th:field="*{pairs}" id="pairs"/>
+    <div style="color:red" th:if="${#fields.hasErrors('groupe')}" th:errors="*{groupe}">groupe Error</div>
     <br/>
     <label for="subject">Enter subject:     </label>
     <input type="text" th:field="*{subject}" id="subject"/>
+    <div style="color:red" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">subject Error</div>
     <br/>
    <!-- <label for="date"> Enter date:       </label>
     <input type="datetime-local" th:field="*{date}" id="date"/>
