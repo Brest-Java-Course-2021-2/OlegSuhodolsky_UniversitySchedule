@@ -7,6 +7,8 @@ package com.epam.brest.model.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -21,12 +23,18 @@ public class Request implements Serializable {
     private int id;
 
     /** field groupe - groupe request*/
+    @NotEmpty(message = "Groupe should be not empty")
+    @Size(min=1, max=10, message="Size of groupe should not be 1-10 characters")
     private String groupe;
 
     /** field pairs - pairs request*/
+    @NotEmpty(message = "Pairs should be not empty")
+    @Size (min=1, max=2, message="Size of pairs should not be 1-2 characters")
     private String pairs;
 
     /** field subject - subject request*/
+    @NotEmpty(message = "Subject should be not empty")
+    @Size (min=3, max=100, message="Size of subject should not be 3-100 characters")
     private String subject;
 
     /** field date - date when request was create or update*/

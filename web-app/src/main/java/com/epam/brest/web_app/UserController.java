@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 
 @Controller
@@ -17,9 +18,10 @@ public class UserController {
     private final UserService userService;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
+
     public UserController(UserService userService) {
         this.userService = userService;
-    }
+        }
 
     @GetMapping(value = "/user")
     public String index(Model model) {
@@ -40,23 +42,34 @@ public class UserController {
     }
 
     @PostMapping(value = "/user")
-    public String create(@ModelAttribute("user") User user, Model model) throws SQLException {
+    public String create(@ModelAttribute("user") @Valid User user,
+                         BindingResult result, Model model) throws SQLException {
+
+        if (result.hasErrors()) {
+            return "user/new";
+        }
         userService.createUserService(user);
         model.addAttribute("user", user);
         return "redirect:/user";
     }
 
-    @GetMapping(value = "/user/{id}/edit")
+    @GetMapping(value = "/user/edit/{id}")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUserByIdService(id));
         return "user/edit";
     }
 
     @PostMapping(value = "/user/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("user")@Valid User user,
+                         BindingResult result,@PathVariable("id") int id) {
+
+        if (result.hasErrors()) {
+              return "user/edit";
+        }
+
         user.setId(id);
         userService.updateUserService(user);
-        return "redirect:/user";
+        return "redirect:/user/" + id;
     }
 
     @PostMapping(value = "/user/{id}/delete")

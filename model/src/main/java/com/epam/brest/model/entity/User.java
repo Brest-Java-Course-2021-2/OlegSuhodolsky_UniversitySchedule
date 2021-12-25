@@ -7,16 +7,32 @@
 package com.epam.brest.model.entity;
 
 import java.io.Serializable;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 
 public class User implements Serializable {
     /** field id - user's identificator in database*/
     private int id;
     /** field name - user's fullname*/
+    @NotEmpty(message = "Name should be not empty")
+    @Size (min=2, max=50, message="Size of name should not be 2-50 characters")
     private String name;
+
     /** field name - user's login in system*/
+    @NotEmpty(message = "Login should be not empty")
+    @Size (min=2, max=50, message="Size of login should not be 2-50 characters")
     private String login;
+
     /** field name - user's password*/
+    @NotEmpty(message = "Password should be not empty")
+    @Size (min=4, max=50, message="Size of password should not be 4-50 characters")
     private String password;
+
+    @NotEmpty (message = "Email should  be not empty")
+    @Email (message = "Email should  be valid")
     /** field name - user's e-mail*/
     private String email;
 

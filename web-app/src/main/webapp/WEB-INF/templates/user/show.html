@@ -15,7 +15,7 @@
 <p th:text="${user.getEmail()}">VALUE</p>
 
 
-<a th:href="@{/user/{id}/edit(id=${user.getId()})}">Edit</a>
+<a th:href="@{/user/edit/{id} (id=${user.getId()})}">Edit</a>
 <br/>
 <a th:href="@{/request/{id}(id=${user.getId()})}">Edit request</a>
 <br/>
