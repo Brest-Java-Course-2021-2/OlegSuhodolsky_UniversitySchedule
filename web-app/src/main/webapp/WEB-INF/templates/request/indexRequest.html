@@ -46,7 +46,10 @@
                     <td th:text="${request.groupe}" ></td>
                     <td th:text="${request.pairs}" ></td>
                     <td th:text="${request.subject}" ></td>
+                    <!--
                     <td th:text="${request.date}" ></td>
+                    -->
+                    <td th:text="${#dates.format(request.date, 'dd-MMM-yyyy')}"></td>
                     <td> 
                         <form th:method="GET" th:action="@{/request/{id}/edit (id=${request.idR})}">
                             <input type="submit" value="UPDATE"/>
