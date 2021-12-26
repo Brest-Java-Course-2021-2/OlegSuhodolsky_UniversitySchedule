@@ -12,6 +12,15 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean name="serializator" class="com.epam.brest.Serializator">
+    </bean>
+
+
+    <bean name="daoSerialization" class="com.epam.brest.dao.DaoSerialization">
+        <constructor-arg name="serializator" ref="serializator"/>
+    </bean>
+
+
     <bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>

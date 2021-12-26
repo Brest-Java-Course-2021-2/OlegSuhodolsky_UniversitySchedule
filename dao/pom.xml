@@ -31,6 +31,11 @@
 
         <dependency>
             <groupId>com.epam.brest</groupId>
+            <artifactId>serializator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.epam.brest</groupId>
             <artifactId>test-db</artifactId>
         </dependency>
 
@@ -81,6 +86,10 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.epam.brest</groupId>
+            <artifactId>serializator</artifactId>
         </dependency>
 
 

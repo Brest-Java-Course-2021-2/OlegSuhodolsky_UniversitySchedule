@@ -40,6 +40,8 @@
         <constructor-arg name="daoRequest" ref="daoRequest"/>
     </bean>
 
+    <bean name="serializator" class="com.epam.brest.Serializator">
+    </bean>
 
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">

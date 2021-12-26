@@ -73,6 +73,7 @@ public class DaoUser implements DaoUserAPI {
         ((MapSqlParameterSource) sqlParameterSource).addValue("password", user.getPassword());
         ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
 
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateUser, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
