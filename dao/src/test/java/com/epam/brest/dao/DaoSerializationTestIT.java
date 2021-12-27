@@ -29,15 +29,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Rollback
 public class DaoSerializationTestIT {
 
-    private final Logger logger = LogManager.getLogger(DaoUserJDBCIT.class);
+    private final Logger logger = LogManager.getLogger(DaoSerializationTestIT.class);
 
     private DaoUser daoUser;
     private DaoRequest daoRequest;
     private Serializator serializator;
     private DaoSerialization daoSerialization;
 
-    String fileUser = "user.sql";
-    String fileRequest = "request.sql";
+    String fileUser = "userTest.sql";
+    String fileRequest = "requestTest.sql";
 
     @Autowired
     public DaoSerializationTestIT(DaoSerialization daoSerialization, DaoUser daoUser,
@@ -81,14 +81,16 @@ public class DaoSerializationTestIT {
         boolean bool = daoSerialization.writeListUser();
         assertTrue(bool);
 
-        listUser = daoSerialization.getListUser();
-        assertTrue(listUser.size() == 2, "size == 2");
+        daoSerialization.getListUser();
+        listUser = daoUser.getAllUsers();
+        assertTrue(listUser.size() == 4, "size == 4");
 
         listUser = daoUser.getAllUsers();
         bool = daoSerialization.writeListUser();
-        listUser = daoSerialization.getListUser();
+        listUser =  daoUser.getAllUsers();
         assertTrue(listUser.size() == 4, "size == 4");
     }
+
 
     @Test
     void testSerializeRequests() throws InvalidObjectException {
@@ -100,13 +102,14 @@ public class DaoSerializationTestIT {
         boolean bool = daoSerialization.writeListRequest();
         assertTrue(bool);
 
-        listRequest = daoSerialization.getListRequest();
+        listRequest = daoRequest.getAllRequests(1);
         assertTrue(listRequest.size() == 2, "size == 2");
 
         listRequest = daoRequest.getAllRequests(1);
         bool = daoSerialization.writeListRequest();
-        listRequest = daoSerialization.getListRequest();
-        assertTrue(listRequest.size() > 0, "size > 0");
+        listRequest = daoRequest.getAllRequests(1);
+        assertTrue(listRequest.size() == 2, "size == 2");
     }
+
 
 }

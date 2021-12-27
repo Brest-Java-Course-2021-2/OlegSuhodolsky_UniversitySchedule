@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface DaoSerializationAPI {
 
-    List<User> getListUser () throws InvalidObjectException;
+    void getListUser () throws InvalidObjectException;
 
     boolean writeListUser () throws InvalidObjectException;
 
-    List <Request> getListRequest () throws InvalidObjectException;
+    void getListRequest () throws InvalidObjectException;
 
     boolean writeListRequest () throws InvalidObjectException;
 }

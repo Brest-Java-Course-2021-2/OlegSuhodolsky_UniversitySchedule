@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface SerializationService {
 
-    List<User> getListUserService () throws InvalidObjectException;
+   void getListUserService () throws InvalidObjectException;
 
     boolean writeListUserService () throws InvalidObjectException;
 
-    List <Request> getListRequestService () throws InvalidObjectException;
+    void getListRequestService () throws InvalidObjectException;
 
     boolean writeListRequestService () throws InvalidObjectException;
 }
