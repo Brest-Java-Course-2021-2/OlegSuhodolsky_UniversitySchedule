@@ -2,6 +2,7 @@ package com.epam.brest.dao;
 
 
 import com.epam.brest.Serializator;
+import com.epam.brest.model.entity.Request;
 import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,9 +38,6 @@ public class DaoSerializationTestIT {
 
     String fileUser = "user.sql";
     String fileRequest = "request.sql";
-    String fileAdmin = "admin.sql";
-    String fileGroupe = "groupe.sql";
-
 
     @Autowired
     public DaoSerializationTestIT(DaoSerialization daoSerialization, DaoUser daoUser,
@@ -79,10 +77,36 @@ public class DaoSerializationTestIT {
 
         List <User> listUser = daoUser.getAllUsers();
         assertNotNull(listUser);
-        boolean bool = daoSerialization.writeListUser(listUser);
+
+        boolean bool = daoSerialization.writeListUser();
         assertTrue(bool);
+
         listUser = daoSerialization.getListUser();
         assertTrue(listUser.size() == 2, "size == 2");
+
+        listUser = daoUser.getAllUsers();
+        bool = daoSerialization.writeListUser();
+        listUser = daoSerialization.getListUser();
+        assertTrue(listUser.size() == 4, "size == 4");
+    }
+
+    @Test
+    void testSerializeRequests() throws InvalidObjectException {
+        logger.debug("Execute test: SerializeRequests()");
+
+        List <Request> listRequest = daoRequest.getAllRequests(1);
+        assertNotNull(listRequest);
+
+        boolean bool = daoSerialization.writeListRequest();
+        assertTrue(bool);
+
+        listRequest = daoSerialization.getListRequest();
+        assertTrue(listRequest.size() == 2, "size == 2");
+
+        listRequest = daoRequest.getAllRequests(1);
+        bool = daoSerialization.writeListRequest();
+        listRequest = daoSerialization.getListRequest();
+        assertTrue(listRequest.size() > 0, "size > 0");
     }
 
 }

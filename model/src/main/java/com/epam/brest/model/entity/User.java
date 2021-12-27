@@ -7,6 +7,7 @@
 package com.epam.brest.model.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -174,4 +175,14 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return name.equals(user.name) && login.equals(user.login) && password.equals(user.password) && email.equals(user.email);
+    }
+
+
 }

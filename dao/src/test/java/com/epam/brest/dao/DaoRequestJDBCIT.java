@@ -43,7 +43,7 @@ public class DaoRequestJDBCIT {
     void insertRequest() {
         logger.debug("Execute test of REQUEST : write({id})");
         Request request = new Request(1, "e1", "2", "sport", new Date());
-        assertTrue(daoRequest.writeRequest(request) == 3, "Size = 1");
+        assertTrue(daoRequest.writeRequest(request) >0 , "Size > 0 ");
     }
 
     @Test

@@ -16,6 +16,19 @@
         <constructor-arg name="daoUser"  ref="daoUser"/>
     </bean>
 
+
+    <bean id="serializationService" class="com.epam.brest.service.SerializationServiceImpl">
+        <constructor-arg name="daoSerialization" ref="daoSerialization"/>
+          </bean>
+
+    <bean id="daoSerialization" class="com.epam.brest.dao.DaoSerialization">
+        <constructor-arg name="serializator" ref="serializator"/>
+        <constructor-arg name="daoUser" ref="daoUser"/>
+        <constructor-arg name="daorequest" ref="daoRequest"/>
+    </bean>
+
+
+
     <bean id="daoRequest" class="com.epam.brest.dao.DaoRequest">
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
@@ -24,6 +37,8 @@
         <constructor-arg name="daoRequest" ref="daoRequest"/>
     </bean>
 
+    <bean id="serializator" class="com.epam.brest.Serializator">
+            </bean>
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
