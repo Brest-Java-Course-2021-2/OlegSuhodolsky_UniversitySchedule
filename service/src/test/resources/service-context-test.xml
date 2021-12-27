@@ -27,6 +27,8 @@
         <constructor-arg name="daorequest" ref="daoRequest"/>
     </bean>
 
+    <bean id="serializator" class="com.epam.brest.Serializator">
+    </bean>
 
 
     <bean id="daoRequest" class="com.epam.brest.dao.DaoRequest">
@@ -37,8 +39,6 @@
         <constructor-arg name="daoRequest" ref="daoRequest"/>
     </bean>
 
-    <bean id="serializator" class="com.epam.brest.Serializator">
-            </bean>
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
