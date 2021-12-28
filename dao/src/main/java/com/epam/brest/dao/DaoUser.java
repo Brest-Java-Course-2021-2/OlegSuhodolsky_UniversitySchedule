@@ -36,6 +36,9 @@ public class DaoUser implements DaoUserAPI {
     @Value("${SQL_DELETE_USER_BY_ID}")
     private String sqlDeleteUserById;
 
+    @Value("${CREATE_USER_AFTER_SERIALIZATION}")
+    private String sqlCreateUserAfterSerialization;
+
 
     private final Logger logger = LogManager.getLogger(DaoUser.class);
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -102,6 +105,27 @@ public class DaoUser implements DaoUserAPI {
                 new MapSqlParameterSource().addValue("id", id);
       return  namedParameterJdbcTemplate.update(sqlDeleteUserById, sqlParameterSource);
     }
+
+
+
+
+    public Integer writeUserSerialize(User user) {
+        logger.info("INSERT NEW USER AFTER SERIALIZATION{}");
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource();
+        ((MapSqlParameterSource) sqlParameterSource).addValue("id", user.getId());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("name", user.getName());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("login", user.getLogin());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("password", user.getPassword());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
+
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(sqlCreateUserAfterSerialization, sqlParameterSource, keyHolder);
+        return (Integer) keyHolder.getKey();
+    }
+
+
 
 
     /*MAPPER CLASS USER*/

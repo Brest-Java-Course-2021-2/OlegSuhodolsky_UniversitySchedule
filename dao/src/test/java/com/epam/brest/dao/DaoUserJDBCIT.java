@@ -47,6 +47,14 @@ class DaoUserJDBCIT {
         assertTrue(daoUser.getAllUsers().size() == 3, "Size = 3");
     }
 
+
+    @Test
+    void testInsertAfterSerialization() {
+        logger.debug("Execute test: writeSerialize()");
+        assertNotNull(daoUser.writeUserSerialize(new User(3,"John", "john", "1111", "isocrol@yandex.ru")));
+        assertTrue(daoUser.getAllUsers().size() == 3, "Size = 3");
+    }
+
     @Test
     void testChange() {
         logger.debug("Execute test: update()");

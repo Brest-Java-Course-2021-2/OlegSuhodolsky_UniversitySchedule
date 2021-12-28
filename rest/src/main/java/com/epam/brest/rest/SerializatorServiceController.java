@@ -33,8 +33,8 @@ public class SerializatorServiceController {
     @GetMapping(value = "/serializator")
     public final boolean writeToFileAllUsersAndRequests() throws InvalidObjectException {
         logger.debug("serialize(all) ");
-        boolean bool = serializationService.writeListRequestService();
         boolean bool1 = serializationService.writeListUserService();
+        boolean bool = serializationService.writeListRequestService();
         return (bool && bool1);
   }
 

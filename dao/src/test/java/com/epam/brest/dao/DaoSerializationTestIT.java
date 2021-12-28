@@ -70,6 +70,7 @@ public class DaoSerializationTestIT {
         assertNotNull(daoRequest.getAllRequests(1));
         assertTrue(daoRequest.getAllRequests(1).size() == 2, "Size = 2");
     }
+/*
 
     @Test
     void testSerializeUsers() throws InvalidObjectException {
@@ -91,6 +92,8 @@ public class DaoSerializationTestIT {
         assertTrue(listUser.size() == 4, "size == 4");
     }
 
+*/
+/*
 
     @Test
     void testSerializeRequests() throws InvalidObjectException {
@@ -111,5 +114,6 @@ public class DaoSerializationTestIT {
         assertTrue(listRequest.size() == 2, "size == 2");
     }
 
+*/
 
 }
