@@ -21,9 +21,7 @@ public class DaoSerialization implements DaoSerializationAPI {
     private DaoUser daoUser;
     private DaoRequest daoRequest;
 
-    /*private List <User> listUser = new ArrayList<>();
-    private List <Request> listRequest = new ArrayList<>();
-*/
+
     String fileUser = "user.sql";
     String fileRequest = "request.sql";
 
@@ -39,23 +37,26 @@ public class DaoSerialization implements DaoSerializationAPI {
    public void getListUser () throws InvalidObjectException {
         List <User> listUser = (List <User>) serializator.deserialization(fileUser);
         for(User user : listUser){
-            user.setId(0);
-            daoUser.writeUser(user);
+            daoUser.writeUser(new User(user.getName(), user.getLogin(), user.getPassword(), user.getEmail()));
         }
      }
 
 @Override
     public boolean writeListUser () throws InvalidObjectException {
         List<User> listUser = daoUser.getAllUsers();
-        return serializator.serialization(listUser, fileUser);
+        List<User> users = new ArrayList<>();
+        for(User u : listUser){
+            users.add(new User(u.getName(), u.getLogin(), u.getPassword(), u.getEmail()));
+        }
+        return serializator.serialization(users, fileUser);
     }
 
 @Override
     public void getListRequest () throws InvalidObjectException {
         List <Request> listRequest = (List<Request>) serializator.deserialization(fileRequest);
         for(Request request : listRequest){
-            request.setIdR(0);
-            daoRequest.writeRequest(request);
+         daoRequest.writeRequest(new Request(request.getId(), request.getGroupe(),
+                                       request.getPairs(), request.getSubject(), request.getDate()));
         }
      }
 
@@ -65,8 +66,11 @@ public class DaoSerialization implements DaoSerializationAPI {
         List <Request> listRequest = new ArrayList<>();
         for (User u : listUser) {
         List <Request> listRequest1 =  daoRequest.getAllRequests(u.getId());
-        if (listRequest1.size() > 0){
-        listRequest.addAll(listRequest1);}
+           for (Request r : listRequest1 ){
+               if (r != null){
+                   listRequest.add(new Request(r.getId(), r.getGroupe(), r.getPairs(), r.getSubject(), r.getDate()));
+               }
+           }
         }
         return serializator.serialization(listRequest, fileRequest);
     }
