@@ -24,7 +24,9 @@ public class SerializatorServiceRest implements SerializationService {
 
     @Override
     public void getListUserService() throws InvalidObjectException {
-
+        logger.debug("WRITE TO DATABASE FROM THE FILES()");
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/deserializer" , Boolean.class);
+        //return (boolean) responseEntity.getBody();
     }
 
     @Override

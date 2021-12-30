@@ -27,5 +27,11 @@ public class SerializatorController {
         return "redirect:/user";
     }
 
+    @GetMapping(value = "/serializator/load")
+    public String writeDtaFrom() throws InvalidObjectException {
+        logger.debug("write data from file");
+        serializationService.getListUserService();
+        return "redirect:/user";
+    }
 
 }
