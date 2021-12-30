@@ -18,6 +18,7 @@
 
     <bean name="daoSerialization" class="com.epam.brest.dao.DaoSerialization">
         <constructor-arg name="serializator" ref="serializator"/>
+
     </bean>
 
 

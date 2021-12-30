@@ -68,9 +68,14 @@
             <input type="submit" value="NEW REQUEST"/>                 
         </form>    
         <br/>   
-        <form th:method="GET" th:action="@{/login}">
-            <input type="submit" value="EXIT FROM SYSTEM"/>
-        </form>    
+        <form th:method="GET" th:action="@{/user}">
+            <input type="submit" value="EXIT TO USERS TABLE"/>
+        </form>
+
+         <br/>
+         <form th:method="GET" th:action="@{/serializator/save}">
+             <input type="submit" value="SAVE YOUR REQUESTS"/>
+         </form>
     </body>
 
 </html>

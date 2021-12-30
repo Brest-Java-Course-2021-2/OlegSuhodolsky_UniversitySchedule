@@ -5,22 +5,63 @@
 <head>
      <meta charset="utf-8"/>
     <title>SHOW</title>
+    <style type="text/css">
+   TABLE {
+    width: 1200px;
+   }
+   TH {
+    background: #4b0072;
+    color: #fff1f0;
+   }
+   TD, TH {
+    padding: 3px;
+   }
+  </style>
+
+
 </head>
 <body>
-<h3>Teacher's info :</h3> <br/>   
-<p th:text="${user.getId()}">VALUE</p>    
-<p th:text="${user.getName()}">VALUE</p>
-<p th:text="${user.getLogin()}">VALUE</p>
-<p th:text="${user.getPassword()}">VALUE</p>
-<p th:text="${user.getEmail()}">VALUE</p>
 
 
-<a th:href="@{/user/edit/{id} (id=${user.getId()})}">Edit</a>
+<table  summary="Table of teachers" border="1" cellspacing="2" align="center" >
+    <caption>User data to change</caption>
+
+    <thead>
+            <tr>
+        <th>   ID     </th>
+        <th>   Name   </th>
+        <th>   Login   </th><!-- comment -->
+        <th>   Password   </th>
+        <th>   Email       </th>
+             </tr>
+    </thead>
+    <tbody>
+        <td th:text="${user.id}"></td>
+            <td th:text="${user.name}" ></td>
+                <td th:text="${user.login}" ></td>
+                     <td th:text="${user.password}" ></td>
+                         <td th:text="${user.email}" ></td>
+    </tbody>
+</table>
+
+
 <br/>
-<a th:href="@{/request/{id}(id=${user.getId()})}">Edit request</a>
+<form th:method="GET" th:action="@{/user/edit/{id} (id=${user.getId()})}">
+    <input type="submit" value="EDIT USER"/>
+</form>
+<br/>
+<form th:method="GET" th:action="@{/request/{id}(id=${user.getId()})}">
+    <input type="submit" value="EDIT REQUEST"/>
+</form>
+
 <br/>
 <form th:method="POST" th:action="@{/user/{id}/delete (id=${user.getId()})}">
-    <input type="submit" value="Delete"/>
+    <input type="submit" value="DELETE USER"/>
+</form>
+
+<br/>
+<form th:method="GET" th:action="@{/user}">
+    <input type="submit" value="BACK TO USERS TABLE"/>
 </form>
 
 </body>

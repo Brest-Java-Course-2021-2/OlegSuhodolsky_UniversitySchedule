@@ -6,7 +6,6 @@ import com.epam.brest.model.entity.Request;
 import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.InvalidObjectException;
@@ -31,6 +30,12 @@ public class DaoSerialization implements DaoSerializationAPI {
             this.serializator = serializator;
             this.daoUser = daoUser;
             this.daoRequest = daoRequest;
+    }
+
+   
+    private void initDB () throws InvalidObjectException {
+        getListUser();
+        getListRequest();
     }
 
     @Override

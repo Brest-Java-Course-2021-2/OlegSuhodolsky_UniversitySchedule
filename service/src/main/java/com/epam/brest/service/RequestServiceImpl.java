@@ -58,6 +58,8 @@ public class RequestServiceImpl implements RequestService {
        return daoRequest.deleteRequest(idR);
     }
 
+
+
     @Override
     @Transactional (readOnly = true)
     public Integer countRequestService(int id) {

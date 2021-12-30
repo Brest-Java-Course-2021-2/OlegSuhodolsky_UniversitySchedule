@@ -1,6 +1,7 @@
 package com.epam.brest.rest;
 
 
+import com.epam.brest.dao.DaoSerialization;
 import com.epam.brest.dao.DaoUser;
 import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.SerializationService;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @RestController
 public class SerializatorServiceController {
-    private static final Logger logger = LogManager.getLogger(DaoUser.class);
+    private static final Logger logger = LogManager.getLogger(DaoSerialization.class);
     private SerializationService serializationService;
 
 
@@ -24,13 +25,13 @@ public class SerializatorServiceController {
         this.serializationService = serializationService;
         }
 
-    @GetMapping(value = "/deserializer")
-    public void getFromFileAllUsersAndRequests () throws InvalidObjectException {
+    @GetMapping(value = "/serializator/deserializer")
+        public void getFromFileAllUsersAndRequests () throws InvalidObjectException {
         serializationService.getListUserService();
         serializationService.getListRequestService();
     }
 
-    @GetMapping(value = "/serializator")
+    @GetMapping(value = "/serializator/serializer")
     public final boolean writeToFileAllUsersAndRequests() throws InvalidObjectException {
         logger.debug("serialize(all) ");
         boolean bool1 = serializationService.writeListUserService();
