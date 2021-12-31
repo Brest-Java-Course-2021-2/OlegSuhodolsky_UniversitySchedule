@@ -55,15 +55,17 @@
     <form th:method="GET" th:action="@{/user/new}">
         <input type="submit" value="New user"/>
     </form>
+    <br/>
 
+    <form th:method="GET" th:action="@{/serializator/save}">
+        <input type="submit" value="SAVE DATABASE"/>
+    </form>
 
     <br/>
     <form th:method="GET" th:action="@{/serializator/load}">
         <input type="submit" value="LOAD DATABASE"/>
     </form>
 
-    <p><a href="/login" target="_parent">Quit</a></p>
- 
 </body>
      
 </html>
