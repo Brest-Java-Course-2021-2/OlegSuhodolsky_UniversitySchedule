@@ -57,6 +57,10 @@
     </bean>
 
 
+    <bean id="groupeService" class="com.epam.brest.service.GroupeServiceImpl">
+        <constructor-arg name="daoGroupe" ref="daoGroupe"/>
+    </bean>
+
     <bean id="serializationService" class="com.epam.brest.service.SerializationServiceImpl">
         <constructor-arg name="daoSerialization" ref="daoSerialization"/>
     </bean>

@@ -44,6 +44,11 @@
         <constructor-arg name="daoRequest" ref="daoRequest"/>
     </bean>
 
+    <bean id="groupeService" class="com.epam.brest.service.GroupeServiceImpl">
+        <constructor-arg name="daoGroupe" ref="daoGroupe"/>
+    </bean>
+
+
     <bean name="serializator" class="com.epam.brest.Serializator">
     </bean>
 
