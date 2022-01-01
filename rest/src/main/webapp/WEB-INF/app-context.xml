@@ -34,6 +34,10 @@
         <constructor-arg ref="namedParameterJdbcTemplate"/>
     </bean>
 
+    <bean id="daoGroupe" class="com.epam.brest.dao.DaoGroupe">
+        <constructor-arg ref="namedParameterJdbcTemplate"/>
+    </bean>
+
     <bean id="daoSerialization" class="com.epam.brest.dao.DaoSerialization">
         <constructor-arg name="serializator" ref="serializator"/>
         <constructor-arg name="daoUser" ref="daoUser"/>
@@ -64,6 +68,7 @@
                 <value>classpath*:test-db.properties</value>
                 <value>classpath*:sql-user.properties</value>
                 <value>classpath*:sql-request.properties</value>
+                <value>classpath*:sql-groupe.properties</value>
             </list>
         </property>
     </bean>

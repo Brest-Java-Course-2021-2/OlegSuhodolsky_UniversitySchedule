@@ -12,6 +12,12 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean name="groupeDao" class="com.epam.brest.dao.DaoGroupe">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+    </bean>
+
+
+
     <bean name="serializator" class="com.epam.brest.Serializator">
     </bean>
 
@@ -32,6 +38,7 @@
                 <value>classpath*:test-db.properties</value>
                 <value>classpath*:sql-user.properties</value>
                 <value>classpath*:sql-request.properties</value>
+                <value>classpath*:sql-groupe.properties</value>
             </list>
         </property>
     </bean>
