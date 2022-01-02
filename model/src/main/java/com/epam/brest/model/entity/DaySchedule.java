@@ -11,8 +11,7 @@ public class DaySchedule {
 
     public DaySchedule() {}
 
-    public DaySchedule(Integer idS, Integer day, String lectorName, String groupeName, String subject, Integer numberPair) {
-        this.idS = idS;
+    public DaySchedule(Integer day, String lectorName, String groupeName, String subject, Integer numberPair) {
         this.day = day;
         this.lectorName = lectorName;
         this.groupeName = groupeName;

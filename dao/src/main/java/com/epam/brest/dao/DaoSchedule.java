@@ -30,15 +30,15 @@ public class DaoSchedule implements DaoDtoSchedule {
     public boolean createScheduleDto() {
 
         List<Groupe> listGroupe = daoGroupe.getGroupesByName();
-        String [] groupes = new String[listGroupe.size()];
+        List<String>  groupes = new ArrayList<>();
         for (int i = 0; i < listGroupe.size() -1; i++){
-            groupes[i] = listGroupe.get(i).getNameGroupe();
+            groupes.add(listGroupe.get(i).getNameGroupe());
         }
 
         List<User> listUser = daoUser.getAllUsers();
-        String [] users = new String[listUser.size()];
+        List<String> users = new ArrayList<>();
         for (int i = 0; i < listUser.size() -1; i++){
-            users[i] = listUser.get(i).getName();
+            users.add(listUser.get(i).getName());
         }
 
         List<RequestsForGroupe> requestsForGroupes = new ArrayList<>();
