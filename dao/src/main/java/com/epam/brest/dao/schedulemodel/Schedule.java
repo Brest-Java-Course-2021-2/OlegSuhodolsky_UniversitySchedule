@@ -1,9 +1,10 @@
-package com.epam.brest.model.entity.dto;
+package com.epam.brest.dao.schedulemodel;
 
 import com.epam.brest.model.entity.Groupe;
 import com.epam.brest.model.entity.User;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Schedule {
 
@@ -23,32 +24,27 @@ public class Schedule {
     }
 
 
-    public void createLectorRequestsList(){}
 
-    private class RequestsForGroupe {
 
-        String groupe;
-        String lector;
-        String subject;
-        Integer pairs;
-
-        RequestsForGroupe() {
-        }
-
-        RequestsForGroupe(String lector, String groupe, String subject, Integer pairs) {
-            this.groupe = groupe;
-            this.lector = lector;
-            this.subject = subject;
-            this.pairs = pairs;
-        }
-
-        @Override
-        public String toString() {
-            return (this.lector + " " + this.groupe + " " + this.subject + " " + this.pairs);
-        }
-
+    public void createLectorRequestsList(String [] groupes, String [] lectors, List <RequestsForGroupe> requestsForGroupes){
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private class ScheduleDay {
 
