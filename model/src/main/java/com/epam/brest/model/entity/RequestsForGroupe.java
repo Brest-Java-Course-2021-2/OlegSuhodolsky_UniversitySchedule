@@ -1,4 +1,4 @@
-package com.epam.brest.dao.schedulemodel;
+package com.epam.brest.model.entity;
 
 public class RequestsForGroupe {
 
@@ -7,7 +7,7 @@ public class RequestsForGroupe {
     private String subject;
     private Integer pairs;
 
-    RequestsForGroupe() {
+    public RequestsForGroupe() {
     }
 
     public RequestsForGroupe(String lector, String groupe, String subject, Integer pairs) {

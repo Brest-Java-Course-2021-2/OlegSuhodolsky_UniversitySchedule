@@ -1,23 +1,28 @@
 package com.epam.brest.dao.schedulemodel;
 
 import com.epam.brest.model.entity.DaySchedule;
-import com.epam.brest.model.entity.Groupe;
-import com.epam.brest.model.entity.User;
+import com.epam.brest.model.entity.RequestsForGroupe;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class Schedule {
-
 
     int count = 0;
     int block = 5;
     ArrayList<DaySchedule> scheduleObj = new ArrayList<>();
 
-    public Schedule() {
-    }
 
-    public ArrayList<DaySchedule> createLectorRequestsList(List <String> groups, List <String> lectors, List <RequestsForGroupe> requestsForGroupes){
+    public Schedule() {}
+
+
+
+    public ArrayList<DaySchedule> createLectorRequestsList(
+                                                List <String> groups
+                                              , List <String> lectors
+                                              , List <RequestsForGroupe> requestsForGroupes ) {
 
         RequestsForGroupe rbg;
         List<RequestsForGroupe> reqArr = requestsForGroupes;
@@ -59,23 +64,22 @@ public class Schedule {
                     listArr.add(rg);
                     if (listArr.size() == block) {
 
-                        for (ArrayList<RequestsForGroupe> arr : listArr) {
+                   /*     for (ArrayList<RequestsForGroupe> arr : listArr) {
                             for (RequestsForGroupe r : arr) {
                                 System.out.print(r + "\t\t\t");
                             }
                             System.out.println();
-                        }
+                        }*/
                         createScheduleObjects(listArr);
                         listArr.clear();
                     }
                 }
             }
             if (listArr.size() > 0) {
-
-
-                createScheduleObjects(listArr);
+                         createScheduleObjects(listArr);
             }
-            block--;
+
+        block--;
         }
 
     return scheduleObj;

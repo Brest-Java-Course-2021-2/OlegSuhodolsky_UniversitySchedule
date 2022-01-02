@@ -1,13 +1,10 @@
 package com.epam.brest.dao;
 
-import com.epam.brest.dao.schedulemodel.RequestsForGroupe;
+import com.epam.brest.dao.schedulemodel.Schedule;
 import com.epam.brest.daoAPI.DaoDtoSchedule;
-import com.epam.brest.daoAPI.DaoUserAPI;
-import com.epam.brest.model.entity.DaySchedule;
-import com.epam.brest.model.entity.Groupe;
-import com.epam.brest.model.entity.Request;
-import com.epam.brest.model.entity.User;
+import com.epam.brest.model.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,12 +15,16 @@ public class DaoSchedule implements DaoDtoSchedule {
     private DaoGroupe daoGroupe;
     private DaoUser daoUser;
     private DaoRequest daoRequest;
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private Schedule schedule;
 
     @Autowired
-    public DaoSchedule(DaoGroupe daoGroupe, DaoUser daoUser, DaoRequest daoRequest) {
+    public DaoSchedule(NamedParameterJdbcTemplate namedParameterJdbcTemplate, DaoGroupe daoGroupe, DaoUser daoUser, DaoRequest daoRequest, Schedule schedule) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.daoGroupe = daoGroupe;
         this.daoUser = daoUser;
         this.daoRequest = daoRequest;
+        this.schedule = schedule;
     }
 
     @Override
@@ -54,6 +55,10 @@ public class DaoSchedule implements DaoDtoSchedule {
                         , Integer.parseInt(request.getPairs())));
              }
         }
+
+        List<DaySchedule> scheduleList = schedule.createLectorRequestsList(groupes, users, requestsForGroupes);
+
+
         return false;
     }
 
