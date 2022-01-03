@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -25,6 +26,10 @@ public class DaoSchedule implements DaoDtoSchedule {
 
     @Value("${INSERT_TO_SCHEDULE_ALL}")
     private String insertToScheduleAll;
+
+    @Value("${GET_FROM_SCHEDULE_ALL}")
+    private String getFromScheduleAll;
+
 
     private DaoGroupe daoGroupe;
     private DaoUser daoUser;
@@ -44,13 +49,15 @@ public class DaoSchedule implements DaoDtoSchedule {
     }
 
     @Override
-    public boolean createScheduleDto() {
-
+    public Integer createScheduleDto() {
+        logger.debug("Execute test: create schedule() - > TRUE");
         List<Groupe> listGroupe = daoGroupe.getGroupesByName();
         List<String>  groupes = new ArrayList<>();
         for (int i = 0; i < listGroupe.size() -1; i++){
             groupes.add(listGroupe.get(i).getNameGroupe());
         }
+
+        System.out.println("GROUPES  - " + Arrays.stream(groupes.toArray()).findAny().toString());
 
         List<User> listUser = daoUser.getAllUsers();
         List<String> users = new ArrayList<>();
@@ -74,7 +81,8 @@ public class DaoSchedule implements DaoDtoSchedule {
 
         List<DaySchedule> scheduleList = schedule.createLectorRequestsList(groupes, users, requestsForGroupes);
 
-        logger.info("INSERT NEW USER {}");
+        logger.info("INSERT NEW SCHEDULE {}");
+        Integer count = 0;
         for (DaySchedule daySchedule : scheduleList){
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
@@ -88,14 +96,17 @@ public class DaoSchedule implements DaoDtoSchedule {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertToScheduleAll, sqlParameterSource, keyHolder);
+        count++;
         }
 
-        return false;
+        return count;
     }
 
     @Override
     public List<DaySchedule> getScheduleForAll() {
-        return null;
+        logger.info("READ SCHEDULE ALL {}");
+
+        return namedParameterJdbcTemplate.query(getFromScheduleAll, new DayScheduleRowMapper());
     }
 
     @Override

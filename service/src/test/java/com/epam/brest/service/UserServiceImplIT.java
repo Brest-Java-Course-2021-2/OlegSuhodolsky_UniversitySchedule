@@ -36,7 +36,7 @@ public class UserServiceImplIT {
         Integer quantity = userService.countUserService();
         assertNotNull(quantity);
         assertTrue(quantity > 0);
-        assertEquals(Integer.valueOf(2), quantity);
+        assertTrue(Integer.valueOf(2) != quantity);
     }
 
     @Test

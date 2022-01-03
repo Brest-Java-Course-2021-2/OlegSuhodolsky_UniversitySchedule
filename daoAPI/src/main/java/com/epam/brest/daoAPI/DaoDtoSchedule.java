@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DaoDtoSchedule {
 
-    boolean createScheduleDto();
+   Integer createScheduleDto();
 
     List<DaySchedule> getScheduleForAll();
 

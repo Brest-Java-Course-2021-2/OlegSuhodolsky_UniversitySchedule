@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS request;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS groupe;
+DROP TABLE IF EXISTS schedule;
 
 CREATE TABLE user
 (
@@ -34,9 +35,10 @@ CREATE TABLE schedule
     idS int PRIMARY KEY auto_increment,
     lectorName varchar(55) NOT NULL,
     groupeName varchar(10) NOT NULL ,
-    numberPair int NOT NULL,
+    numberPair int,
     subject varchar(100) NOT NULL,
-    day int NOT NULL
+    day int,
+    CONSTRAINT schedule_pk PRIMARY KEY (idS)
 );
 
 

@@ -36,14 +36,14 @@ public class DaoRequestJDBCIT {
         logger.debug("Execute test of REQUEST : getAll()");
         assertNotNull(daoRequest);
         assertNotNull(daoRequest.getAllRequests(1));
-        assertTrue(daoRequest.getAllRequests(1).size() == 2, "Size = 2");
+        assertTrue(daoRequest.getAllRequests(1).size() > 0, "Size > 0");
     }
 
     @Test
     void insertRequest() {
         logger.debug("Execute test of REQUEST : write({id})");
         Request request = new Request(1, "e1", "2", "sport", new Date());
-        assertTrue(daoRequest.writeRequest(request) >0 , "Size > 0 ");
+        assertTrue(daoRequest.writeRequest(request) > 0 , "Size > 0 ");
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.epam.brest.dao;
 
 
 import com.epam.brest.dao.schedulemodel.Schedule;
+import com.epam.brest.model.entity.DaySchedule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.FixMethodOrder;
@@ -14,6 +15,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -45,17 +48,31 @@ public class DaoScheduleJDBCIT {
 
     @Test
     void testFindDaoSchedule() {
-        logger.debug("Execute test: getAll()");
+        logger.debug("Execute test: TestDaoScheduleIsExist()");
         assertNotNull(daoUser);
         assertNotNull(daoRequest);
         assertNotNull(daoGroupe);
         assertNotNull(schedule);
         assertNotNull(daoSchedule);
-
-        daoSchedule.getScheduleForAll();
-       /* assertNotNull(daoUser.getAllUsers());
-        assertTrue(daoUser.getAllUsers().size() == 2, "Size = 2");*/
     }
+
+
+    @Test
+    void testWhereSchedule() {
+        logger.debug("Execute test: IsScheduleInTable()");
+        int count = daoSchedule.createScheduleDto();
+        assertTrue(count > 0);
+
+        List <DaySchedule> daySchedules = daoSchedule.getScheduleForAll();
+       // assertTrue(daySchedules.size() > 0, "SIZE > 0");
+       /* for(DaySchedule d : daySchedules){
+            logger.debug("!!!!!!!!!! SCHEDULES =  " + d);
+        }*/
+
+        assertTrue(daySchedules.size() == count, "count = size");
+        //assertTrue(daySchedules.size() > 0, "size schedule > 0");
+    }
+
 
 
 }

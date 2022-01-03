@@ -144,7 +144,7 @@ public class Schedule {
                     if (rg != null) {
                         if (rg.getPairs() > 0) {
                             rg.setPairs(rg.getPairs()-1);
-                            DaySchedule ds = new DaySchedule(day, rg.getLector(), rg.getGroupe(), rg.getSubject(), pair);
+                            DaySchedule ds = new DaySchedule(rg.getLector(), rg.getGroupe(),rg.getPairs(), rg.getSubject(), day);
                             scheduleObj.add(ds);
                             System.out.println(ds);
                             gArr.set(j, rg);

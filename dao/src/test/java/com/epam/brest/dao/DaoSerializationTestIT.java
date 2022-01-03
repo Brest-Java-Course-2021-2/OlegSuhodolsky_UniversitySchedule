@@ -61,14 +61,14 @@ public class DaoSerializationTestIT {
     void testFindAllUsers() {
         logger.debug("Execute test: FindAllUsers()");
         assertNotNull(daoUser.getAllUsers());
-        assertTrue(daoUser.getAllUsers().size() == 2, "Size = 2");
+        assertTrue(daoUser.getAllUsers().size() > 0, "Size > 0");
     }
 
     @Test
     void testFindAllRequests() {
         logger.debug("Execute test: FindAllRequests()");
         assertNotNull(daoRequest.getAllRequests(1));
-        assertTrue(daoRequest.getAllRequests(1).size() == 2, "Size = 2");
+        assertTrue(daoRequest.getAllRequests(1).size() > 0, "Size > 0");
     }
 /*
 
