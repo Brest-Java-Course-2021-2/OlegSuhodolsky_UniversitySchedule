@@ -3,20 +3,36 @@ package com.epam.brest.dao;
 import com.epam.brest.dao.schedulemodel.Schedule;
 import com.epam.brest.daoAPI.DaoDtoSchedule;
 import com.epam.brest.model.entity.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class DaoSchedule implements DaoDtoSchedule {
+
+    @Value("${INSERT_TO_SCHEDULE_ALL}")
+    private String insertToScheduleAll;
+
     private DaoGroupe daoGroupe;
     private DaoUser daoUser;
     private DaoRequest daoRequest;
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private Schedule schedule;
+
+    private final Logger logger = LogManager.getLogger(DaoSchedule.class);
 
     @Autowired
     public DaoSchedule(NamedParameterJdbcTemplate namedParameterJdbcTemplate, DaoGroupe daoGroupe, DaoUser daoUser, DaoRequest daoRequest, Schedule schedule) {
@@ -58,6 +74,21 @@ public class DaoSchedule implements DaoDtoSchedule {
 
         List<DaySchedule> scheduleList = schedule.createLectorRequestsList(groupes, users, requestsForGroupes);
 
+        logger.info("INSERT NEW USER {}");
+        for (DaySchedule daySchedule : scheduleList){
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource();
+
+        ((MapSqlParameterSource) sqlParameterSource).addValue("lectorName", daySchedule.getLectorName());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("groupeName", daySchedule.getGroupeName());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("numberPair", daySchedule.getNumberPair());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("subject", daySchedule.getSubject());
+        ((MapSqlParameterSource) sqlParameterSource).addValue("day", daySchedule.getDay());
+
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(insertToScheduleAll, sqlParameterSource, keyHolder);
+        }
 
         return false;
     }
@@ -75,5 +106,21 @@ public class DaoSchedule implements DaoDtoSchedule {
     @Override
     public List<DaySchedule> getScheduleForGroupeDto() {
         return null;
+    }
+
+
+    /*MAPPER CLASS DaySchedule*/
+    private class DayScheduleRowMapper implements RowMapper<DaySchedule> {
+        @Override
+        public DaySchedule mapRow(ResultSet resultSet, int i) throws SQLException {
+            DaySchedule daySchedule = new DaySchedule();
+            daySchedule.setIdS(resultSet.getInt("idS"));
+            daySchedule.setLectorName(resultSet.getString("lectorName"));
+            daySchedule.setGroupeName(resultSet.getString("groupeName"));
+            daySchedule.setNumberPair(resultSet.getInt("numberPair"));
+            daySchedule.setSubject(resultSet.getString("subject"));
+            daySchedule.setDay(resultSet.getInt("day"));
+            return daySchedule;
+        }
     }
 }

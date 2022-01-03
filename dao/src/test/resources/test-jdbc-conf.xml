@@ -16,7 +16,16 @@
         <constructor-arg name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean name="scheduleDao" class="com.epam.brest.dao.DaoSchedule">
+        <constructor-arg name="dataSource" ref="dataSource"/>
+        <constructor-arg name="groupeDao" ref="groupeDao"/>
+        <constructor-arg name="userDao" ref="userDao"/>
+        <constructor-arg name="requestDao" ref="requestDao"/>
+        <constructor-arg name="schedule" ref="schedule"/>
+    </bean>
 
+    <bean name="schedule" class="com.epam.brest.dao.schedulemodel.Schedule">
+    </bean>
 
     <bean name="serializator" class="com.epam.brest.Serializator">
     </bean>
@@ -39,6 +48,7 @@
                 <value>classpath*:sql-user.properties</value>
                 <value>classpath*:sql-request.properties</value>
                 <value>classpath*:sql-groupe.properties</value>
+                <value>classpath*:sql-schedule.properties</value>
             </list>
         </property>
     </bean>

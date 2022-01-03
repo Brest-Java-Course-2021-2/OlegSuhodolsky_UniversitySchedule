@@ -61,6 +61,7 @@
                 <value>classpath*:sql-user.properties</value>
                 <value>classpath*:sql-request.properties</value>
                 <value>classpath*:sql-groupe.properties</value>
+                <value>classpath*:sql-schedule.properties</value>
             </list>
         </property>
     </bean>
