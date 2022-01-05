@@ -1,7 +1,6 @@
 package com.epam.brest.dao.schedulemodel;
 
-import com.epam.brest.model.entity.DaySchedule;
-import com.epam.brest.model.entity.RequestsForGroupe;
+import com.epam.brest.model.entity.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,7 +17,14 @@ public class Schedule {
     public Schedule() {}
 
 
+    public StudentsSchedule createScheduleForGroupe (String groupe, List<DaySchedule> daySchedules){
 
+        return null;
+    }
+
+
+
+// Create schedule from requests
     public ArrayList<DaySchedule> createLectorRequestsList(
                                                 List <String> groups
                                               , List <String> lectors
@@ -182,5 +188,21 @@ public class Schedule {
             }
         }
         return listArr;
+    }
+
+    public List<String> getUserNameList( List<User> listUser){
+        List<String> users = new ArrayList<>();
+        for (int i = 0; i < listUser.size() -1; i++){
+            users.add(listUser.get(i).getName());
+        }
+        return users;
+    }
+
+    public List <String> getGroupeNameList( List<Groupe> listGroupe){
+        List<String>  groupes = new ArrayList<>();
+        for (int i = 0; i < listGroupe.size() -1; i++){
+            groupes.add(listGroupe.get(i).getNameGroupe());
+        }
+        return groupes;
     }
 }
