@@ -16,8 +16,53 @@ public class Schedule {
 
     public Schedule() {}
 
+// Create schedule for lectors
+    public List <LectorsSchedule> createScheduleForLectors (List<String> lectors,  List<DaySchedule> scheduleList){
+        List <LectorsSchedule> lectorsSchedules = new ArrayList<>();
 
-    public List <StudentsSchedule> createScheduleForGroupe (List<String> groups){
+        for(String lector : lectors){
+            for (int para = 1; para < 6; para++ ){
+                LectorsSchedule lectorsSchedule = new LectorsSchedule();
+                lectorsSchedule.setLector(lector);
+                lectorsSchedule.setPair(para);
+                for  (int dayWeek = 1; dayWeek < 6; dayWeek++ ){
+
+                    for (DaySchedule daySchedule : scheduleList){
+                        if ((lector == daySchedule.getLectorName()) && (para == daySchedule.getNumberPair())
+                                && (dayWeek == daySchedule.getDay())){
+                            if (dayWeek == 1){
+                                lectorsSchedule.setMonday(daySchedule.getSubject());
+                            } else{
+                                if (dayWeek == 2){
+                                    lectorsSchedule.setTuesday(daySchedule.getSubject());
+                                } else {
+                                    if (dayWeek == 3){
+                                        lectorsSchedule.setWednesday(daySchedule.getSubject());
+                                    } else {
+                                        if (dayWeek == 4){
+                                            lectorsSchedule.setThursday(daySchedule.getSubject());
+                                        } else {
+                                            if (dayWeek == 5){
+                                                lectorsSchedule.setFriday(daySchedule.getSubject());
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+                lectorsSchedules.add(lectorsSchedule);
+            }
+        }
+
+        return lectorsSchedules;
+    }
+
+ // Create schedule for students
+    public List <StudentsSchedule> createScheduleForGroupe (List<String> groups,  List<DaySchedule> scheduleList){
            List <StudentsSchedule> studentsSchedules = new ArrayList<>();
 
            for(String gruppa : groups){
@@ -27,7 +72,7 @@ public class Schedule {
                    studentsSchedule.setPair(para);
                    for  (int dayWeek = 1; dayWeek < 6; dayWeek++ ){
 
-                       for (DaySchedule daySchedule : scheduleObj){
+                       for (DaySchedule daySchedule : scheduleList){
                            if ((gruppa == daySchedule.getGroupeName()) && (para == daySchedule.getNumberPair())
                                && (dayWeek == daySchedule.getDay())){
                                 if (dayWeek == 1){
@@ -58,7 +103,7 @@ public class Schedule {
                }
            }
 
-        return null;
+        return studentsSchedules;
     }
 
 
@@ -108,13 +153,6 @@ public class Schedule {
                 if (calcPairsInDay(rg) == block) {
                     listArr.add(rg);
                     if (listArr.size() == block) {
-
-                   /*     for (ArrayList<RequestsForGroupe> arr : listArr) {
-                            for (RequestsForGroupe r : arr) {
-                                System.out.print(r + "\t\t\t");
-                            }
-                            System.out.println();
-                        }*/
                         createScheduleObjects(listArr);
                         listArr.clear();
                     }

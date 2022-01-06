@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -106,6 +105,9 @@ public class DaoSchedule implements DaoDtoSchedule {
         namedParameterJdbcTemplate.update(insertToScheduleAll, sqlParameterSource, keyHolder);
         count++;
         }
+
+        List <StudentsSchedule> studentsSchedules = schedule.createScheduleForGroupe (groupes, scheduleList);
+        List <LectorsSchedule> lectorsSchedules = schedule.createScheduleForLectors (users, scheduleList);
 
         return count;
     }
