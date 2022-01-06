@@ -1,18 +1,23 @@
 package com.epam.brest.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class StudentsSchedule {
 
     private String groupe;
-    private List <List<String>> week;
-    private List <String> pairByWeek;
+    private int pair;
+    private String monday;
+    private String tuesday;
+    private String wednesday;
+    private String thursday;
+    private String friday;
 
-    public StudentsSchedule(String groupe) {
-        this.groupe = groupe;
-        this.week = new ArrayList<>();
-        this.pairByWeek = new ArrayList<>();
+    public StudentsSchedule() {
+        this.monday = "";
+        this.tuesday = "";
+        this.wednesday = "";
+        this.thursday = "";
+        this.friday = "";
     }
 
     public String getGroupe() {
@@ -23,20 +28,51 @@ public class StudentsSchedule {
         this.groupe = groupe;
     }
 
-    public List<List<String>> getWeek() {
-        return week;
+    public int getPair() {
+        return pair;
     }
 
-    public void setWeek(List<List<String>> week) {
-        this.week = week;
+    public void setPair(int pair) {
+        this.pair = pair;
     }
 
-    public List<String> getPairByWeek() {
-        return pairByWeek;
+    public String getMonday() {
+        return monday;
     }
 
-    public void setPairByWeek(List<String> pairByWeek) {
-        this.pairByWeek = pairByWeek;
+    public void setMonday(String monday) {
+        this.monday = monday;
     }
 
+    public String getTuesday() {
+        return tuesday;
+    }
+
+    public void setTuesday(String tuesday) {
+        this.tuesday = tuesday;
+    }
+
+    public String getWednesday() {
+        return wednesday;
+    }
+
+    public void setWednesday(String wednesday) {
+        this.wednesday = wednesday;
+    }
+
+    public String getThursday() {
+        return thursday;
+    }
+
+    public void setThursday(String thursday) {
+        this.thursday = thursday;
+    }
+
+    public String getFriday() {
+        return friday;
+    }
+
+    public void setFriday(String friday) {
+        this.friday = friday;
+    }
 }

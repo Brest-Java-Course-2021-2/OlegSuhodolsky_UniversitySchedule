@@ -17,7 +17,46 @@ public class Schedule {
     public Schedule() {}
 
 
-    public StudentsSchedule createScheduleForGroupe (String groupe, List<DaySchedule> daySchedules){
+    public List <StudentsSchedule> createScheduleForGroupe (List<String> groups){
+           List <StudentsSchedule> studentsSchedules = new ArrayList<>();
+
+           for(String gruppa : groups){
+               for (int para = 1; para < 6; para++ ){
+                   StudentsSchedule studentsSchedule = new StudentsSchedule();
+                   studentsSchedule.setGroupe(gruppa);
+                   studentsSchedule.setPair(para);
+                   for  (int dayWeek = 1; dayWeek < 6; dayWeek++ ){
+
+                       for (DaySchedule daySchedule : scheduleObj){
+                           if ((gruppa == daySchedule.getGroupeName()) && (para == daySchedule.getNumberPair())
+                               && (dayWeek == daySchedule.getDay())){
+                                if (dayWeek == 1){
+                                    studentsSchedule.setMonday(daySchedule.getSubject());
+                                } else{
+                                    if (dayWeek == 2){
+                                        studentsSchedule.setTuesday(daySchedule.getSubject());
+                                    } else {
+                                        if (dayWeek == 3){
+                                            studentsSchedule.setWednesday(daySchedule.getSubject());
+                                        } else {
+                                            if (dayWeek == 4){
+                                                studentsSchedule.setThursday(daySchedule.getSubject());
+                                            } else {
+                                                if (dayWeek == 5){
+                                                    studentsSchedule.setFriday(daySchedule.getSubject());
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                           }
+                       }
+                   }
+                   studentsSchedules.add(studentsSchedule);
+               }
+           }
 
         return null;
     }
