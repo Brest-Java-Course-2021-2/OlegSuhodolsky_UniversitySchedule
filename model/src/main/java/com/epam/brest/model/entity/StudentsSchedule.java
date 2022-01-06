@@ -3,7 +3,7 @@ package com.epam.brest.model.entity;
 
 
 public class StudentsSchedule {
-
+    private int idSS;
     private String groupe;
     private int pair;
     private String monday;
@@ -18,6 +18,14 @@ public class StudentsSchedule {
         this.wednesday = "";
         this.thursday = "";
         this.friday = "";
+    }
+
+    public int getIdSS() {
+        return idSS;
+    }
+
+    public void setIdSS(int idSS) {
+        this.idSS = idSS;
     }
 
     public String getGroupe() {

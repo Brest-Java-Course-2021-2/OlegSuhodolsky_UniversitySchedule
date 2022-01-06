@@ -2,6 +2,8 @@ DROP TABLE IF EXISTS request;
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS groupe;
 DROP TABLE IF EXISTS schedule;
+DROP TABLE IF EXISTS schedulestudents;
+DROP TABLE IF EXISTS schedulelectors;
 
 CREATE TABLE user
 (
@@ -41,4 +43,28 @@ CREATE TABLE schedule
     CONSTRAINT schedule_pk PRIMARY KEY (idS)
 );
 
+CREATE TABLE schedulestudents
+(
+    idSS int PRIMARY KEY auto_increment,
+    groupe varchar(10) NOT NULL,
+    pair int,
+    monday varchar(100) NOT NULL ,
+    tuesday varchar(100) NOT NULL ,
+    wednesday varchar(100) NOT NULL ,
+    thursday varchar(100) NOT NULL ,
+    friday varchar(100) NOT NULL ,
+    CONSTRAINT schedulestudents_pk PRIMARY KEY (idSS)
+);
 
+CREATE TABLE schedulelectors
+(
+    idLS int PRIMARY KEY auto_increment,
+    lector varchar(50) NOT NULL,
+    pair int,
+    monday varchar(10) NOT NULL,
+    tuesday varchar(10) NOT NULL,
+    wednesday varchar(10) NOT NULL,
+    thursday varchar(10) NOT NULL,
+    friday varchar(10) NOT NULL,
+    CONSTRAINT schedulelectors_pk PRIMARY KEY (idLS)
+);

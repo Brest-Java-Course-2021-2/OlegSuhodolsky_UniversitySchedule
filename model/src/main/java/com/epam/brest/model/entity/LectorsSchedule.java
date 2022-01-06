@@ -1,7 +1,7 @@
 package com.epam.brest.model.entity;
 
 public class LectorsSchedule {
-
+    private int idLS;
     private String lector;
     private int pair;
     private String monday;
@@ -16,6 +16,14 @@ public class LectorsSchedule {
         this.wednesday = "";
         this.thursday = "";
         this.friday = "";
+    }
+
+    public int getIdLS() {
+        return idLS;
+    }
+
+    public void setIdLS(int idLS) {
+        this.idLS = idLS;
     }
 
     public String getLector() {
