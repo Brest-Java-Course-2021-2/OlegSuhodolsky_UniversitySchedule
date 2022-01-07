@@ -18,6 +18,24 @@ public class LectorsSchedule {
         this.friday = "";
     }
 
+    public LectorsSchedule(  int idLS
+                           , String lector
+                           , int pair
+                           , String monday
+                           , String tuesday
+                           , String wednesday
+                           , String thursday
+                           , String friday) {
+        this.idLS = idLS;
+        this.lector = lector;
+        this.pair = pair;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+    }
+
     public int getIdLS() {
         return idLS;
     }

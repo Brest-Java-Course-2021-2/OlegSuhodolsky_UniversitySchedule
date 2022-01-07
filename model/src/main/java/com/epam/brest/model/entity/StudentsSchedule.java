@@ -20,6 +20,24 @@ public class StudentsSchedule {
         this.friday = "";
     }
 
+    public StudentsSchedule(  int idSS
+                            , String groupe
+                            , int pair
+                            , String monday
+                            , String tuesday
+                            , String wednesday
+                            , String thursday
+                            , String friday) {
+        this.idSS = idSS;
+        this.groupe = groupe;
+        this.pair = pair;
+        this.monday = monday;
+        this.tuesday = tuesday;
+        this.wednesday = wednesday;
+        this.thursday = thursday;
+        this.friday = friday;
+    }
+
     public int getIdSS() {
         return idSS;
     }

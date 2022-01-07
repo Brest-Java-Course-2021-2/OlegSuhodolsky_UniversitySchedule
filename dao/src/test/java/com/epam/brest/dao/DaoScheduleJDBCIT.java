@@ -57,21 +57,17 @@ public class DaoScheduleJDBCIT {
     }
 
 
-  /*  @Test
+    @Test
     void testWhereSchedule() {
         logger.debug("Execute test: IsScheduleInTable()");
         int count = daoSchedule.createScheduleDto();
         assertTrue(count > 0);
-        List <DaySchedule> daySchedules = daoSchedule.getScheduleForAll();
-        assertTrue(daySchedules.size() == count, "count = size");
-
         int count1 = daoSchedule.createScheduleDto();
         assertTrue(count1 > 0);
-        List <DaySchedule> daySchedules1 = daoSchedule.getScheduleForAll();
-        assertTrue(daySchedules1.size() == count, "count = size");
+        assertTrue(count1 == count, "count = size");
 
     }
-*/
+
 
 
 }

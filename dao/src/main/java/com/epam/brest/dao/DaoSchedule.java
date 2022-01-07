@@ -36,6 +36,25 @@ public class DaoSchedule implements DaoDtoSchedule {
     @Value("${DELETE_ALL_SCHEDULE}")
     private String deleteScheduleAll;
 
+    @Value("${DELETE_SCHEDULE_STUDENTS}")
+    private String deleteScheduleStudents;
+
+    @Value("${DELETE_SCHEDULE_LECTORS}")
+    private String deleteScheduleLectors;
+
+    @Value("${INSERT_TO_SCHEDULE_STUDENTS}")
+    private String insertToScheduleStudents;
+
+    @Value("${INSERT_TO_SCHEDULE_LECTORS}")
+    private String insertToScheduleLectors;
+
+    @Value("${GET_FROM_SCHEDULE_STUDENTS}")
+    private String getFromScheduleStudents;
+
+    @Value("${GET_FROM_SCHEDULE_LECTORS}")
+    private String getFromScheduleLectors;
+
+
 
     private DaoGroupe daoGroupe;
     private DaoUser daoUser;
@@ -62,6 +81,8 @@ public class DaoSchedule implements DaoDtoSchedule {
                 new MapSqlParameterSource().addValue("id", 0);
 
         namedParameterJdbcTemplate.update(deleteScheduleAll, sqlParameterSourceDelete);
+        namedParameterJdbcTemplate.update(deleteScheduleStudents, sqlParameterSourceDelete);
+        namedParameterJdbcTemplate.update(deleteScheduleLectors, sqlParameterSourceDelete);
 
         List<Groupe> listGroupe = daoGroupe.getGroupesByName();
         List<String>  groupes = schedule.getGroupeNameList(listGroupe);
@@ -84,8 +105,6 @@ public class DaoSchedule implements DaoDtoSchedule {
              }
         }
 
-
-
         List<DaySchedule> scheduleList = schedule.createLectorRequestsList(groupes, users, requestsForGroupes);
 
         logger.info("INSERT NEW SCHEDULE {}");
@@ -93,41 +112,74 @@ public class DaoSchedule implements DaoDtoSchedule {
         for (DaySchedule daySchedule : scheduleList){
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
-
         ((MapSqlParameterSource) sqlParameterSource).addValue("lectorName", daySchedule.getLectorName());
         ((MapSqlParameterSource) sqlParameterSource).addValue("groupeName", daySchedule.getGroupeName());
         ((MapSqlParameterSource) sqlParameterSource).addValue("numberPair", daySchedule.getNumberPair());
         ((MapSqlParameterSource) sqlParameterSource).addValue("subject", daySchedule.getSubject());
         ((MapSqlParameterSource) sqlParameterSource).addValue("day", daySchedule.getDay());
 
-
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(insertToScheduleAll, sqlParameterSource, keyHolder);
         count++;
         }
 
+
         List <StudentsSchedule> studentsSchedules = schedule.createScheduleForGroupe (groupes, scheduleList);
+        logger.info("INSERT NEW SCHEDULE FOR STUDENTS{}");
+        for (StudentsSchedule studentsSchedule : studentsSchedules){
+            SqlParameterSource sqlParameterSource =
+                    new MapSqlParameterSource();
+            ((MapSqlParameterSource) sqlParameterSource).addValue("groupe", studentsSchedule.getGroupe());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("pair", studentsSchedule.getPair());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("monday", studentsSchedule.getMonday());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("tuesday", studentsSchedule.getTuesday());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("wednesday", studentsSchedule.getWednesday());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("thursday", studentsSchedule.getThursday());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("friday", studentsSchedule.getFriday());
+
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            namedParameterJdbcTemplate.update(insertToScheduleStudents, sqlParameterSource, keyHolder);
+
+        }
+
         List <LectorsSchedule> lectorsSchedules = schedule.createScheduleForLectors (users, scheduleList);
 
-        return count;
+            logger.info("INSERT NEW SCHEDULE FOR STUDENTS{}");
+            for (LectorsSchedule lectorsSchedule : lectorsSchedules){
+                SqlParameterSource sqlParameterSource =
+                        new MapSqlParameterSource();
+                ((MapSqlParameterSource) sqlParameterSource).addValue("lector", lectorsSchedule.getLector());
+                ((MapSqlParameterSource) sqlParameterSource).addValue("pair", lectorsSchedule.getPair());
+                ((MapSqlParameterSource) sqlParameterSource).addValue("monday", lectorsSchedule.getMonday());
+                ((MapSqlParameterSource) sqlParameterSource).addValue("tuesday", lectorsSchedule.getTuesday());
+                ((MapSqlParameterSource) sqlParameterSource).addValue("wednesday", lectorsSchedule.getWednesday());
+                ((MapSqlParameterSource) sqlParameterSource).addValue("thursday", lectorsSchedule.getThursday());
+                ((MapSqlParameterSource) sqlParameterSource).addValue("friday", lectorsSchedule.getFriday());
+
+                KeyHolder keyHolder = new GeneratedKeyHolder();
+                namedParameterJdbcTemplate.update(insertToScheduleLectors, sqlParameterSource, keyHolder);
+
+            }
+            return count;
     }
 
-// Create schedule for students
+
+// Get schedule for students
     @Override
-    public List<StudentsSchedule> getScheduleForAll() {
+    public List<StudentsSchedule> getScheduleForAllStudents() {
         logger.info("READ SCHEDULE FOR ALL GROUPES {}");
        return null;
     }
 
 // Create schedule for teacher
     @Override
-    public List<DaySchedule> getScheduleForTeacherDto() {
+    public List<LectorsSchedule> getScheduleForTeacherDto() {
         return null;
     }
 
 // Create schedule for one groupe
     @Override
-    public List<DaySchedule> getScheduleForGroupeDto() {
+    public List<StudentsSchedule> getScheduleForGroupeDto() {
         return null;
     }
 
@@ -146,4 +198,42 @@ public class DaoSchedule implements DaoDtoSchedule {
             return daySchedule;
         }
     }
+
+    /*MAPPER CLASS StudentsSchedule*/
+    private class StudentsScheduleRowMapper implements RowMapper<StudentsSchedule> {
+        @Override
+        public StudentsSchedule mapRow(ResultSet resultSet, int i) throws SQLException {
+            StudentsSchedule studentsSchedule = new StudentsSchedule();
+            studentsSchedule.setIdSS(resultSet.getInt("idSS"));
+            studentsSchedule.setGroupe(resultSet.getString("groupe"));
+            studentsSchedule.setPair(resultSet.getInt("pair"));
+            studentsSchedule.setMonday(resultSet.getString("monday"));
+            studentsSchedule.setTuesday(resultSet.getString("tuesday"));
+            studentsSchedule.setWednesday(resultSet.getString("wednesday"));
+            studentsSchedule.setThursday(resultSet.getString("thursday"));
+            studentsSchedule.setFriday(resultSet.getString("friday"));
+
+            return studentsSchedule;
+        }
+    }
+
+    /*MAPPER CLASS LectorsSchedule*/
+    private class LectorsScheduleRowMapper implements RowMapper<LectorsSchedule> {
+        @Override
+        public LectorsSchedule mapRow(ResultSet resultSet, int i) throws SQLException {
+            LectorsSchedule lectorsSchedule = new LectorsSchedule();
+            lectorsSchedule.setIdLS(resultSet.getInt("idLS"));
+            lectorsSchedule.setLector(resultSet.getString("lector"));
+            lectorsSchedule.setPair(resultSet.getInt("pair"));
+            lectorsSchedule.setMonday(resultSet.getString("monday"));
+            lectorsSchedule.setTuesday(resultSet.getString("tuesday"));
+            lectorsSchedule.setWednesday(resultSet.getString("wednesday"));
+            lectorsSchedule.setThursday(resultSet.getString("thursday"));
+            lectorsSchedule.setFriday(resultSet.getString("friday"));
+
+            return lectorsSchedule;
+        }
+    }
+
+
 }
