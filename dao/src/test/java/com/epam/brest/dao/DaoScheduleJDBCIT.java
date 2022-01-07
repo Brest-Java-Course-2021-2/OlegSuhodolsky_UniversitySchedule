@@ -3,6 +3,7 @@ package com.epam.brest.dao;
 
 import com.epam.brest.dao.schedulemodel.Schedule;
 import com.epam.brest.model.entity.DaySchedule;
+import com.epam.brest.model.entity.LectorsSchedule;
 import com.epam.brest.model.entity.StudentsSchedule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -70,8 +71,8 @@ public class DaoScheduleJDBCIT {
     }
 
     @Test
-    void testScheduleIsDrop() {
-        logger.debug("Execute test: testScheduleIsDrop()");
+    void testScheduleIsDropAndGroupes() {
+        logger.debug("Execute test: testScheduleIsDropAndGroupes()");
         int count = daoSchedule.createScheduleDto();
         List<StudentsSchedule> studentsSchedules = daoSchedule.getScheduleForGroupeDto("e1");
         int count1 = daoSchedule.createScheduleDto();
@@ -83,6 +84,18 @@ public class DaoScheduleJDBCIT {
 
     }
 
+    @Test
+    void testScheduleIsDropAndLectors() {
+        logger.debug("Execute test: testScheduleIsDropAndLectors()");
+        int count = daoSchedule.createScheduleDto();
+        List<LectorsSchedule> lectorsSchedules = daoSchedule.getScheduleForTeacherDto("Mike");
+        int count1 = daoSchedule.createScheduleDto();
+        List<LectorsSchedule> lectorsSchedules1 = daoSchedule.getScheduleForTeacherDto("Mike");
+        assertTrue(count > 0);
+        assertTrue(count1 > 0);
+        assertTrue(count1 == count, "count = size");
+        assertTrue(lectorsSchedules.size() == lectorsSchedules1.size(), "drop SUCCESS");
 
+    }
 
 }

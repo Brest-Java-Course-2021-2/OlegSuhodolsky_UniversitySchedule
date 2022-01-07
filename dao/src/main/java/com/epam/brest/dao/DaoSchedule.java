@@ -1,7 +1,7 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.dao.schedulemodel.Schedule;
-import com.epam.brest.daoAPI.DaoDtoSchedule;
+import com.epam.brest.daoAPI.DaoDtoScheduleAPI;
 import com.epam.brest.model.entity.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class DaoSchedule implements DaoDtoSchedule {
+public class DaoSchedule implements DaoDtoScheduleAPI {
 
     @Value("${INSERT_TO_SCHEDULE_ALL}")
     private String insertToScheduleAll;
@@ -174,7 +174,14 @@ public class DaoSchedule implements DaoDtoSchedule {
 // Create schedule for teacher
     @Override
     public List<LectorsSchedule> getScheduleForTeacherDto(String lector) {
-        return null;
+        logger.info("READ SCHEDULE FOR  LECTOR {lectorName}");
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource().addValue("lector", lector);
+        List <LectorsSchedule> lectorsSchedules = null;
+        lectorsSchedules = (List<LectorsSchedule>) namedParameterJdbcTemplate.query(
+                                                                    getFromScheduleLectors, sqlParameterSource
+                                                                  , new DaoSchedule.LectorsScheduleRowMapper());
+        return lectorsSchedules;
     }
 
 // Create schedule for one groupe
@@ -184,7 +191,9 @@ public class DaoSchedule implements DaoDtoSchedule {
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("groupe", groupe);
         List <StudentsSchedule> studentsSchedules = null;
-        studentsSchedules = (List<StudentsSchedule>) namedParameterJdbcTemplate.query(getFromScheduleStudents, sqlParameterSource, new DaoSchedule.StudentsScheduleRowMapper());
+        studentsSchedules = (List<StudentsSchedule>) namedParameterJdbcTemplate.query(
+                                                                            getFromScheduleStudents, sqlParameterSource
+                                                                            , new DaoSchedule.StudentsScheduleRowMapper());
         return studentsSchedules;
     }
 
