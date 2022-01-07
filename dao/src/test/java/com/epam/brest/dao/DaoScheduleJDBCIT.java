@@ -3,6 +3,7 @@ package com.epam.brest.dao;
 
 import com.epam.brest.dao.schedulemodel.Schedule;
 import com.epam.brest.model.entity.DaySchedule;
+import com.epam.brest.model.entity.StudentsSchedule;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.FixMethodOrder;
@@ -65,6 +66,20 @@ public class DaoScheduleJDBCIT {
         int count1 = daoSchedule.createScheduleDto();
         assertTrue(count1 > 0);
         assertTrue(count1 == count, "count = size");
+
+    }
+
+    @Test
+    void testScheduleIsDrop() {
+        logger.debug("Execute test: testScheduleIsDrop()");
+        int count = daoSchedule.createScheduleDto();
+        List<StudentsSchedule> studentsSchedules = daoSchedule.getScheduleForGroupeDto("e1");
+        int count1 = daoSchedule.createScheduleDto();
+        List<StudentsSchedule> studentsSchedules1 = daoSchedule.getScheduleForGroupeDto("e1");
+        assertTrue(count > 0);
+        assertTrue(count1 > 0);
+        assertTrue(count1 == count, "count = size");
+        assertTrue(studentsSchedules.size() == studentsSchedules1.size(), "drop SUCCESS");
 
     }
 

@@ -10,10 +10,10 @@ public interface DaoDtoSchedule {
 
    Integer createScheduleDto();
 
-    List<StudentsSchedule> getScheduleForAllStudents();
+    List<List<StudentsSchedule>> getScheduleForAllStudents();
 
-    List<LectorsSchedule> getScheduleForTeacherDto();
+    List<LectorsSchedule> getScheduleForTeacherDto(String lector);
 
-    List<StudentsSchedule> getScheduleForGroupeDto();
+    List<StudentsSchedule> getScheduleForGroupeDto(String groupe);
 
 }

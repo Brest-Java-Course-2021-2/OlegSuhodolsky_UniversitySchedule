@@ -166,21 +166,26 @@ public class DaoSchedule implements DaoDtoSchedule {
 
 // Get schedule for students
     @Override
-    public List<StudentsSchedule> getScheduleForAllStudents() {
+    public List<List<StudentsSchedule>> getScheduleForAllStudents() {
         logger.info("READ SCHEDULE FOR ALL GROUPES {}");
        return null;
     }
 
 // Create schedule for teacher
     @Override
-    public List<LectorsSchedule> getScheduleForTeacherDto() {
+    public List<LectorsSchedule> getScheduleForTeacherDto(String lector) {
         return null;
     }
 
 // Create schedule for one groupe
     @Override
-    public List<StudentsSchedule> getScheduleForGroupeDto() {
-        return null;
+    public List<StudentsSchedule> getScheduleForGroupeDto(String groupe) {
+        logger.info("READ SCHEDULE FOR  GROUPE {groupeName}");
+        SqlParameterSource sqlParameterSource =
+                new MapSqlParameterSource().addValue("groupe", groupe);
+        List <StudentsSchedule> studentsSchedules = null;
+        studentsSchedules = (List<StudentsSchedule>) namedParameterJdbcTemplate.query(getFromScheduleStudents, sqlParameterSource, new DaoSchedule.StudentsScheduleRowMapper());
+        return studentsSchedules;
     }
 
 
