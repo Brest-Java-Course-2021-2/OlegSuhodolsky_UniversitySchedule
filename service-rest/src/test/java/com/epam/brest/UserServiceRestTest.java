@@ -1,8 +1,5 @@
 package com.epam.brest;
 
-
-
-
 import com.epam.brest.service.rest.UserServiceRest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -84,9 +81,6 @@ public class UserServiceRestTest {
         // given
         User user = new User();
         user.setName(RandomStringUtils.randomAlphabetic(USER_NAME_SIZE));
-
-
-
 
         mockServer.expect(ExpectedCount.once(), requestTo(new URI(USERS_URL)))
                 .andExpect(method(HttpMethod.POST))

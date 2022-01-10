@@ -129,10 +129,10 @@ public class DaorequestMockTest {
         ReflectionTestUtils.setField(daoRequest, "deleteRequest", sql);
         int id = 1;
         Mockito.when(namedParameterJdbcTemplate.update(
-                        any(),
-                        ArgumentMatchers.<SqlParameterSource>any(),
-                        ArgumentMatchers.<KeyHolder>any())
-                        ).thenReturn(1);
+                any(),
+                ArgumentMatchers.<SqlParameterSource>any(),
+                ArgumentMatchers.<KeyHolder>any())
+        ).thenReturn(1);
 
         daoRequest.deleteRequest(id);
 

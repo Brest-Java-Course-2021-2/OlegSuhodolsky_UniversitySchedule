@@ -9,7 +9,8 @@ public class DaySchedule {
     private String subject;
     private int numberPair;
 
-    public DaySchedule() {}
+    public DaySchedule() {
+    }
 
     public DaySchedule(String lectorName, String groupeName, int numberPair, String subject, int day) {
         this.day = day;
@@ -27,6 +28,7 @@ public class DaySchedule {
         this.subject = subject;
         this.numberPair = numberPair;
     }
+
     public Integer getIdS() {
         return idS;
     }

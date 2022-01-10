@@ -5,14 +5,12 @@ import com.epam.brest.daoAPI.DaoUserAPI;
 import com.epam.brest.model.entity.User;
 import com.epam.brest.service.exceptions.UserNotFoundException;
 import com.epam.brest.serviceAPI.UserService;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 
 public class UserServiceImpl implements UserService {
 

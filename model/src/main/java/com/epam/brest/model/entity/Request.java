@@ -1,5 +1,6 @@
 /**
  * Request class . Fields <b>idR</b> <b>id</b> <b>groupe</b> <b>pairs</b> <b>subject</b> <b></>date</b>
+ *
  * @autor Oleg Suhodolsky
  * @version 1.1
  */
@@ -24,17 +25,17 @@ public class Request implements Serializable {
 
     /** field groupe - groupe request*/
     @NotEmpty(message = "Groupe should be not empty")
-    @Size(min=1, max=10, message="Size of groupe should not be 1-10 characters")
+    @Size(min = 1, max = 10, message = "Size of groupe should not be 1-10 characters")
     private String groupe;
 
     /** field pairs - pairs request*/
     @NotEmpty(message = "Pairs should be not empty")
-    @Size (min=1, max=2, message="Size of pairs should not be 1-2 characters")
+    @Size(min = 1, max = 2, message = "Size of pairs should not be 1-2 characters")
     private String pairs;
 
     /** field subject - subject request*/
     @NotEmpty(message = "Subject should be not empty")
-    @Size (min=3, max=100, message="Size of subject should not be 3-100 characters")
+    @Size(min = 3, max = 100, message = "Size of subject should not be 3-100 characters")
     private String subject;
 
     /** field date - date when request was create or update*/
@@ -44,8 +45,8 @@ public class Request implements Serializable {
     /**
      * Constructor - create new object
      * @see Request#Request()
-     * @see Request#Request(int, String,String,String,Date)
-     * @see Request#Request(int, String,String,String)
+     * @see Request#Request(int, String, String, String, Date)
+     * @see Request#Request(int, String, String, String)
      * @param idR - identificator
      * @param id - identificator of User
      * @param groupe - groupe name
@@ -65,14 +66,14 @@ public class Request implements Serializable {
     /**
      * Constructor - create new object
      * @see Request#Request()
-     * @see Request#Request(int, String,String,String,Date)
-     * @see Request#Request(int,int, String,String,String,Date)
+     * @see Request#Request(int, String, String, String, Date)
+     * @see Request#Request(int, int, String, String, String, Date)
      * @param id - identificator of User
      * @param groupe - groupe name
      * @param pairs - number pairs
      * @param subject - subject of user
      */
-    public Request( int id, String groupe, String pairs, String subject) {
+    public Request(int id, String groupe, String pairs, String subject) {
         //this.idR = idR;
         this.id = id;
         this.groupe = groupe;
@@ -85,8 +86,8 @@ public class Request implements Serializable {
     /**
      * Constructor - create new object
      * @see Request#Request()
-     * @see Request#Request(int,int, String,String,String,Date)
-     * @see Request#Request(int, String,String,String)
+     * @see Request#Request(int, int, String, String, String, Date)
+     * @see Request#Request(int, String, String, String)
      * @param id - identificator of User
      * @param groupe - groupe name
      * @param pairs - number pairs
@@ -103,9 +104,9 @@ public class Request implements Serializable {
 
     /**
      * Constructor - create new object
-     * @see Request#Request(int,int, String,String,String,Date)
-     * @see Request#Request(int, String,String,String,Date)
-     * @see Request#Request(int, String,String,String)
+     * @see Request#Request(int, int, String, String, String, Date)
+     * @see Request#Request(int, String, String, String, Date)
+     * @see Request#Request(int, String, String, String)
      */
     public Request() {
     }

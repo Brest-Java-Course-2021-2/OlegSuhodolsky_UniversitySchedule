@@ -1,12 +1,9 @@
 package com.epam.brest.service;
 
 import com.epam.brest.dao.DaoSerialization;
-import com.epam.brest.model.entity.Request;
-import com.epam.brest.model.entity.User;
 import com.epam.brest.serviceAPI.SerializationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

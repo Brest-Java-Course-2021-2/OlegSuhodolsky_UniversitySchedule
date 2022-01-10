@@ -49,7 +49,6 @@ public class SerializatorTest {
     void testFindSerializator() {
         logger.debug("Execute test: IsSerializator()");
         assertNotNull(serializator);
-
     }
 
     @Test
@@ -63,7 +62,6 @@ public class SerializatorTest {
         assertTrue(user.getName().equals(user1.getName()));
         assertTrue(user.getLogin().equals(user1.getLogin()));
     }
-
 
     @Test
     void testRequestSerializator() throws InvalidObjectException {

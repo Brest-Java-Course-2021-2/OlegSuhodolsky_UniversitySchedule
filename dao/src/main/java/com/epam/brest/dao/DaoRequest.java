@@ -60,13 +60,12 @@ public class DaoRequest implements DaoRequestAPI {
         logger.info("GET REQUEST BY USER ID AND IDR {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource()
-                         .addValue("idR", idR);
+                        .addValue("idR", idR);
         Request request = null;
         request = namedParameterJdbcTemplate.queryForObject(getFromRequestByIdAndIdr,
                 sqlParameterSource, new RequestRowMapper());
         return request;
     }
-
 
 
     @Override
@@ -127,6 +126,5 @@ public class DaoRequest implements DaoRequestAPI {
             return request;
         }
     }
-
 
 }

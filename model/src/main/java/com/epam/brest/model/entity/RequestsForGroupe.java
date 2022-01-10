@@ -53,9 +53,4 @@ public class RequestsForGroupe {
     public String toString() {
         return (this.lector + " " + this.groupe + " " + this.subject + " " + this.pairs);
     }
-
-//    public static final Comparator<RequestsForGroupe> COMPARE_BY_PAIRS
-//            = (RequestsForGroupe lhs, RequestsForGroupe rhs) -> lhs.pairs - rhs.pairs;
-//            Collections.sort(al,Collections.reverseOrder(RequestsForGroupe.COMPARE_BY_PAIRS));
-//            // Collections.sort(al,RequestsForGroupe.COMPARE_BY_PAIRS);
 }

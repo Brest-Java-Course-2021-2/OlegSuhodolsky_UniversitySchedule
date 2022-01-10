@@ -5,5 +5,7 @@ import com.epam.brest.model.entity.Groupe;
 import java.util.List;
 
 public interface GroupeService {
+
     List<Groupe> getAllGroupesByNameService();
+
 }

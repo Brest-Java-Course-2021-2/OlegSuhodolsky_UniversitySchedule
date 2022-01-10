@@ -48,11 +48,8 @@
         <constructor-arg name="daoGroupe" ref="daoGroupe"/>
     </bean>
 
-
     <bean name="serializator" class="com.epam.brest.Serializator">
     </bean>
-
-
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">

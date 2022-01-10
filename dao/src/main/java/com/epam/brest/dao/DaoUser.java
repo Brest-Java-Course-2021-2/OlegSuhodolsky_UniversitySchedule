@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -62,7 +61,6 @@ public class DaoUser implements DaoUserAPI {
                 new MapSqlParameterSource().addValue("id", id);
         User user = null;
         user = (User) namedParameterJdbcTemplate.queryForObject(getFromUserById, sqlParameterSource, new UserRowMapper());
-
         return user;
     }
 
@@ -76,7 +74,6 @@ public class DaoUser implements DaoUserAPI {
         ((MapSqlParameterSource) sqlParameterSource).addValue("login", user.getLogin());
         ((MapSqlParameterSource) sqlParameterSource).addValue("password", user.getPassword());
         ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
-
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateUser, sqlParameterSource, keyHolder);
@@ -104,11 +101,8 @@ public class DaoUser implements DaoUserAPI {
         logger.info("DELETE USER BY ID {}");
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource().addValue("id", id);
-      return  namedParameterJdbcTemplate.update(sqlDeleteUserById, sqlParameterSource);
+        return namedParameterJdbcTemplate.update(sqlDeleteUserById, sqlParameterSource);
     }
-
-
-
 
     public Integer writeUserSerialize(User user) {
         logger.info("INSERT NEW USER AFTER SERIALIZATION{}");
@@ -120,14 +114,10 @@ public class DaoUser implements DaoUserAPI {
         ((MapSqlParameterSource) sqlParameterSource).addValue("password", user.getPassword());
         ((MapSqlParameterSource) sqlParameterSource).addValue("email", user.getEmail());
 
-
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateUserAfterSerialization, sqlParameterSource, keyHolder);
         return (Integer) keyHolder.getKey();
     }
-
-
-
 
     /*MAPPER CLASS USER*/
     private class UserRowMapper implements RowMapper<User> {

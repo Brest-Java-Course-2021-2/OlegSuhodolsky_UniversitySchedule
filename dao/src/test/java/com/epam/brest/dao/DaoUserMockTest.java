@@ -81,7 +81,6 @@ public class DaoUserMockTest {
                 ArgumentMatchers.<RowMapper<User>>any())
         ).thenReturn(user);
 
-
         User result = daoUser.readUser(id);
 
         Mockito.verify(namedParameterJdbcTemplate)
@@ -110,7 +109,6 @@ public class DaoUserMockTest {
                 ArgumentMatchers.<SqlParameterSource>any(),
                 ArgumentMatchers.<KeyHolder>any())
         ).thenReturn(count);
-
 
         Integer result = daoUser.writeUser(user);
 
@@ -168,6 +166,5 @@ public class DaoUserMockTest {
         Assertions.assertNotNull(source);
         Assertions.assertNotNull(keyHolder);
     }
-
 
 }

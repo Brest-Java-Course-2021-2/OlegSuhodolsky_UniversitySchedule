@@ -1,6 +1,7 @@
 
 /**
  * User class . Fields <b>id</b> <b>name</b> <b>login</b> <b>password</b> <b>email</b>
+ *
  * @autor Oleg Suhodolsky
  * @version 1.0
  */
@@ -19,28 +20,28 @@ public class User implements Serializable {
     private int id;
     /** field name - user's fullname*/
     @NotEmpty(message = "Name should be not empty")
-    @Size (min=2, max=50, message="Size of name should not be 2-50 characters")
+    @Size(min = 2, max = 50, message = "Size of name should not be 2-50 characters")
     private String name;
 
     /** field name - user's login in system*/
     @NotEmpty(message = "Login should be not empty")
-    @Size (min=2, max=50, message="Size of login should not be 2-50 characters")
+    @Size(min = 2, max = 50, message = "Size of login should not be 2-50 characters")
     private String login;
 
     /** field name - user's password*/
     @NotEmpty(message = "Password should be not empty")
-    @Size (min=4, max=50, message="Size of password should not be 4-50 characters")
+    @Size(min = 4, max = 50, message = "Size of password should not be 4-50 characters")
     private String password;
 
-    @NotEmpty (message = "Email should  be not empty")
-    @Email (message = "Email should  be valid")
+    @NotEmpty(message = "Email should  be not empty")
+    @Email(message = "Email should  be valid")
     /** field name - user's e-mail*/
     private String email;
 
     /**
      * Constructor - create new object
      * @see User#User()
-     * @see User#User(String,String,String,String)
+     * @see User#User(String, String, String, String)
      * @param id - identificator
      * @param name - fullname od user
      * @param login - login of user
@@ -57,16 +58,17 @@ public class User implements Serializable {
 
     /**
      * Constructor - create new object
-     * @see User#User(int, String,String,String,String)
-     * @see User#User(String,String,String,String)
+     * @see User#User(int, String, String, String, String)
+     * @see User#User(String, String, String, String)
      */
-    public User() {}
+    public User() {
+    }
 
 
     /**
      * Constructor - create new object
      * @see User#User()
-     * @see User#User(int,String,String,String,String)
+     * @see User#User(int, String, String, String, String)
      * @param name - fullname od user
      * @param login - login of user
      * @param password - user's password
@@ -111,7 +113,7 @@ public class User implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
-       }
+    }
 
     /**
      * Getter - get field login {@link User#login}
@@ -183,6 +185,5 @@ public class User implements Serializable {
         User user = (User) o;
         return name.equals(user.name) && login.equals(user.login) && password.equals(user.password) && email.equals(user.email);
     }
-
 
 }

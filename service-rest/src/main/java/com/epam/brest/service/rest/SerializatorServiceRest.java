@@ -1,6 +1,5 @@
 package com.epam.brest.service.rest;
 
-import com.epam.brest.model.entity.Request;
 import com.epam.brest.serviceAPI.SerializationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -37,7 +36,6 @@ public class SerializatorServiceRest implements SerializationService {
 
     @Override
     public void getListRequestService() throws InvalidObjectException {
-
     }
 
     @Override
