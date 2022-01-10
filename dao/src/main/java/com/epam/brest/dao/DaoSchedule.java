@@ -132,7 +132,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
         namedParameterJdbcTemplate.update(insertToScheduleAll, sqlParameterSource, keyHolder);
         count++;
         }
-/*
+
 
         List <StudentsSchedule> studentsSchedules = schedule.createScheduleForGroupe (groupes, scheduleList);
         logger.info("INSERT NEW SCHEDULE FOR STUDENTS{}");
@@ -169,7 +169,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
                 KeyHolder keyHolder = new GeneratedKeyHolder();
                 namedParameterJdbcTemplate.update(insertToScheduleLectors, sqlParameterSource, keyHolder);
 
-            }*/
+            }
             return count;
     }
 

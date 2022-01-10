@@ -67,8 +67,6 @@ public class DaoScheduleJDBCIT {
 
         int count1 = daoSchedule.createScheduleDto();
         assertTrue(count1 == 96);
-        //assertTrue(count == 96, "count = size");
-
     }
 
     @Test
