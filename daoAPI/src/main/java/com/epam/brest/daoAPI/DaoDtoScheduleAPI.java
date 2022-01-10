@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DaoDtoScheduleAPI {
 
-   Integer createScheduleDto();
+    int createScheduleDto();
 
     List<List<StudentsSchedule>> getScheduleForAllStudents();
 

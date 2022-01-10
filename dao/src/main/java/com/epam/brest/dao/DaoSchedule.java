@@ -75,7 +75,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
 
 //  Create schedule from requests
     @Override
-    public Integer createScheduleDto() {
+    public int createScheduleDto() {
         logger.debug("Execute test: create schedule() - > TRUE");
         SqlParameterSource sqlParameterSourceDelete =
                 new MapSqlParameterSource().addValue("id", 0);
@@ -92,23 +92,33 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
 
 
         List<RequestsForGroupe> requestsForGroupes = new ArrayList<>();
-        for (int i = 0; i < listUser.size() -1; i++){
-            User user = listUser.get(i);
-            List<Request> listRequest = daoRequest.getAllRequests(user.getId());
-            for (int j = 0; j < listRequest.size()-1; j++){
-                Request request = listRequest.get(j);
+        for (User u : listUser){
+            //User user = listUser.get(i);
+            List<Request> listRequest = daoRequest.getAllRequests(u.getId());
+            for (Request r : listRequest){
+                //Request request = listRequest.get(j);
                 requestsForGroupes.add(new RequestsForGroupe(
-                        user.getName()
-                        , request.getGroupe()
-                        , request.getSubject()
-                        , Integer.parseInt(request.getPairs())));
+                        u.getName()
+                        , r.getGroupe()
+                        , r.getSubject()
+                        , Integer.parseInt(r.getPairs())));
              }
         }
 
-        List<DaySchedule> scheduleList = schedule.createLectorRequestsList(groupes, users, requestsForGroupes);
+        System.out.println("Input requests for groupes : " + requestsForGroupes);
+        System.out.println("requests for groupes SIZE: " +  requestsForGroupes.size());
+
+        List<DaySchedule> scheduleList = schedule.createSchedule(groupes, users, requestsForGroupes);
+
+
+
+            System.out.println("DaySchedule - > " + scheduleList);
+
 
         logger.info("INSERT NEW SCHEDULE {}");
-        Integer count = 0;
+        int count = 0;
+        //if (scheduleList.size() == 0){count = 1111;}
+
         for (DaySchedule daySchedule : scheduleList){
         SqlParameterSource sqlParameterSource =
                 new MapSqlParameterSource();
@@ -122,7 +132,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
         namedParameterJdbcTemplate.update(insertToScheduleAll, sqlParameterSource, keyHolder);
         count++;
         }
-
+/*
 
         List <StudentsSchedule> studentsSchedules = schedule.createScheduleForGroupe (groupes, scheduleList);
         logger.info("INSERT NEW SCHEDULE FOR STUDENTS{}");
@@ -159,7 +169,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
                 KeyHolder keyHolder = new GeneratedKeyHolder();
                 namedParameterJdbcTemplate.update(insertToScheduleLectors, sqlParameterSource, keyHolder);
 
-            }
+            }*/
             return count;
     }
 
@@ -168,7 +178,22 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
     @Override
     public List<List<StudentsSchedule>> getScheduleForAllStudents() {
         logger.info("READ SCHEDULE FOR ALL GROUPES {}");
-       return null;
+        List<Groupe> listGroupe = daoGroupe.getGroupesByName();
+        List<String>  groupes = schedule.getGroupeNameList(listGroupe);
+        List<List<StudentsSchedule>> studentsSchedulesAllGroupes= new ArrayList<>();
+        List <StudentsSchedule> studentsSchedules = null;
+        for (String groupe : groupes){
+            SqlParameterSource sqlParameterSource =
+                    new MapSqlParameterSource().addValue("groupe", groupe);
+
+            studentsSchedules = (List<StudentsSchedule>) namedParameterJdbcTemplate.query(
+                    getFromScheduleStudents, sqlParameterSource
+                    , new DaoSchedule.StudentsScheduleRowMapper());
+            studentsSchedulesAllGroupes.add(studentsSchedules);
+
+        }
+
+       return studentsSchedulesAllGroupes;
     }
 
 // Create schedule for teacher

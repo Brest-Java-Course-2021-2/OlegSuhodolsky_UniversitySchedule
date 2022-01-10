@@ -39,7 +39,7 @@ public class DaoScheduleJDBCIT {
     private Schedule schedule;
 
     @Autowired
-    public DaoScheduleJDBCIT(DaoGroupe daoGroupe, DaoUser daoUser, DaoRequest daoRequest,DaoSchedule daoSchedule, Schedule schedule) {
+    public DaoScheduleJDBCIT(DaoGroupe daoGroupe, DaoUser daoUser, DaoRequest daoRequest, DaoSchedule daoSchedule, Schedule schedule) {
         this.daoSchedule = daoSchedule;
         this.daoGroupe = daoGroupe;
         this.daoUser = daoUser;
@@ -63,10 +63,11 @@ public class DaoScheduleJDBCIT {
     void testWhereSchedule() {
         logger.debug("Execute test: IsScheduleInTable()");
         int count = daoSchedule.createScheduleDto();
-        assertTrue(count > 0);
+        assertTrue(count == 96);
+
         int count1 = daoSchedule.createScheduleDto();
-        assertTrue(count1 > 0);
-        assertTrue(count1 == count, "count = size");
+        assertTrue(count1 == 96);
+        //assertTrue(count == 96, "count = size");
 
     }
 
@@ -97,5 +98,21 @@ public class DaoScheduleJDBCIT {
         assertTrue(lectorsSchedules.size() == lectorsSchedules1.size(), "drop SUCCESS");
 
     }
+
+    @Test
+    void testScheduleIsDropAndAllGroupes() {
+        logger.debug("Execute test: testScheduleIsDropAndAllGroupes()");
+        int count = daoSchedule.createScheduleDto();
+        List<List<StudentsSchedule>> studentsSchedules = daoSchedule.getScheduleForAllStudents();
+        int count1 = daoSchedule.createScheduleDto();
+        List<List<StudentsSchedule>> studentsSchedules1 = daoSchedule.getScheduleForAllStudents();
+        assertTrue(count > 0);
+        assertTrue(count1 > 0);
+        assertTrue(count1 == count, "count = size");
+        assertTrue(studentsSchedules.size() == 8, "drop SUCCESS");
+
+    }
+
+
 
 }

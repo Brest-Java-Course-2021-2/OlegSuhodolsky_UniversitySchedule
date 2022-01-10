@@ -5,12 +5,12 @@ public class RequestsForGroupe {
     private String groupe;
     private String lector;
     private String subject;
-    private Integer pairs;
+    private int pairs;
 
     public RequestsForGroupe() {
     }
 
-    public RequestsForGroupe(String lector, String groupe, String subject, Integer pairs) {
+    public RequestsForGroupe(String lector, String groupe, String subject, int pairs) {
         this.groupe = groupe;
         this.lector = lector;
         this.subject = subject;

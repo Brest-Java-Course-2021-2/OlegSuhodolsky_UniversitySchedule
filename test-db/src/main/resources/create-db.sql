@@ -29,7 +29,8 @@ CREATE TABLE request
 CREATE TABLE groupe
 (
     idGroupe int PRIMARY KEY auto_increment,
-    nameGroupe varchar(10) NOT NULL UNIQUE
+    nameGroupe varchar(10) NOT NULL UNIQUE,
+    CONSTRAINT groupe_pk PRIMARY KEY (idGroupe)
 );
 
 CREATE TABLE schedule

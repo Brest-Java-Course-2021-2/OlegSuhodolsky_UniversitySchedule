@@ -1,7 +1,6 @@
 package com.epam.brest.model.entity;
 
 
-
 public class StudentsSchedule {
     private int idSS;
     private String groupe;
@@ -20,14 +19,14 @@ public class StudentsSchedule {
         this.friday = "";
     }
 
-    public StudentsSchedule(  int idSS
-                            , String groupe
-                            , int pair
-                            , String monday
-                            , String tuesday
-                            , String wednesday
-                            , String thursday
-                            , String friday) {
+    public StudentsSchedule(int idSS
+            , String groupe
+            , int pair
+            , String monday
+            , String tuesday
+            , String wednesday
+            , String thursday
+            , String friday) {
         this.idSS = idSS;
         this.groupe = groupe;
         this.pair = pair;

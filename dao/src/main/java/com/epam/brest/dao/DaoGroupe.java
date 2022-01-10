@@ -46,6 +46,7 @@ public class DaoGroupe implements DaoGroupeAPI {
         @Override
         public Groupe mapRow(ResultSet resultSet, int i) throws SQLException {
             Groupe groupe = new Groupe();
+           // groupe.setIdGroupe(resultSet.getInt("idGroupe"));
             groupe.setNameGroupe(resultSet.getString("nameGroupe"));
             return groupe;
         }
