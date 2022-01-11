@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(locations = {"classpath*:test-db.xml", "classpath*:service-context-test.xml"})
 @Transactional
 public class GroupeServiceImplTest {
-    private final Logger logger = LogManager.getLogger(UserServiceImpl.class);
+    private final Logger logger = LogManager.getLogger(GroupeServiceImpl.class);
 
     @Autowired
     GroupeService groupeService;

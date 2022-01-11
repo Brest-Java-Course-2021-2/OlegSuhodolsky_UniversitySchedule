@@ -63,7 +63,8 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
     private final Logger logger = LogManager.getLogger(DaoSchedule.class);
 
     @Autowired
-    public DaoSchedule(NamedParameterJdbcTemplate namedParameterJdbcTemplate, DaoGroupe daoGroupe, DaoUser daoUser, DaoRequest daoRequest, Schedule schedule) {
+    public DaoSchedule(NamedParameterJdbcTemplate namedParameterJdbcTemplate, DaoGroupe daoGroupe
+                     , DaoUser daoUser, DaoRequest daoRequest, Schedule schedule) {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.daoGroupe = daoGroupe;
         this.daoUser = daoUser;
