@@ -51,7 +51,7 @@ public class ScheduleServiceDtoImplIT {
 
     @Test
     void shouldScheduleForGroupe() {
-        logger.info("If schedule for groupe creste{}");
+        logger.info("If schedule for groupe create{}");
         int count = scheduleDtoService.createScheduleDtoService();
         assertTrue(count == 96, "dayschedules = 96");
         List<StudentsSchedule> studentsSchedules = scheduleDtoService.getScheduleForGroupeDtoService("e1");

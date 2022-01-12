@@ -190,19 +190,19 @@ End create
                         if ((lector == daySchedule.getLectorName()) && (para == daySchedule.getNumberPair())
                                 && (dayWeek == daySchedule.getDay())) {
                             if (dayWeek == 1) {
-                                lectorsSchedule.setMonday(daySchedule.getSubject());
+                                lectorsSchedule.setMonday(daySchedule.getGroupeName());
                             } else {
                                 if (dayWeek == 2) {
-                                    lectorsSchedule.setTuesday(daySchedule.getSubject());
+                                    lectorsSchedule.setTuesday(daySchedule.getGroupeName());
                                 } else {
                                     if (dayWeek == 3) {
-                                        lectorsSchedule.setWednesday(daySchedule.getSubject());
+                                        lectorsSchedule.setWednesday(daySchedule.getGroupeName());
                                     } else {
                                         if (dayWeek == 4) {
-                                            lectorsSchedule.setThursday(daySchedule.getSubject());
+                                            lectorsSchedule.setThursday(daySchedule.getGroupeName());
                                         } else {
                                             if (dayWeek == 5) {
-                                                lectorsSchedule.setFriday(daySchedule.getSubject());
+                                                lectorsSchedule.setFriday(daySchedule.getGroupeName());
                                             }
                                         }
                                     }

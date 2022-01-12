@@ -65,6 +65,20 @@
         <constructor-arg name="daoSerialization" ref="daoSerialization"/>
     </bean>
 
+    <bean name="schedule" class="com.epam.brest.dao.schedulemodel.Schedule">
+    </bean>
+
+    <bean name="daoSchedule" class="com.epam.brest.dao.DaoSchedule">
+        <constructor-arg  ref="namedParameterJdbcTemplate"/>
+        <constructor-arg name="daoGroupe" ref="daoGroupe"/>
+        <constructor-arg name="daoUser" ref="daoUser"/>
+        <constructor-arg name="daoRequest" ref="daoRequest"/>
+        <constructor-arg name="schedule" ref="schedule"/>
+    </bean>
+
+    <bean id="scheduleService" class="com.epam.brest.service.ScheduleDtoServiceImpl">
+        <constructor-arg name="daoSchedule" ref="daoSchedule"/>
+    </bean>
 
     <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations">
@@ -73,6 +87,7 @@
                 <value>classpath*:sql-user.properties</value>
                 <value>classpath*:sql-request.properties</value>
                 <value>classpath*:sql-groupe.properties</value>
+                <value>classpath*:sql-schedule.properties</value>
             </list>
         </property>
     </bean>
