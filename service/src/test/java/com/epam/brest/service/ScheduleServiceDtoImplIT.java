@@ -35,10 +35,7 @@ public class ScheduleServiceDtoImplIT {
     void shouldScheduleService() {
         logger.info("If schedule {}");
         assertNotNull(scheduleDtoService);
-<<<<<<< HEAD
 
-=======
->>>>>>> 367bfd8... SERVICE SCHEDULE COMPLETED. IT TESTS SERVICE SCHEDULE COMPLETED
     }
 
     @Test
