@@ -64,5 +64,10 @@
     <input type="submit" value="BACK TO USERS TABLE"/>
 </form>
 
+<br/>
+<form th:method="GET" th:action="@{/schedule/lector/{lector} (lector=${user.getName()})}">
+    <input type="submit" value="SCHEDULE"/>
+</form>
+
 </body>
 </html>

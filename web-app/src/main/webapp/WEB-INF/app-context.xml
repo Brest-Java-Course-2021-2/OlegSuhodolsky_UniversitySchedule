@@ -33,6 +33,11 @@
         <constructor-arg index="1" ref="restTemplate"/>
     </bean>
 
+    <bean id="scheduleService" class="com.epam.brest.service.rest.ScheduleServiceRest">
+        <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.schedule}"/>
+        <constructor-arg index="1" ref="restTemplate"/>
+    </bean>
+
 
     <bean id="serializationService" class="com.epam.brest.service.rest.SerializatorServiceRest">
         <constructor-arg index="0" value="${protocol}://${host}:${port}/${point.serializator}"/>
