@@ -8,26 +8,28 @@
     <title>NEW USER</title>
 </head>
 <body>
-<h3>Creating new user</h3>
+<div><center><h3>Creating new user</h3></center></div>
+<center>
 <form th:method="POST" th:action="@{/user}" th:object="${user}">
-    <label for="name">Enter name: </label>
+    <label for="name">Enter    name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
      <br/>
     
-    <label for="login">Enter login: </label>
+    <label for="login">Enter   login: </label>
     <input type="text" th:field="*{login}" id="login"/>
     <div style="color:red" th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login Error</div>
     <br/>
-    <label for="password"> Enter password: </label>
+    <label for="password">Enter password:</label>
     <input type="text" th:field="*{password}" id="password"/>
     <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
      <br/>
-    <label for="email">Enter email: </label>
+    <label for="email">Enter    email: </label>
     <input type="text" th:field="*{email}" id="email"/>
     <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</div>
      <br/>
     <input type="submit" value="Create new user"/>
 </form>
+</center>
 </body>
 </html>

@@ -162,10 +162,11 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
         List<Groupe> listGroupe = daoGroupe.getGroupesByName();
         List<String> groupes = schedule.getGroupeNameList(listGroupe);
         List<List<StudentsSchedule>> studentsSchedulesAllGroupes = new ArrayList<>();
-        List<StudentsSchedule> studentsSchedules = null;
+        //List<StudentsSchedule> studentsSchedules = null;
         for (String groupe : groupes) {
             SqlParameterSource sqlParameterSource =
                     new MapSqlParameterSource().addValue("groupe", groupe);
+            List<StudentsSchedule> studentsSchedules = new ArrayList<>();
             studentsSchedules = (List<StudentsSchedule>) namedParameterJdbcTemplate.query(
                     getFromScheduleStudents, sqlParameterSource
                     , new DaoSchedule.StudentsScheduleRowMapper());

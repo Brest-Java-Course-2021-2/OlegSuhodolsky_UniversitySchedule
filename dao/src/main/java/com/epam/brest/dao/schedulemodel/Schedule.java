@@ -59,7 +59,7 @@ public class Schedule {
 
         if (listOfSortedGroupesRequests.size() > 0) {
             if (listOfSortedGroupesRequests.get(0).size() < 4) {
-                return scheduleObjects;
+                return null;
             }
         }
         int i = 0;
@@ -99,7 +99,7 @@ public class Schedule {
                                     , pairsForSchedule[i][pair]
                                     , requests.getSubject()
                                     , days[day]));
-                            requests.setPairs(requests.getPairs() - 1);
+                            requests.setPairs((requests.getPairs() - 1));
                             requestsForGroupes.set(pair, requests);
                         }
                     }
@@ -190,19 +190,19 @@ End create
                         if ((lector == daySchedule.getLectorName()) && (para == daySchedule.getNumberPair())
                                 && (dayWeek == daySchedule.getDay())) {
                             if (dayWeek == 1) {
-                                lectorsSchedule.setMonday(daySchedule.getGroupeName());
+                                lectorsSchedule.setMonday(daySchedule.getGroupeName() + " - " + daySchedule.getSubject());
                             } else {
                                 if (dayWeek == 2) {
-                                    lectorsSchedule.setTuesday(daySchedule.getGroupeName());
+                                    lectorsSchedule.setTuesday(daySchedule.getGroupeName() + " - " + daySchedule.getSubject());
                                 } else {
                                     if (dayWeek == 3) {
-                                        lectorsSchedule.setWednesday(daySchedule.getGroupeName());
+                                        lectorsSchedule.setWednesday(daySchedule.getGroupeName() + " - " + daySchedule.getSubject());
                                     } else {
                                         if (dayWeek == 4) {
-                                            lectorsSchedule.setThursday(daySchedule.getGroupeName());
+                                            lectorsSchedule.setThursday(daySchedule.getGroupeName() + " - " + daySchedule.getSubject());
                                         } else {
                                             if (dayWeek == 5) {
-                                                lectorsSchedule.setFriday(daySchedule.getGroupeName());
+                                                lectorsSchedule.setFriday(daySchedule.getGroupeName() + " - " + daySchedule.getSubject());
                                             }
                                         }
                                     }
@@ -233,19 +233,19 @@ End create
                         if ((gruppa == daySchedule.getGroupeName()) && (para == daySchedule.getNumberPair())
                                 && (dayWeek == daySchedule.getDay())) {
                             if (dayWeek == 1) {
-                                studentsSchedule.setMonday(daySchedule.getSubject());
+                                studentsSchedule.setMonday(daySchedule.getSubject() + " - " + daySchedule.getLectorName());
                             } else {
                                 if (dayWeek == 2) {
-                                    studentsSchedule.setTuesday(daySchedule.getSubject());
+                                    studentsSchedule.setTuesday(daySchedule.getSubject() + " - " + daySchedule.getLectorName());
                                 } else {
                                     if (dayWeek == 3) {
-                                        studentsSchedule.setWednesday(daySchedule.getSubject());
+                                        studentsSchedule.setWednesday(daySchedule.getSubject() + " - " + daySchedule.getLectorName());
                                     } else {
                                         if (dayWeek == 4) {
-                                            studentsSchedule.setThursday(daySchedule.getSubject());
+                                            studentsSchedule.setThursday(daySchedule.getSubject() + " - " + daySchedule.getLectorName());
                                         } else {
                                             if (dayWeek == 5) {
-                                                studentsSchedule.setFriday(daySchedule.getSubject());
+                                                studentsSchedule.setFriday(daySchedule.getSubject() + " - " + daySchedule.getLectorName());
                                             }
                                         }
                                     }

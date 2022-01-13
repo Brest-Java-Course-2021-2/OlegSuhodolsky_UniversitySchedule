@@ -37,7 +37,9 @@ public class ScheduleServiceRest implements ScheduleDtoService {
 
     @Override
     public List<List<StudentsSchedule>> getScheduleForAllStudentsDtoService() {
-        return null;
+        logger.debug("GetScheduleForAllStudents()");
+        ResponseEntity responseEntity = restTemplate.getForEntity(url + "/allgroupes", List.class);
+        return (List<List<StudentsSchedule>>) responseEntity.getBody();
     }
 
     @Override

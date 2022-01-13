@@ -62,10 +62,10 @@ CREATE TABLE schedulelectors
     idLS int PRIMARY KEY auto_increment,
     lector varchar(50) NOT NULL,
     pair int,
-    monday varchar(10) NOT NULL,
-    tuesday varchar(10) NOT NULL,
-    wednesday varchar(10) NOT NULL,
-    thursday varchar(10) NOT NULL,
-    friday varchar(10) NOT NULL,
+    monday varchar(100) NOT NULL,
+    tuesday varchar(100) NOT NULL,
+    wednesday varchar(100) NOT NULL,
+    thursday varchar(100) NOT NULL,
+    friday varchar(100) NOT NULL,
     CONSTRAINT schedulelectors_pk PRIMARY KEY (idLS)
 );
