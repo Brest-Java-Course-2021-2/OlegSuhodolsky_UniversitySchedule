@@ -130,6 +130,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
             ((MapSqlParameterSource) sqlParameterSource).addValue("wednesday", studentsSchedule.getWednesday());
             ((MapSqlParameterSource) sqlParameterSource).addValue("thursday", studentsSchedule.getThursday());
             ((MapSqlParameterSource) sqlParameterSource).addValue("friday", studentsSchedule.getFriday());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("saturday", studentsSchedule.getSaturday());
 
             KeyHolder keyHolder = new GeneratedKeyHolder();
             namedParameterJdbcTemplate.update(insertToScheduleStudents, sqlParameterSource, keyHolder);
@@ -147,6 +148,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
             ((MapSqlParameterSource) sqlParameterSource).addValue("wednesday", lectorsSchedule.getWednesday());
             ((MapSqlParameterSource) sqlParameterSource).addValue("thursday", lectorsSchedule.getThursday());
             ((MapSqlParameterSource) sqlParameterSource).addValue("friday", lectorsSchedule.getFriday());
+            ((MapSqlParameterSource) sqlParameterSource).addValue("saturday", lectorsSchedule.getSaturday());
 
             KeyHolder keyHolder = new GeneratedKeyHolder();
             namedParameterJdbcTemplate.update(insertToScheduleLectors, sqlParameterSource, keyHolder);
@@ -232,6 +234,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
             studentsSchedule.setWednesday(resultSet.getString("wednesday"));
             studentsSchedule.setThursday(resultSet.getString("thursday"));
             studentsSchedule.setFriday(resultSet.getString("friday"));
+            studentsSchedule.setSaturday(resultSet.getString("saturday"));
             return studentsSchedule;
         }
     }
@@ -249,6 +252,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
             lectorsSchedule.setWednesday(resultSet.getString("wednesday"));
             lectorsSchedule.setThursday(resultSet.getString("thursday"));
             lectorsSchedule.setFriday(resultSet.getString("friday"));
+            lectorsSchedule.setSaturday(resultSet.getString("saturday"));
             return lectorsSchedule;
         }
     }

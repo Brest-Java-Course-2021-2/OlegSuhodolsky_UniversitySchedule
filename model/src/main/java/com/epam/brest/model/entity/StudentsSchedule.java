@@ -10,13 +10,14 @@ public class StudentsSchedule {
     private String wednesday;
     private String thursday;
     private String friday;
-
+    private String saturday;
     public StudentsSchedule() {
         this.monday = "";
         this.tuesday = "";
         this.wednesday = "";
         this.thursday = "";
         this.friday = "";
+        this.saturday = "";
     }
 
     public StudentsSchedule(int idSS
@@ -26,7 +27,8 @@ public class StudentsSchedule {
             , String tuesday
             , String wednesday
             , String thursday
-            , String friday) {
+            , String friday
+            , String saturday) {
         this.idSS = idSS;
         this.groupe = groupe;
         this.pair = pair;
@@ -35,7 +37,9 @@ public class StudentsSchedule {
         this.wednesday = wednesday;
         this.thursday = thursday;
         this.friday = friday;
+        this.saturday = saturday;
     }
+
 
     public int getIdSS() {
         return idSS;
@@ -100,4 +104,9 @@ public class StudentsSchedule {
     public void setFriday(String friday) {
         this.friday = friday;
     }
+
+    public String getSaturday() {return saturday;}
+
+    public void setSaturday(String saturday) {this.saturday = saturday;}
+
 }

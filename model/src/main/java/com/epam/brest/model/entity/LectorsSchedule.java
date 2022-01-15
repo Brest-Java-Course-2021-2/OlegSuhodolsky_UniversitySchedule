@@ -9,6 +9,7 @@ public class LectorsSchedule {
     private String wednesday;
     private String thursday;
     private String friday;
+    private String saturday;
 
     public LectorsSchedule() {
         this.monday = "";
@@ -16,6 +17,7 @@ public class LectorsSchedule {
         this.wednesday = "";
         this.thursday = "";
         this.friday = "";
+        this.saturday = "";
     }
 
     public LectorsSchedule(  int idLS
@@ -25,7 +27,8 @@ public class LectorsSchedule {
                            , String tuesday
                            , String wednesday
                            , String thursday
-                           , String friday) {
+                           , String friday
+                           , String saturday) {
         this.idLS = idLS;
         this.lector = lector;
         this.pair = pair;
@@ -34,6 +37,7 @@ public class LectorsSchedule {
         this.wednesday = wednesday;
         this.thursday = thursday;
         this.friday = friday;
+        this.saturday = saturday;
     }
 
     public int getIdLS() {
@@ -99,4 +103,8 @@ public class LectorsSchedule {
     public void setFriday(String friday) {
         this.friday = friday;
     }
+
+    public String getSaturday() {return saturday;}
+
+    public void setSaturday(String saturday) {this.saturday = saturday;}
 }

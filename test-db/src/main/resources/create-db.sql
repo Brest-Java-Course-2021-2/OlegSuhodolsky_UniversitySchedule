@@ -49,11 +49,12 @@ CREATE TABLE schedulestudents
     idSS int PRIMARY KEY auto_increment,
     groupe varchar(10) NOT NULL,
     pair int,
-    monday varchar(100) NOT NULL ,
-    tuesday varchar(100) NOT NULL ,
-    wednesday varchar(100) NOT NULL ,
-    thursday varchar(100) NOT NULL ,
-    friday varchar(100) NOT NULL ,
+    monday varchar(100) NOT NULL,
+    tuesday varchar(100) NOT NULL,
+    wednesday varchar(100) NOT NULL,
+    thursday varchar(100) NOT NULL,
+    friday varchar(100) NOT NULL,
+    saturday varchar(100) NOT NULL,
     CONSTRAINT schedulestudents_pk PRIMARY KEY (idSS)
 );
 
@@ -67,5 +68,6 @@ CREATE TABLE schedulelectors
     wednesday varchar(100) NOT NULL,
     thursday varchar(100) NOT NULL,
     friday varchar(100) NOT NULL,
+    saturday varchar(100) NOT NULL,
     CONSTRAINT schedulelectors_pk PRIMARY KEY (idLS)
 );
