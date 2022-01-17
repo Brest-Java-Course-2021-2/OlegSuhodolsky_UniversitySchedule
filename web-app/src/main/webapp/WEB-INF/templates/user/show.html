@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:th="http://www.thymeleaf.org"
-          xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-     <meta charset="utf-8"/>
+    <meta charset="utf-8"/>
     <title>SHOW</title>
     <style type="text/css">
    TABLE {
-    width: 1200px;
+    width: 800px;
    }
    TH {
     background: #4b0072;
@@ -16,58 +16,81 @@
    TD, TH {
     padding: 3px;
    }
-  </style>
+
+    </style>
 
 
 </head>
 <body>
 
+<div>
+    <table summary="Table of teachers" border="1" cellspacing="2" align="center">
+        <caption>User data to change</caption>
 
-<table  summary="Table of teachers" border="1" cellspacing="2" align="center" >
-    <caption>User data to change</caption>
-
-    <thead>
-            <tr>
-        <th>   ID     </th>
-        <th>   Name   </th>
-        <th>   Login   </th><!-- comment -->
-        <th>   Password   </th>
-        <th>   Email       </th>
-             </tr>
-    </thead>
-    <tbody>
+        <thead>
+        <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th> Login</th><!-- comment -->
+            <th> Password</th>
+            <th> Email</th>
+        </tr>
+        </thead>
+        <tbody>
         <td th:text="${user.id}"></td>
-            <td th:text="${user.name}" ></td>
-                <td th:text="${user.login}" ></td>
-                     <td th:text="${user.password}" ></td>
-                         <td th:text="${user.email}" ></td>
-    </tbody>
-</table>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.login}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.email}"></td>
+        </tbody>
+    </table>
+</div>
+>
 
+<div>
 
-<br/>
-<form th:method="GET" th:action="@{/user/edit/{id} (id=${user.getId()})}">
-    <input type="submit" value="EDIT USER"/>
-</form>
-<br/>
-<form th:method="GET" th:action="@{/request/{id}(id=${user.getId()})}">
-    <input type="submit" value="EDIT REQUEST"/>
-</form>
+    <table summary="actions" border="1" cellspacing="2" align="center">
+        <caption>User data to change</caption>
 
-<br/>
-<form th:method="POST" th:action="@{/user/{id}/delete (id=${user.getId()})}">
-    <input type="submit" value="DELETE USER"/>
-</form>
+        <thead>
+        <tr>
+            <th> Edit user</th>
+            <th> Edit request</th>
+            <th> Delete user</th><!-- comment -->
+            <th> Back</th>
+            <th> Show schedule</th>
+        </tr>
+        </thead>
+        <tbody>
+        <td>
+            <form th:method="GET" th:action="@{/user/edit/{id} (id=${user.getId()})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/request/{id}(id=${user.getId()})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="POST" th:action="@{/user/{id}/delete (id=${user.getId()})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/user}">
+                <input type="submit" value="back"/>
+            </form>
+        </td>
+        <td>
+            <form th:method="GET" th:action="@{/schedule/lector/{lector} (lector=${user.getName()})}">
+                <input type="submit" value="press"/>
+            </form>
+        </td>
+        </tbody>
+    </table>
 
-<br/>
-<form th:method="GET" th:action="@{/user}">
-    <input type="submit" value="BACK TO USERS TABLE"/>
-</form>
-
-<br/>
-<form th:method="GET" th:action="@{/schedule/lector/{lector} (lector=${user.getName()})}">
-    <input type="submit" value="SCHEDULE"/>
-</form>
+</div>
 
 </body>
 </html>

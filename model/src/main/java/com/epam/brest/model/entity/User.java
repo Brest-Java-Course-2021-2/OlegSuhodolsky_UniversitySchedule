@@ -14,7 +14,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
+/**
+ * Entity class for lectors registration
+ */
 public class User implements Serializable {
     /** field id - user's identificator in database*/
     private int id;

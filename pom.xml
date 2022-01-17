@@ -56,7 +56,7 @@
         </jacoco.ut.execution.data.file>
         <jackson.version>2.13.0</jackson.version>
         <json-path.version>2.0.0</json-path.version>
-   </properties>
+    </properties>
 
     <dependencyManagement>
         <dependencies>
@@ -76,7 +76,7 @@
                 <version>${project.version}</version>
             </dependency>
 
-           <dependency>
+            <dependency>
                 <groupId>com.epam.brest</groupId>
                 <artifactId>web-app</artifactId>
                 <version>${project.version}</version>
@@ -259,13 +259,30 @@
                 <scope>test</scope>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin -->
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.15.0</version>
+            </dependency>
+
 
         </dependencies>
+
+
     </dependencyManagement>
 
     <build>
         <pluginManagement>
             <plugins>
+
                 <!-- Embedded Jetty HTTP Server for testing war application -->
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
@@ -283,7 +300,7 @@
                         <consoleOutput>false</consoleOutput>
                         <failsOnError>false</failsOnError>
                         <failOnViolation>false</failOnViolation>
-                        <linkXRef>false</linkXRef>
+                        <linkXRef>true</linkXRef>
                     </configuration>
                     <executions>
                         <execution>
@@ -326,12 +343,12 @@
         </pluginManagement>
 
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                   <!-- <argLine>${surefire.jacoco.args}</argLine>-->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${surefire.jacoco.args}</argLine>
                     <excludes>
                         <exclude>**/*IT.java</exclude>
                     </excludes>
@@ -342,7 +359,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
-                   <!-- <argLine>${failsafe.jacoco.args}</argLine>-->
+                    <!--suppress UnresolvedMavenProperty -->
+                    <argLine>${failsafe.jacoco.args}</argLine>
                     <includes>
                         <include>**/*IT.java</include>
                     </includes>
@@ -358,129 +376,13 @@
                 </executions>
             </plugin>
 
-            <!--            <plugin>-->
-            <!--                <groupId>org.apache.maven.plugins</groupId>-->
-            <!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
-            <!--            </plugin>-->
-
-            <!--            <plugin>-->
-            <!--                <groupId>org.jacoco</groupId>-->
-            <!--                <artifactId>jacoco-maven-plugin</artifactId>-->
-            <!--                <executions>-->
-            <!--                    <execution>-->
-            <!--                        <id>before-unit-test-execution</id>-->
-            <!--                        <goals>-->
-            <!--                            <goal>prepare-agent</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <destFile>${project.build.directory}/jacoco-output/jacoco-unit-tests.exec</destFile>-->
-            <!--                            <propertyName>surefire.jacoco.args</propertyName>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                    <execution>-->
-            <!--                        <id>after-unit-test-execution</id>-->
-            <!--                        <phase>test</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>report</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <dataFile>${project.build.directory}/jacoco-output/jacoco-unit-tests.exec</dataFile>-->
-            <!--                            <outputDirectory>${project.reporting.outputDirectory}/jacoco-unit-test-coverage-report-->
-            <!--                            </outputDirectory>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                    <execution>-->
-            <!--                        <id>before-integration-test-execution</id>-->
-            <!--                        <phase>pre-integration-test</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>prepare-agent</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <destFile>${project.build.directory}/jacoco-output/jacoco-integration-tests.exec-->
-            <!--                            </destFile>-->
-            <!--                            <propertyName>failsafe.jacoco.args</propertyName>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                    <execution>-->
-            <!--                        <id>after-integration-test-execution</id>-->
-            <!--                        <phase>post-integration-test</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>report</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <dataFile>${project.build.directory}/jacoco-output/jacoco-integration-tests.exec-->
-            <!--                            </dataFile>-->
-            <!--                            <outputDirectory>-->
-            <!--                                ${project.reporting.outputDirectory}/jacoco-integration-test-coverage-report-->
-            <!--                            </outputDirectory>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                    <execution>-->
-            <!--                        <id>merge-unit-and-integration</id>-->
-            <!--                        <phase>post-integration-test</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>merge</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <fileSets>-->
-            <!--                                <fileSet>-->
-            <!--                                    <directory>${project.build.directory}/jacoco-output/</directory>-->
-            <!--                                    <includes>-->
-            <!--                                        <include>*.exec</include>-->
-            <!--                                    </includes>-->
-            <!--                                </fileSet>-->
-            <!--                            </fileSets>-->
-            <!--                            <destFile>${project.build.directory}/jacoco-output/merged.exec</destFile>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                    <execution>-->
-            <!--                        <id>create-merged-report</id>-->
-            <!--                        <phase>post-integration-test</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>report</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <dataFile>${project.build.directory}/jacoco-output/merged.exec</dataFile>-->
-            <!--                            <outputDirectory>-->
-            <!--                                ${project.reporting.outputDirectory}/jacoco-merged-test-coverage-report-->
-            <!--                            </outputDirectory>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                    <execution>-->
-            <!--                        <id>check</id>-->
-            <!--                        <phase>verify</phase>-->
-            <!--                        <goals>-->
-            <!--                            <goal>check</goal>-->
-            <!--                        </goals>-->
-            <!--                        <configuration>-->
-            <!--                            <rules>-->
-            <!--                                <rule>-->
-            <!--                                    <element>CLASS</element>-->
-            <!--                                    <excludes>-->
-            <!--                                        <exclude>*Test</exclude>-->
-            <!--                                        <exclude>*IT</exclude>-->
-            <!--                                    </excludes>-->
-            <!--&lt;!&ndash;                                    <limits>&ndash;&gt;-->
-            <!--&lt;!&ndash;                                        <limit>&ndash;&gt;-->
-            <!--&lt;!&ndash;                                            <counter>LINE</counter>&ndash;&gt;-->
-            <!--&lt;!&ndash;                                            <value>COVEREDRATIO</value>&ndash;&gt;-->
-            <!--&lt;!&ndash;                                            <minimum>70%</minimum>&ndash;&gt;-->
-            <!--&lt;!&ndash;                                        </limit>&ndash;&gt;-->
-            <!--&lt;!&ndash;                                    </limits>&ndash;&gt;-->
-            <!--                                </rule>-->
-            <!--                            </rules>-->
-            <!--                            <dataFile>${project.build.directory}/jacoco-output/merged.exec</dataFile>-->
-            <!--                        </configuration>-->
-            <!--                    </execution>-->
-            <!--                </executions>-->
-            <!--            </plugin>-->
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
+
     <reporting>
         <plugins>
             <plugin>
@@ -495,33 +397,16 @@
                     </reportSet>
                 </reportSets>
             </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.15.0</version>
-                <configuration>
-                    <!--<linkXref>true</linkXref>-->
-                    <sourceEncoding>utf-8</sourceEncoding>
-                    <minimumTokens>100</minimumTokens>
-                    <targetJdk>11</targetJdk>
-                </configuration>
-                <reportSets>
-                    <reportSet><!-- by default, id = "default" -->
-                        <reports><!-- select non-aggregate reports -->
-                            <report>pmd</report>
-                            <report>cpd</report>
-                        </reports>
-                    </reportSet>
-                    <reportSet><!-- aggregate reportSet, to define in poms having modules -->
-                        <id>aggregate</id>
-                        <inherited>false</inherited> <!-- don't run aggregate in child modules -->
-                        <reports>
-                            <report>aggregate-pmd</report>
-                            <report>aggregate-cpd</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
+
             </plugin>
+
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
