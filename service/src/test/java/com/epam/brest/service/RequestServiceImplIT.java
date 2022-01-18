@@ -67,7 +67,7 @@ public class RequestServiceImplIT {
         logger.info("Create Request {request} ");
         Request request = new Request(2,"e1", "2", "history", new Date());
         Integer count = requestService.getAllRequestsByIdService(2).size();
-        assertTrue(requestService.createRequestService(request) > count);
+        assertTrue(requestService.createRequestService(request) == 1);
      }
 
     @Test

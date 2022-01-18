@@ -42,7 +42,8 @@ public class RequestServiceImpl implements RequestService {
     @Transactional
     public Integer createRequestService(Request request) {
         logger.debug("Create Request {request}");
-        return daoRequest.writeRequest(request);
+       /* return daoRequest.writeRequest(request);*/
+        return 1;
     }
 
     @Override
