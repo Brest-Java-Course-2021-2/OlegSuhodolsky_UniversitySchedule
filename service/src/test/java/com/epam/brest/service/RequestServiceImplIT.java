@@ -84,7 +84,7 @@ public class RequestServiceImplIT {
         logger.info("Delete Request {id} ");
         int count = requestService.getAllRequestsByIdService(1).size();
         requestService.deleteRequestService(1);
-        int count1 = requestService.getAllRequestsByIdService(1).size();
-        assertTrue(count1 < count);
+        Request request= requestService.getRequestByIdService(1);
+        assertTrue( request.getPairs() == "0");
     }
 }

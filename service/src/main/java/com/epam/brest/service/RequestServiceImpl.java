@@ -55,7 +55,13 @@ public class RequestServiceImpl implements RequestService {
     @Override
     @Transactional
     public Integer deleteRequestService(Integer idR) {
-       return daoRequest.deleteRequest(idR);
+        logger.debug("Delete Request {idR}" + idR);
+        Request request = daoRequest.readRequest(idR);
+        request.setPairs("0");
+        request.setSubject("");
+        daoRequest.updateRequest(request);
+        /*return daoRequest.deleteRequest(idR);*/
+        return 1;
     }
 
     @Override
