@@ -20,9 +20,9 @@ __Проект для автоматического составления ра
 Структура проекта показана на данной диаграмме:
 
 
-![img_5.png](img_5.png)
+![img_5.png](img/imgstart.png)
 REST приложение выполнено по трехслойной архитектуре : 
-DATABASE-DAO-SERVICES. Слой DAO имплементирует соответствующий 
+DAO-SERVICES-REST SERVICES. Слой DAO имплементирует соответствующий 
 интерфейс DAO API, позволяющий полностью изменить источник данных,
 способ общения с ним, не затрагивающий вышестоящие слои. Также, 
 изменение реализации слоя SERVICES никак не повлияет на работу
@@ -51,7 +51,7 @@ DATABASE-DAO-SERVICES. Слой DAO имплементирует соответ�
 6. Thymeleaf для веб-приложения.
 7. Тесты JUnit, Mock
 
-Installation info:
+### Installation info:
 
 $ git clone https://github.com/Brest-Java-Course-2021-2/OlegSuhodolsky_UniversitySchedule.git
 
@@ -60,32 +60,62 @@ $ cd OlegSuhodolsky_UniversitySchedule
 $ mvn clean install
 
 ### Run info:
-##### (for REST SERVICE)
+###### (for REST SERVICE)
 
 $ mvn -pl rest/ jetty:run
 
-__(port : localhost:8099)__
+###### __(port : localhost:8099)__
 
 ### Next terminal:
-##### (for WEB application)
+###### (for WEB application)
 ###### $ cd OlegSuhodolsky_UniversitySchedule
 
 $ mvn -pl web-app/ jetty:run
 
-__(port : localhost:8090)__
+###### __(port : localhost:8090)__
 
-in browser :  http://localhost:8090/user
+in browser :  **http://localhost:8090/user**
 
 ## Application templates
-
-![img.png](img.png)
-
-![img_1.png](img_1.png)
+##### ___This app can to create schedule in runtime when we are___
+##### ___changing data in the database.___
 
 
-![img_2.png](img_2.png)
+In the beginning we get empty database.  See below
+![img.png](img/img.png)
 
-![img_3.png](img_3.png)
+When we click __"LOAD DATABASE"__ button application fills
+db tables from the saved files. See below:
 
+![img_1.png](img/img_1.png)
 
-![img_4.png](img_4.png)
+This page we have several functional buttons:
+- __New user__ - add new lector to the database.
+- __SAVE DATABASE__ - save current data in the database 
+  to the files. It's really recommended to do each correct changes.
+- __LOAD DATABASE__ - load data from the files to the database.
+  This operation doing once at a session. 
+- __CREATE SCHEDULE__ - create schedules for students and lectors
+  from the current database.
+- __SCHEDULE for ALL students__ - It's show schedule for all students
+  spelling by groupes.
+- link "CHANGE" guide us to lectors functional menu.
+
+When we click "New user" we can add new lector to the system.
+
+![img_7.png](img/img_7.png)
+See result below:
+![img_3.png](img/img_3.png)
+
+When we click "CHAGE" we'll get lectors page
+![img_4.png](img/img_4.png)
+
+Here we can edit lectors properties, requests and delete
+lector from the database. "Show schedule" button 
+provide schedule for lector personally
+
+![img_5.png](img/img_5.png)
+
+Below see the schedule page for all students:
+
+![img_6.png](img/img_6.png)
