@@ -1,6 +1,8 @@
 package com.epam.brest.dao;
 
 import com.epam.brest.daoAPI.DaoUserAPI;
+import com.epam.brest.model.entity.Groupe;
+import com.epam.brest.model.entity.Request;
 import com.epam.brest.model.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -77,6 +79,26 @@ public class DaoUser implements DaoUserAPI {
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sqlCreateUser, sqlParameterSource, keyHolder);
+/*
+
+        //===============BUG Still clutch=============================
+        List <User> users = getAllUsers();
+        for (User u : users){
+            if (user.getName() == u.getName()){
+                user.setId(u.getId());
+                break;
+            }
+        }
+        List<Groupe> groupes = groupeDao.getGroupesByName();
+
+        for(Groupe groupe : groupes){
+            Request request = new Request(user.getId(), groupe.getNameGroupe(), "0", "");
+            requestDao.writeRequest(request);
+        }
+        //===============EMD Clutch========================
+
+*/
+
         return (Integer) keyHolder.getKey();
     }
 

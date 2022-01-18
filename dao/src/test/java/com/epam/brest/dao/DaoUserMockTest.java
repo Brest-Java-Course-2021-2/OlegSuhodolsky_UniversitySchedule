@@ -26,6 +26,8 @@ public class DaoUserMockTest {
     @InjectMocks
     private DaoUser daoUser;
 
+
+
     @Mock
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

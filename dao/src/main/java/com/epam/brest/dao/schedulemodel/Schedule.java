@@ -14,13 +14,14 @@ public class Schedule {
     private int[][] daysForSchedule = {
             {1, 3, 5, 2, 4, 6},
             {2, 4, 6, 1, 3, 5},
-            {6, 5, 1, 3, 5, 4}};
+            {1, 3, 5, 2, 4, 6}};
 
     private int[][] pairsForSchedule = {
-            {1, 2, 3, 4},
-            {2, 3, 4, 1},
-            {3, 4, 1, 2},
-            {4, 1, 2, 3}};
+            {1, 2, 3, 4, 5},
+            {2, 3, 4, 5, 1},
+            {3, 4, 5, 1, 2},
+            {4, 5, 1, 2, 3},
+            {5, 1, 2, 3, 4}};
 
     public Schedule() {
     }
@@ -58,17 +59,17 @@ public class Schedule {
         }
 
         if (listOfSortedGroupesRequests.size() > 0) {
-            if (listOfSortedGroupesRequests.get(0).size() < 4) {
+            if (listOfSortedGroupesRequests.get(0).size() < pairsForSchedule[0].length) {
                 return null;
             }
         }
         List<List<RequestsForGroupe>> blockOfSortedGroupesRequests = new ArrayList<>();
         int i = 0;
         for (List<RequestsForGroupe> forGroupeList : listOfSortedGroupesRequests) {
-            if (blockOfSortedGroupesRequests.size() < 4) {
+            if (blockOfSortedGroupesRequests.size() < pairsForSchedule[0].length) {
                 blockOfSortedGroupesRequests.add(forGroupeList);
             }
-            if (blockOfSortedGroupesRequests.size() == 4) {
+            if (blockOfSortedGroupesRequests.size() == pairsForSchedule[0].length) {
                 createDaySchedule(blockOfSortedGroupesRequests, daysForSchedule[i], pairsForSchedule);
                 blockOfSortedGroupesRequests = new ArrayList<>();
                 i++;
@@ -88,7 +89,9 @@ public class Schedule {
             , int[][] pairsForSchedule) {
 
         for (int day = 0; day < days.length; day++) {
+            if(blockOfSortedGroupesRequests != null){
             blockOfSortedGroupesRequests = normalizeGroupeRequests(blockOfSortedGroupesRequests);
+            }
             if (blockOfSortedGroupesRequests != null) {
                 for (int i = 0; i < blockOfSortedGroupesRequests.size(); i++) {
                     List<RequestsForGroupe> requestsForGroupes = blockOfSortedGroupesRequests.get(i);
@@ -113,10 +116,10 @@ public class Schedule {
     //==================================================================================================================
     private List<List<RequestsForGroupe>> normalizeGroupeRequests(List<List<RequestsForGroupe>> blockOfSortedGroupesRequests) {
 
-        if (blockOfSortedGroupesRequests.get(0).size() > 4) {
+        if (blockOfSortedGroupesRequests.get(0).size() > pairsForSchedule[0].length) {
             blockOfSortedGroupesRequests = deleteNullColumns(blockOfSortedGroupesRequests);
         }
-        if (blockOfSortedGroupesRequests.get(0).size() == 4) {
+        if (blockOfSortedGroupesRequests.get(0).size() == pairsForSchedule[0].length) {
             blockOfSortedGroupesRequests = ifNullColumns(blockOfSortedGroupesRequests);
         }
 

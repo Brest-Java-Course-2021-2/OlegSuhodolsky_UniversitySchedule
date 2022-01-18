@@ -1,12 +1,17 @@
 package com.epam.brest.service;
 
 import com.epam.brest.dao.DaoUser;
+import com.epam.brest.daoAPI.DaoGroupeAPI;
+import com.epam.brest.daoAPI.DaoRequestAPI;
 import com.epam.brest.daoAPI.DaoUserAPI;
+import com.epam.brest.model.entity.Groupe;
+import com.epam.brest.model.entity.Request;
 import com.epam.brest.model.entity.User;
 import com.epam.brest.service.exceptions.UserNotFoundException;
 import com.epam.brest.serviceAPI.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +21,11 @@ public class UserServiceImpl implements UserService {
 
     private final Logger logger = LogManager.getLogger(UserServiceImpl.class);
     private final DaoUserAPI daoUser;
+
+    @Autowired
+    private  DaoGroupeAPI daoGroupe;
+    @Autowired
+    private DaoRequestAPI daoRequest;
 
     public UserServiceImpl(DaoUser daoUser) {
         this.daoUser = daoUser;
@@ -43,7 +53,27 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Integer createUserService(User user) {
         logger.info("Create User {}");
-        return daoUser.writeUser(user);
+
+        Integer count = daoUser.writeUser(user);
+
+        List <User> users = daoUser.getAllUsers();
+        for (User u : users){
+            if (user.getName() == u.getName()){
+                user.setId(u.getId());
+                break;
+            }
+        }
+        List<Groupe> groupes = daoGroupe.getGroupesByName();
+
+        for(Groupe groupe : groupes){
+            Request request = new Request(user.getId(), groupe.getNameGroupe(), "0", "");
+            daoRequest.writeRequest(request);
+        }
+
+
+
+
+        return count;
     }
 
 
