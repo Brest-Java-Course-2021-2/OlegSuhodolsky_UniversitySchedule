@@ -77,7 +77,7 @@ public class DaoSchedule implements DaoDtoScheduleAPI {
     public int createScheduleDto() {
         logger.debug("Execute test: create schedule() - > TRUE");
         SqlParameterSource sqlParameterSourceDelete =
-                new MapSqlParameterSource().addValue("id", 0);
+                new MapSqlParameterSource().addValue("id", null);
 
         namedParameterJdbcTemplate.update(deleteScheduleAll, sqlParameterSourceDelete);
         namedParameterJdbcTemplate.update(deleteScheduleStudents, sqlParameterSourceDelete);

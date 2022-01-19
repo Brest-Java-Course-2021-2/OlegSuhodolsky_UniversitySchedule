@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class Schedule {
 
-    List<DaySchedule> scheduleObjects = new ArrayList<>();
+    List<DaySchedule> scheduleObjects = null;
 
     private int[][] daysForSchedule = {
             {1, 3, 5, 2, 4, 6},
@@ -70,6 +70,7 @@ public class Schedule {
                 blockOfSortedGroupesRequests.add(forGroupeList);
             }
             if (blockOfSortedGroupesRequests.size() == pairsForSchedule[0].length) {
+                blockOfSortedGroupesRequests = deleteAllZeroColumns(blockOfSortedGroupesRequests);
                 createDaySchedule(blockOfSortedGroupesRequests, daysForSchedule[i], pairsForSchedule);
                 blockOfSortedGroupesRequests = new ArrayList<>();
                 i++;
@@ -77,6 +78,7 @@ public class Schedule {
         }
 
         if (blockOfSortedGroupesRequests.size() > 0) {
+            blockOfSortedGroupesRequests = deleteAllZeroColumns(blockOfSortedGroupesRequests);
             createDaySchedule(blockOfSortedGroupesRequests, daysForSchedule[i], pairsForSchedule);
         }
 
@@ -118,9 +120,10 @@ public class Schedule {
 
         if (blockOfSortedGroupesRequests.get(0).size() > pairsForSchedule[0].length) {
             blockOfSortedGroupesRequests = deleteNullColumns(blockOfSortedGroupesRequests);
-        }
+        } else{
         if (blockOfSortedGroupesRequests.get(0).size() == pairsForSchedule[0].length) {
             blockOfSortedGroupesRequests = ifNullColumns(blockOfSortedGroupesRequests);
+        }
         }
 
         return blockOfSortedGroupesRequests;
@@ -157,6 +160,34 @@ public class Schedule {
             return null;
         }
     }
+
+    private List<List<RequestsForGroupe>> deleteAllZeroColumns(List<List<RequestsForGroupe>> blockOfSortedGroupesRequests){
+      for (int i = 0; i < blockOfSortedGroupesRequests.get(0).size(); i++){
+          int count = 0;
+          for (List<RequestsForGroupe> requestsForGroupes : blockOfSortedGroupesRequests){
+              count += requestsForGroupes.get(i).getPairs();
+          }
+
+          if (count == 0){
+              for (int j = 0; j < blockOfSortedGroupesRequests.size(); j++){
+                  List<RequestsForGroupe> requestsForGroupes = blockOfSortedGroupesRequests.get(j);
+                  if (requestsForGroupes.size() > pairsForSchedule[0].length){
+                  requestsForGroupes.remove(i);
+                  }
+                  blockOfSortedGroupesRequests.set(j, requestsForGroupes);
+              }
+              if (blockOfSortedGroupesRequests.get(0).size() == pairsForSchedule[0].length){
+                  return blockOfSortedGroupesRequests;
+              }
+              i = 0;
+          }
+      }
+
+
+        return blockOfSortedGroupesRequests;
+    }
+
+
 //======================================================================================================================
 /*
 End create
