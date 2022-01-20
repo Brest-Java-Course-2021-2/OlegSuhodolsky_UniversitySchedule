@@ -1,7 +1,7 @@
 
 # *University schedule*  
 ***
-![Build Status](https://github.com/Brest-Java-Course-2021-2/OlegSuhodolsky_UniversitySchedule/actions/workflows/checks.yml/badge.svg?branch=main)
+[![Build Status](https://github.com/Brest-Java-Course-2021-2/OlegSuhodolsky_UniversitySchedule/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/Brest-Java-Course-2021-2/OlegSuhodolsky_UniversitySchedule/actions/workflows/checks.yml)
 ### *_Brest-JavaCourse-2021-2_*  
 
 ### Автоматическое составление расписания занятий.
