@@ -119,7 +119,7 @@ public class Schedule {
     private List<List<RequestsForGroupe>> normalizeGroupeRequests(List<List<RequestsForGroupe>> blockOfSortedGroupesRequests) {
 
         if (blockOfSortedGroupesRequests.get(0).size() > pairsForSchedule[0].length) {
-            blockOfSortedGroupesRequests = deleteNullColumns(blockOfSortedGroupesRequests);
+            blockOfSortedGroupesRequests = deleteAllZeroColumns(blockOfSortedGroupesRequests);
         } else{
         if (blockOfSortedGroupesRequests.get(0).size() == pairsForSchedule[0].length) {
             blockOfSortedGroupesRequests = ifNullColumns(blockOfSortedGroupesRequests);
